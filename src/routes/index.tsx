@@ -41,13 +41,13 @@ const APP_URL: string = import.meta.env.VITE_APP_URL ?? "";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Wink — Real-Life Dating App for Real-World Moments" },
+      { title: "Wink: Real-Life Dating App for Real-World Moments" },
       {
         name: "description",
         content:
           "Wink is a proximity dating app that connects people nearby through mutual interest. Real-time matchmaking for events, campuses, and everyday moments.",
       },
-      { property: "og:title", content: "Wink — Real-Life Dating App" },
+      { property: "og:title", content: "Wink: Real-Life Dating App" },
       {
         property: "og:description",
         content:
@@ -77,6 +77,7 @@ function LandingPage() {
       <Safety />
       <UseCases />
       <SocialProof />
+      <Pricing />
       <FAQ />
       <FinalCTA />
       <SiteFooter />
@@ -117,6 +118,9 @@ function SiteNav() {
           </a>
           <a href="#safety" className="text-sm text-muted-foreground hover:text-foreground">
             Safety
+          </a>
+          <a href="#pricing" className="text-sm text-muted-foreground hover:text-foreground">
+            Pricing
           </a>
           <a href="#faq" className="text-sm text-muted-foreground hover:text-foreground">
             FAQ
@@ -162,6 +166,13 @@ function SiteNav() {
               className="rounded-md px-2 py-2 text-sm hover:bg-secondary"
             >
               Safety
+            </a>
+            <a
+              href="#pricing"
+              onClick={() => setOpen(false)}
+              className="rounded-md px-2 py-2 text-sm hover:bg-secondary"
+            >
+              Pricing
             </a>
             <a
               href="#faq"
@@ -404,7 +415,7 @@ function Problem() {
           </h2>
           <p className="mx-auto mt-5 max-w-lg text-base text-muted-foreground md:text-lg">
             Sometimes the connection is there. The confidence isn't. Most people don't fear
-            attraction — they fear rejection, awkwardness, and misreading the moment.
+            attraction; they fear rejection, awkwardness, and misreading the moment.
           </p>
         </div>
 
@@ -726,12 +737,12 @@ function UseCases() {
     { icon: Music2, title: "Concerts", body: "See someone vibing with you? Find out if it's mutual." },
     { icon: PartyPopper, title: "Festivals", body: "Thousands of people. One real connection." },
     { icon: Wine, title: "Lounges & bars", body: "Skip the awkward intro. Match first, talk after." },
-    { icon: Briefcase, title: "Conferences", body: "Network or romance — same room, different intent." },
+    { icon: Briefcase, title: "Conferences", body: "Network or romance. Same room, different vibes." },
     { icon: Coffee, title: "Cafés", body: "Tuesday morning, third table. You both noticed." },
     {
       icon: Users,
       title: "Social events",
-      body: "Parties, meetups, gallery openings — wherever you show up.",
+      body: "Parties, meetups, gallery openings, wherever you show up.",
     },
     {
       icon: Sparkles,
@@ -819,12 +830,136 @@ function Stat({ n, label }: { n: string; label: string }) {
   );
 }
 
+/* ---------------- PRICING ---------------- */
+
+const PRICING_TIERS = [
+  {
+    name: "Free",
+    price: "$0",
+    cadence: "forever",
+    highlight: false,
+    features: [
+      "1 live session per day",
+      "5 min session length",
+      "30 min wink-back window",
+      "All matching, chat, and safety features",
+    ],
+  },
+  {
+    name: "Weekly",
+    price: "$2",
+    cadence: "per week",
+    highlight: false,
+    features: [
+      "Unlimited live sessions",
+      "10, 20, or 30 min sessions",
+      "24 hour wink-back window",
+      "Cancel anytime",
+    ],
+  },
+  {
+    name: "Monthly",
+    price: "$6",
+    cadence: "per month",
+    highlight: true,
+    features: [
+      "Unlimited live sessions",
+      "10, 20, or 30 min sessions",
+      "24 hour wink-back window",
+      "Best for steady use",
+    ],
+  },
+  {
+    name: "Yearly",
+    price: "$50",
+    cadence: "per year",
+    highlight: false,
+    features: [
+      "Unlimited live sessions",
+      "10, 20, or 30 min sessions",
+      "24 hour wink-back window",
+      "Best value, save 31%",
+    ],
+  },
+];
+
+function Pricing() {
+  return (
+    <section
+      id="pricing"
+      className="border-t border-border bg-surface/40 py-20 md:py-28"
+    >
+      <div className="mx-auto max-w-6xl px-5">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground">
+            Pricing
+          </p>
+          <h2 className="mt-3 font-display text-4xl leading-tight md:text-5xl">
+            Free to start. <em className="not-italic text-wink">Premium when you're ready.</em>
+          </h2>
+          <p className="mx-auto mt-5 max-w-lg text-base text-muted-foreground md:text-lg">
+            Every plan includes the full Wink experience. Premium just removes the daily cap and
+            extends the windows.
+          </p>
+        </div>
+
+        <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {PRICING_TIERS.map((tier) => (
+            <div
+              key={tier.name}
+              className={cn(
+                "relative rounded-3xl border p-6 md:p-7",
+                tier.highlight
+                  ? "border-wink/40 bg-card shadow-xl"
+                  : "border-border bg-card",
+              )}
+              style={
+                tier.highlight
+                  ? {
+                      boxShadow:
+                        "0 30px 60px -30px color-mix(in oklab, var(--wink) 40%, transparent)",
+                    }
+                  : undefined
+              }
+            >
+              {tier.highlight && (
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-wink px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-wink-foreground">
+                  Most popular
+                </span>
+              )}
+              <h3 className="font-display text-2xl">{tier.name}</h3>
+              <div className="mt-3 flex items-baseline gap-1.5">
+                <span className="font-display text-4xl">{tier.price}</span>
+                <span className="text-sm text-muted-foreground">{tier.cadence}</span>
+              </div>
+              <ul className="mt-6 space-y-2">
+                {tier.features.map((f) => (
+                  <li key={f} className="flex items-start gap-2 text-sm">
+                    <span className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-wink text-wink-foreground">
+                      <Check className="h-2.5 w-2.5" />
+                    </span>
+                    <span className="text-muted-foreground">{f}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <p className="mx-auto mt-8 max-w-xl text-center text-sm text-muted-foreground">
+          Premium is billed through Stripe. Cancel anytime from Settings.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 /* ---------------- FAQ ---------------- */
 
 const FAQS = [
   {
     q: "What is Wink?",
-    a: "Wink is a real-life dating and connection app. It helps you discover people physically near you who are also open to connecting — without having to walk up first.",
+    a: "Wink is a real-life dating and connection app. It helps you discover people physically near you who are also open to connecting, without having to walk up first.",
   },
   {
     q: "How does Wink work?",
@@ -832,7 +967,15 @@ const FAQS = [
   },
   {
     q: "Is Wink a dating app?",
-    a: "Wink is built primarily for real-world dating, but it also supports networking and casual connections — based on intent you set on your profile.",
+    a: "Wink is built primarily for real-world dating, but it also supports networking and casual connections. There's no separate toggle to set; your bio, interests, and the conversation you start tell the story.",
+  },
+  {
+    q: "Is Wink free?",
+    a: "Yes, Wink is free to use. The free tier gives you one live session per day capped at 5 minutes, and a 30-minute window to wink back when someone winks you. Premium unlocks unlimited sessions, longer session lengths (10, 20, or 30 minutes), and a 24-hour wink-back window. Premium is available weekly ($2), monthly ($6), or yearly ($50).",
+  },
+  {
+    q: "What happens after a match?",
+    a: "A mutual wink opens a 24-hour chat between you. You can message in real time, or tap Share Contact to send your phone number and any social links you've saved. When the 24 hours run out the chat disappears, by design, so the focus stays on actually meeting up.",
   },
   {
     q: "Can people message me without permission?",
@@ -852,7 +995,7 @@ const FAQS = [
   },
   {
     q: "Can I use Wink at concerts or events?",
-    a: "Absolutely. Concerts, festivals, conferences, and lounges are some of the best places to use Wink — anywhere lots of people gather in one spot.",
+    a: "Absolutely. Concerts, festivals, conferences, and lounges are some of the best places to use Wink. Anywhere lots of people gather in one spot.",
   },
   {
     q: "Does Wink work on university campuses?",
@@ -988,6 +1131,9 @@ function SiteFooter() {
           </a>
           <a href="#safety" className="hover:text-foreground">
             Safety
+          </a>
+          <a href="#pricing" className="hover:text-foreground">
+            Pricing
           </a>
           <a href="#faq" className="hover:text-foreground">
             FAQ
