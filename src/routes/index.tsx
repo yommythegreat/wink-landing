@@ -39,24 +39,24 @@ const APP_URL: string = import.meta.env.VITE_APP_URL ?? "";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Wink: Real-Life Dating App for Real-World Moments" },
+      { title: "Wink: Real-Time Social Connection App" },
       {
         name: "description",
         content:
-          "Wink is a proximity dating app that connects people nearby through mutual interest. Real-time matchmaking for events, campuses, and everyday moments.",
+          "Wink helps people nearby find out if the interest is mutual, before the moment passes. A real-time social connection app for concerts, campuses, cafes, and anywhere people gather.",
       },
-      { property: "og:title", content: "Wink: Real-Life Dating App" },
+      { property: "og:title", content: "Wink: Real-Time Social Connection App" },
       {
         property: "og:description",
         content:
-          "See someone? Find out if it's mutual. Wink is the real-world dating app for proximity-based connections.",
+          "Find out if the interest is mutual before the moment passes. Not a dating app. Wink is a real-time social connection app for concerts, campuses, cafes, and anywhere people gather.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       {
         name: "keywords",
         content:
-          "real life dating app, proximity dating app, nearby dating app, location-based dating app, mutual attraction app, dating app for events, dating app for university students, real-time dating app",
+          "real-time social connection app, mutual interest app, proximity social app, nearby people app, find out if it's mutual, social connection at concerts, campus connection app, alternative to dating apps",
       },
     ],
     links: [{ rel: "canonical", href: "https://wink.app/" }],
@@ -70,12 +70,12 @@ function LandingPage() {
       <SiteNav />
       <Hero />
       <Problem />
-      <WhyDifferent />
+      <UseCases />
       <HowItWorks />
       <Safety />
-      <UseCases />
-      <SocialProof />
+      <WhyDifferent />
       <Pricing />
+      <SocialProof />
       <FAQ />
       <FinalCTA />
       <SiteFooter />
@@ -223,47 +223,72 @@ function PhoneMockup() {
   );
 }
 
+/**
+ * Authentic mock of the actual Wink Discover screen's OFFLINE / pre-live state.
+ * Matches what every new user sees on first launch: a pulsing dotted radar,
+ * an OFFLINE center, the "You're invisible." headline, the explainer, and
+ * the Go Live CTA. Rendered as React so it stays crisp at any DPI and any
+ * viewport width — no PNG asset to manage.
+ */
 function DiscoverScreen() {
-  const people = [
-    { seed: "june", name: "June", age: 26, dist: "18 m" },
-    { seed: "wes", name: "Wes", age: 23, dist: "22 m" },
-    { seed: "aya", name: "Aya", age: 28, dist: "30 m" },
-    { seed: "theo", name: "Theo", age: 25, dist: "34 m" },
-  ];
   return (
-    <div className="flex h-full flex-col">
-      <div className="flex items-center justify-between border-b border-border px-4 py-3">
-        <div className="flex items-center gap-2">
-          <WinkLogo className="h-5 w-5" />
-          <span className="font-display text-sm font-semibold">Discover</span>
-        </div>
-        <div className="inline-flex items-center gap-1.5 rounded-full bg-wink/10 px-2 py-0.5 text-[10px] font-medium text-wink">
-          <span className="h-1.5 w-1.5 rounded-full bg-wink" />
-          Live
+    <div className="relative flex h-full flex-col bg-background">
+      {/* Header */}
+      <div className="flex items-center justify-center pt-5">
+        <div className="flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-[0.25em] text-muted-foreground">
+          <WinkLogo className="h-3.5 w-3.5" />
+          Wink
         </div>
       </div>
-      <div className="grid flex-1 grid-cols-2 gap-2 p-3">
-        {people.map((p) => (
-          <div key={p.seed} className="overflow-hidden rounded-xl border border-border bg-card">
-            <div className="relative aspect-[3/4]">
-              <PersonCircle
-                seed={p.seed}
-                size={120}
-                className="!absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 !rounded-xl"
-              />
-              <div className="absolute bottom-1 left-1 right-1 flex items-center justify-between rounded-md bg-background/80 px-1.5 py-0.5 text-[10px] backdrop-blur">
-                <span className="font-medium">
-                  {p.name}, {p.age}
-                </span>
-                <span className="text-muted-foreground">{p.dist}</span>
-              </div>
-            </div>
-          </div>
+
+      {/* Radar block (concentric dotted rings + central OFFLINE pill) */}
+      <div className="relative flex flex-1 items-center justify-center">
+        {/* Concentric dotted radar rings */}
+        {[
+          { size: 220, opacity: 0.45 },
+          { size: 170, opacity: 0.55 },
+          { size: 125, opacity: 0.65 },
+          { size: 85, opacity: 0.8 },
+        ].map((r, i) => (
+          <span
+            key={i}
+            className="absolute rounded-full border border-dashed"
+            style={{
+              width: r.size,
+              height: r.size,
+              borderColor: `color-mix(in oklab, var(--wink) ${r.opacity * 25}%, transparent)`,
+              boxShadow:
+                i === 3
+                  ? `inset 0 0 30px color-mix(in oklab, var(--wink) 30%, transparent)`
+                  : undefined,
+            }}
+          />
         ))}
+
+        {/* OFFLINE pill at the very center */}
+        <div className="relative z-10 grid h-14 w-14 place-items-center rounded-full bg-card text-[8px] font-medium uppercase tracking-[0.2em] text-muted-foreground shadow-inner ring-1 ring-border">
+          OFFLINE
+        </div>
       </div>
-      <div className="border-t border-border p-3">
-        <div className="flex h-10 items-center justify-center gap-2 rounded-full bg-wink text-xs font-semibold text-wink-foreground">
-          <Radio className="h-3.5 w-3.5" /> You're live · 12 nearby
+
+      {/* Headline + explainer */}
+      <div className="px-5 pb-3 text-center">
+        <p className="font-display text-2xl leading-tight">You're invisible.</p>
+        <p className="mt-1.5 px-2 text-[10px] leading-snug text-muted-foreground">
+          Tap below when you spot someone. Visible for 5 minutes, then back to invisible.
+        </p>
+      </div>
+
+      {/* Go Live button */}
+      <div className="px-4 pb-5">
+        <div
+          className="flex h-10 items-center justify-center gap-1.5 rounded-full bg-wink text-xs font-semibold text-wink-foreground"
+          style={{
+            boxShadow: "0 8px 24px -6px color-mix(in oklab, var(--wink) 50%, transparent)",
+          }}
+        >
+          <span className="h-1.5 w-1.5 rounded-full bg-wink-foreground" />
+          Go Live
         </div>
       </div>
     </div>
@@ -280,9 +305,9 @@ function Problem() {
       body: "You both looked twice. Then you both walked out.",
     },
     {
-      icon: GraduationCap,
-      title: "Across the lecture hall",
-      body: "Same row every Tuesday. Never a word.",
+      icon: Briefcase,
+      title: "The conference break",
+      body: "Same panel, same questions. The conversation never restarted.",
     },
     {
       icon: Music2,
@@ -360,7 +385,7 @@ function HowItWorks() {
     {
       n: "04",
       title: "Match instantly",
-      body: "If it's mutual, you unlock a 24-hour chat. No pressure. Just possibility.",
+      body: "If it's mutual, you unlock a 24-hour chat. Meet, exchange numbers, or move on.",
       icon: Timer,
     },
   ];
@@ -554,7 +579,7 @@ function UseCases() {
       icon: GraduationCap,
       slug: "universities",
       title: "Universities",
-      body: "Same lecture hall, same library, same crush.",
+      body: "Same lecture hall, same library, same person you keep noticing.",
     },
     {
       icon: Music2,
@@ -572,13 +597,13 @@ function UseCases() {
       icon: Wine,
       slug: "lounges",
       title: "Lounges & bars",
-      body: "Skip the awkward intro. Match first, talk after.",
+      body: "Skip the awkward intro. Find out if you're noticing each other.",
     },
     {
       icon: Briefcase,
       slug: "conferences",
       title: "Conferences",
-      body: "Network or romance. Same room, different vibes.",
+      body: "Skip the LinkedIn DM. Find out who else is open to talking.",
     },
     {
       icon: Coffee,
@@ -607,7 +632,7 @@ function UseCases() {
             Where Wink works
           </p>
           <h2 className="mt-3 font-display text-4xl leading-tight md:text-5xl">
-            Perfect for <em className="not-italic text-wink">real-world moments.</em>
+            Anywhere <em className="not-italic text-wink">people gather.</em>
           </h2>
         </div>
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -661,18 +686,17 @@ function SocialProof() {
       <div className="mx-auto max-w-6xl px-5">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground">
-            The movement
+            From the early users
           </p>
           <h2 className="mt-3 font-display text-4xl leading-tight md:text-5xl">
-            Real connections. <em className="not-italic text-wink">Real moments.</em>
+            People who didn't <em className="not-italic text-wink">miss the moment.</em>
           </h2>
         </div>
 
-        <div className="mx-auto mt-10 grid max-w-4xl grid-cols-2 gap-3 md:grid-cols-4">
+        <div className="mx-auto mt-10 grid max-w-3xl grid-cols-3 gap-3">
           <Stat n="100%" label="Mutual only" />
           <Stat n="100 m" label="Discovery radius" />
           <Stat n="24h" label="Chat window" />
-          <Stat n="12k+" label="On the waitlist" />
         </div>
 
         <div className="mt-12 grid gap-4 md:grid-cols-3">
@@ -815,7 +839,7 @@ const FAQS = [
   },
   {
     q: "Is Wink a dating app?",
-    a: "Wink is built primarily for real-world dating, but it also supports networking and casual connections. There's no separate toggle to set; your bio, interests, and the conversation you start tell the story.",
+    a: "No. Wink is a real-time social connection app. When you're at a concert, on campus, in a café, or anywhere people gather, Wink helps you find out if the interest is mutual before the moment passes. Not a dating app. Not a profile feed. Just two people, the same place, the same moment.",
   },
   {
     q: "Is Wink free?",
