@@ -835,8 +835,7 @@ function Stat({ n, label }: { n: string; label: string }) {
 const PRICING_TIERS = [
   {
     name: "Free",
-    price: "$0",
-    cadence: "forever",
+    tagline: "Get a feel for it",
     highlight: false,
     features: [
       "1 live session per day",
@@ -846,39 +845,14 @@ const PRICING_TIERS = [
     ],
   },
   {
-    name: "Weekly",
-    price: "$2",
-    cadence: "per week",
-    highlight: false,
-    features: [
-      "Unlimited live sessions",
-      "10, 20, or 30 min sessions",
-      "24 hour wink-back window",
-      "Cancel anytime",
-    ],
-  },
-  {
-    name: "Monthly",
-    price: "$6",
-    cadence: "per month",
+    name: "Premium",
+    tagline: "When you're going out more often",
     highlight: true,
     features: [
-      "Unlimited live sessions",
-      "10, 20, or 30 min sessions",
+      "Unlimited live sessions per day",
+      "Longer session lengths",
       "24 hour wink-back window",
-      "Best for steady use",
-    ],
-  },
-  {
-    name: "Yearly",
-    price: "$50",
-    cadence: "per year",
-    highlight: false,
-    features: [
-      "Unlimited live sessions",
-      "10, 20, or 30 min sessions",
-      "24 hour wink-back window",
-      "Best value, save 31%",
+      "Same matching, chat, and safety features",
     ],
   },
 ];
@@ -903,12 +877,12 @@ function Pricing() {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto mt-14 grid max-w-3xl gap-4 md:grid-cols-2">
           {PRICING_TIERS.map((tier) => (
             <div
               key={tier.name}
               className={cn(
-                "relative rounded-3xl border p-6 md:p-7",
+                "relative rounded-3xl border p-6 md:p-8",
                 tier.highlight
                   ? "border-wink/40 bg-card shadow-xl"
                   : "border-border bg-card",
@@ -927,18 +901,22 @@ function Pricing() {
                   Most popular
                 </span>
               )}
-              <h3 className="font-display text-2xl">{tier.name}</h3>
-              <div className="mt-3 flex items-baseline gap-1.5">
-                <span className="font-display text-4xl">{tier.price}</span>
-                <span className="text-sm text-muted-foreground">{tier.cadence}</span>
-              </div>
-              <ul className="mt-6 space-y-2">
+              <h3
+                className={cn(
+                  "font-display text-2xl",
+                  tier.highlight && "text-wink",
+                )}
+              >
+                {tier.name}
+              </h3>
+              <p className="mt-1 text-sm text-muted-foreground">{tier.tagline}</p>
+              <ul className="mt-6 space-y-2.5">
                 {tier.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm">
+                  <li key={f} className="flex items-start gap-2.5 text-sm">
                     <span className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-wink text-wink-foreground">
                       <Check className="h-2.5 w-2.5" />
                     </span>
-                    <span className="text-muted-foreground">{f}</span>
+                    <span className="text-foreground/90">{f}</span>
                   </li>
                 ))}
               </ul>
@@ -947,7 +925,7 @@ function Pricing() {
         </div>
 
         <p className="mx-auto mt-8 max-w-xl text-center text-sm text-muted-foreground">
-          Premium is billed through Stripe. Cancel anytime from Settings.
+          Upgrade or cancel anytime from Settings.
         </p>
       </div>
     </section>
@@ -971,7 +949,7 @@ const FAQS = [
   },
   {
     q: "Is Wink free?",
-    a: "Yes, Wink is free to use. The free tier gives you one live session per day capped at 5 minutes, and a 30-minute window to wink back when someone winks you. Premium unlocks unlimited sessions, longer session lengths (10, 20, or 30 minutes), and a 24-hour wink-back window. Premium is available weekly ($2), monthly ($6), or yearly ($50).",
+    a: "Yes, Wink is free to use. The free tier gives you one live session per day capped at 5 minutes, and a 30-minute window to wink back when someone winks you. Premium unlocks unlimited sessions, longer session lengths, and a 24-hour wink-back window. Pricing and plan options are shown inside the app.",
   },
   {
     q: "What happens after a match?",
