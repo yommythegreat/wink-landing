@@ -91,7 +91,7 @@ function PrivacyPage() {
               <li>To operate the discovery, winking, matching, and chat features.</li>
               <li>To verify your account and prevent fraud or abuse.</li>
               <li>To send transactional emails (account verification, password resets, billing notices).</li>
-              <li>To respond to your support requests at hello@usewink.app.</li>
+              <li>To respond to your support requests at chat@usewink.app.</li>
               <li>To comply with legal obligations and enforce our Terms.</li>
             </ul>
             <p>
@@ -146,10 +146,10 @@ function PrivacyPage() {
               account at any time from Settings. You can request a copy of your
               data or ask any other privacy-related question by emailing{" "}
               <a
-                href="mailto:hello@usewink.app"
+                href="mailto:chat@usewink.app"
                 className="text-foreground underline-offset-2 hover:underline"
               >
-                hello@usewink.app
+                chat@usewink.app
               </a>
               .
             </p>
@@ -176,10 +176,10 @@ function PrivacyPage() {
               collect personal information from anyone under 18. If you believe a
               minor has created an account, please email{" "}
               <a
-                href="mailto:hello@usewink.app"
+                href="mailto:chat@usewink.app"
                 className="text-foreground underline-offset-2 hover:underline"
               >
-                hello@usewink.app
+                chat@usewink.app
               </a>{" "}
               and we will remove it.
             </p>
@@ -197,10 +197,10 @@ function PrivacyPage() {
             <p>
               Questions, requests, or concerns? Reach us at{" "}
               <a
-                href="mailto:hello@usewink.app"
+                href="mailto:chat@usewink.app"
                 className="text-foreground underline-offset-2 hover:underline"
               >
-                hello@usewink.app
+                chat@usewink.app
               </a>
               .
             </p>

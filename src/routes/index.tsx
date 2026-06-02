@@ -12,7 +12,6 @@ import {
   UserX,
   Radio,
   Check,
-  X,
   GraduationCap,
   Music2,
   PartyPopper,
@@ -466,92 +465,21 @@ function MiniMock({
 function WhyDifferent() {
   return (
     <section className="border-t border-border bg-surface/40 py-20 md:py-28">
-      <div className="mx-auto max-w-6xl px-5">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground">
-            Why Wink
-          </p>
-          <h2 className="mt-3 font-display text-4xl leading-tight md:text-5xl">
-            Dating apps match online.
-            <br />
-            Wink matches <em className="not-italic text-wink">in real life.</em>
-          </h2>
-        </div>
-
-        <div className="mx-auto mt-14 grid max-w-4xl gap-5 md:grid-cols-2">
-          <ComparisonCard
-            tone="muted"
-            title="Traditional dating apps"
-            items={[
-              { ok: false, text: "Random swiping with strangers" },
-              { ok: false, text: "Long-distance matches that fade" },
-              { ok: false, text: "Endless chatting, no meeting" },
-              { ok: false, text: "Catfishing and ghosting" },
-            ]}
-          />
-          <ComparisonCard
-            tone="wink"
-            title="Wink"
-            items={[
-              { ok: true, text: "Real-world proximity matches" },
-              { ok: true, text: "Same place, same moment" },
-              { ok: true, text: "Mutual real-time interest" },
-              { ok: true, text: "24-hour chats, no endless DMs" },
-            ]}
-          />
-        </div>
-
-        <p className="mx-auto mt-10 max-w-xl text-center text-base text-muted-foreground md:text-lg">
-          Wink isn't built for endless chatting. It's built for real-world connection.
+      <div className="mx-auto max-w-3xl px-5 text-center">
+        <p className="text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground">
+          Why Wink
+        </p>
+        <h2 className="mt-3 font-display text-4xl leading-tight md:text-5xl">
+          Connection shouldn't be{" "}
+          <em className="not-italic text-wink">guesswork.</em>
+        </h2>
+        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+          Too many meaningful connections never happen. Not because the interest isn't there,
+          but because neither person is sure enough to make the first move. Wink helps people
+          discover when the feeling is mutual and connect while the moment is still alive.
         </p>
       </div>
     </section>
-  );
-}
-
-function ComparisonCard({
-  tone,
-  title,
-  items,
-}: {
-  tone: "muted" | "wink";
-  title: string;
-  items: { ok: boolean; text: string }[];
-}) {
-  return (
-    <div
-      className={cn(
-        "rounded-3xl border p-6 md:p-8",
-        tone === "wink" ? "border-wink/40 bg-card shadow-xl" : "border-border bg-card/60",
-      )}
-      style={
-        tone === "wink"
-          ? {
-              boxShadow:
-                "0 30px 60px -30px color-mix(in oklab, var(--wink) 40%, transparent)",
-            }
-          : undefined
-      }
-    >
-      <h3 className={cn("font-display text-2xl", tone === "wink" && "text-wink")}>{title}</h3>
-      <ul className="mt-5 space-y-3">
-        {items.map((it) => (
-          <li key={it.text} className="flex items-start gap-3 text-sm">
-            <span
-              className={cn(
-                "mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full",
-                it.ok ? "bg-wink text-wink-foreground" : "bg-muted text-muted-foreground",
-              )}
-            >
-              {it.ok ? <Check className="h-3 w-3" /> : <X className="h-3 w-3" />}
-            </span>
-            <span className={cn(it.ok ? "text-foreground" : "text-muted-foreground")}>
-              {it.text}
-            </span>
-          </li>
-        ))}
-      </ul>
-    </div>
   );
 }
 
@@ -626,19 +554,51 @@ function Safety() {
 
 function UseCases() {
   const cases = [
-    { icon: GraduationCap, title: "Universities", body: "Same lecture hall, same library, same crush." },
-    { icon: Music2, title: "Concerts", body: "See someone vibing with you? Find out if it's mutual." },
-    { icon: PartyPopper, title: "Festivals", body: "Thousands of people. One real connection." },
-    { icon: Wine, title: "Lounges & bars", body: "Skip the awkward intro. Match first, talk after." },
-    { icon: Briefcase, title: "Conferences", body: "Network or romance. Same room, different vibes." },
-    { icon: Coffee, title: "Cafés", body: "Tuesday morning, third table. You both noticed." },
+    {
+      icon: GraduationCap,
+      slug: "universities",
+      title: "Universities",
+      body: "Same lecture hall, same library, same crush.",
+    },
+    {
+      icon: Music2,
+      slug: "concerts",
+      title: "Concerts",
+      body: "See someone vibing with you? Find out if it's mutual.",
+    },
+    {
+      icon: PartyPopper,
+      slug: "festivals",
+      title: "Festivals",
+      body: "Thousands of people. One real connection.",
+    },
+    {
+      icon: Wine,
+      slug: "lounges",
+      title: "Lounges & bars",
+      body: "Skip the awkward intro. Match first, talk after.",
+    },
+    {
+      icon: Briefcase,
+      slug: "conferences",
+      title: "Conferences",
+      body: "Network or romance. Same room, different vibes.",
+    },
+    {
+      icon: Coffee,
+      slug: "cafes",
+      title: "Cafés",
+      body: "Tuesday morning, third table. You both noticed.",
+    },
     {
       icon: Users,
+      slug: "social-events",
       title: "Social events",
       body: "Parties, meetups, gallery openings, wherever you show up.",
     },
     {
       icon: Sparkles,
+      slug: "everyday",
       title: "Everyday moments",
       body: "Because the best ones happen when you least expect.",
     },
@@ -654,15 +614,27 @@ function UseCases() {
             Perfect for <em className="not-italic text-wink">real-world moments.</em>
           </h2>
         </div>
-        <div className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {cases.map((c) => (
             <div
               key={c.title}
-              className="rounded-2xl border border-border bg-card p-5 transition-colors hover:border-wink/40"
+              className="overflow-hidden rounded-2xl border border-border bg-card transition-colors hover:border-wink/40"
             >
-              <c.icon className="h-5 w-5 text-wink" />
-              <h3 className="mt-4 font-display text-lg">{c.title}</h3>
-              <p className="mt-1 text-sm text-muted-foreground">{c.body}</p>
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-secondary">
+                <img
+                  src={`/usecases/${c.slug}.jpg`}
+                  alt={c.title}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+                <span className="absolute left-2 top-2 inline-flex h-7 w-7 items-center justify-center rounded-full bg-background/80 text-wink backdrop-blur">
+                  <c.icon className="h-3.5 w-3.5" />
+                </span>
+              </div>
+              <div className="p-4">
+                <h3 className="font-display text-lg">{c.title}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{c.body}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -676,11 +648,17 @@ function UseCases() {
 function SocialProof() {
   const quotes = [
     {
-      name: "Maya, 24",
-      body: "So grateful for Wink. I could have missed the possibility of connecting with him.",
+      name: "Precious, 26",
+      body: "I kept noticing this guy at a concert, but I wasn't about to walk up and embarrass myself. A few minutes later, we matched on Wink. Turns out he was hoping I'd Wink back too.",
     },
-    { name: "Jordan, 27", body: "This would've saved me so many missed opportunities." },
-    { name: "Sami, 22", body: "I need this before my next concert" },
+    {
+      name: "John, 22",
+      body: "Without Wink, we would've just been two people making eye contact and then going home. Instead, we actually connected and exchanged numbers before the night ended.",
+    },
+    {
+      name: "Vic, 24",
+      body: "Thank you, Wink. There is finally solution to my social anxiety issue.",
+    },
   ];
   return (
     <section className="py-20 md:py-28">

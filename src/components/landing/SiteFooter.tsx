@@ -81,10 +81,10 @@ export function SiteFooter({ variant = "home" }: { variant?: "home" | "external"
               </a>
             </div>
             <a
-              href="mailto:hello@usewink.app"
+              href="mailto:chat@usewink.app"
               className="text-xs text-muted-foreground hover:text-foreground"
             >
-              hello@usewink.app
+              chat@usewink.app
             </a>
           </div>
         </div>
