@@ -22,10 +22,13 @@ import {
   Briefcase,
   Coffee,
   Users,
+  Instagram,
+  Mail,
 } from "lucide-react";
 import { WinkLogo } from "@/components/wink/WinkLogo";
 import { ThemeToggle } from "@/components/wink/ThemeToggle";
 import { PersonCircle } from "@/components/wink/PersonTile";
+import { XIcon, TikTokIcon } from "@/components/wink/SocialIcons";
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -782,9 +785,12 @@ function UseCases() {
 
 function SocialProof() {
   const quotes = [
-    { name: "Maya, 24", body: "Finally, a dating app that actually feels human." },
+    {
+      name: "Maya, 24",
+      body: "So grateful for Wink. I could have missed the possibility of connecting with him.",
+    },
     { name: "Jordan, 27", body: "This would've saved me so many missed opportunities." },
-    { name: "Sami, 22", body: "The 24-hour thing is genius. You actually meet up." },
+    { name: "Sami, 22", body: "I need this before my next concert" },
   ];
   return (
     <section className="py-20 md:py-28">
@@ -799,10 +805,10 @@ function SocialProof() {
         </div>
 
         <div className="mx-auto mt-10 grid max-w-4xl grid-cols-2 gap-3 md:grid-cols-4">
-          <Stat n="12k+" label="On the waitlist" />
-          <Stat n="50 m" label="Discovery radius" />
-          <Stat n="24h" label="Chat window" />
           <Stat n="100%" label="Mutual only" />
+          <Stat n="100 m" label="Discovery radius" />
+          <Stat n="24h" label="Chat window" />
+          <Stat n="12k+" label="On the waitlist" />
         </div>
 
         <div className="mt-12 grid gap-4 md:grid-cols-3">
@@ -872,8 +878,8 @@ function Pricing() {
             Free to start. <em className="not-italic text-wink">Premium when you're ready.</em>
           </h2>
           <p className="mx-auto mt-5 max-w-lg text-base text-muted-foreground md:text-lg">
-            Every plan includes the full Wink experience. Premium just removes the daily cap and
-            extends the windows.
+            Free gets you started. Premium gives you more opportunities to connect when you're
+            out and about.
           </p>
         </div>
 
@@ -1045,7 +1051,7 @@ function FinalCTA() {
           <em className="not-italic text-wink">don't miss the moment.</em>
         </h2>
         <p className="mx-auto mt-5 max-w-md text-base text-muted-foreground md:text-lg">
-          Join the real-world dating movement. Free to start. Mutual only. Always private.
+          Join the real-world connection movement. Free to start. Mutual only. Always private.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Button
@@ -1095,33 +1101,78 @@ function StoreBadge({ top, bottom }: { top: string; bottom: string }) {
 function SiteFooter() {
   return (
     <footer className="border-t border-border bg-background py-10">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 md:flex-row">
-        <div className="flex items-center gap-2">
-          <WinkLogo className="h-5 w-5" />
-          <span className="font-display text-base font-semibold">wink</span>
-          <span className="ml-3 text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Wink
-          </span>
+      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-5">
+        {/* Top row: brand + nav + socials */}
+        <div className="flex flex-col items-center justify-between gap-6 md:flex-row md:items-start">
+          <div className="flex items-center gap-2">
+            <WinkLogo className="h-5 w-5" />
+            <span className="font-display text-base font-semibold">wink</span>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-muted-foreground">
+            <a href="#how" className="hover:text-foreground">
+              How it works
+            </a>
+            <a href="#safety" className="hover:text-foreground">
+              Safety
+            </a>
+            <a href="#pricing" className="hover:text-foreground">
+              Pricing
+            </a>
+            <a href="#faq" className="hover:text-foreground">
+              FAQ
+            </a>
+            <a href={`${APP_URL}/login`} className="hover:text-foreground">
+              Log in
+            </a>
+            <a href={`${APP_URL}/signup`} className="hover:text-foreground">
+              Sign up
+            </a>
+          </div>
+          <div className="flex items-center gap-3 text-muted-foreground">
+            <a
+              href="https://instagram.com/usewinkapp"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="grid h-9 w-9 place-items-center rounded-full border border-border transition-colors hover:border-wink/40 hover:text-foreground"
+            >
+              <Instagram className="h-4 w-4" />
+            </a>
+            <a
+              href="https://x.com/usewinkapp"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="X (Twitter)"
+              className="grid h-9 w-9 place-items-center rounded-full border border-border transition-colors hover:border-wink/40 hover:text-foreground"
+            >
+              <XIcon className="h-4 w-4" />
+            </a>
+            <a
+              href="https://tiktok.com/@usewinkapp"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TikTok"
+              className="grid h-9 w-9 place-items-center rounded-full border border-border transition-colors hover:border-wink/40 hover:text-foreground"
+            >
+              <TikTokIcon className="h-4 w-4" />
+            </a>
+            <a
+              href="mailto:hello@usewink.app"
+              aria-label="Email hello@usewink.app"
+              className="grid h-9 w-9 place-items-center rounded-full border border-border transition-colors hover:border-wink/40 hover:text-foreground"
+            >
+              <Mail className="h-4 w-4" />
+            </a>
+          </div>
         </div>
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-muted-foreground">
-          <a href="#how" className="hover:text-foreground">
-            How it works
-          </a>
-          <a href="#safety" className="hover:text-foreground">
-            Safety
-          </a>
-          <a href="#pricing" className="hover:text-foreground">
-            Pricing
-          </a>
-          <a href="#faq" className="hover:text-foreground">
-            FAQ
-          </a>
-          <a href={`${APP_URL}/login`} className="hover:text-foreground">
-            Log in
-          </a>
-          <a href={`${APP_URL}/signup`} className="hover:text-foreground">
-            Sign up
-          </a>
+
+        {/* Bottom: tagline + copyright */}
+        <div className="flex flex-col items-center gap-2 border-t border-border pt-6 text-center text-xs text-muted-foreground md:flex-row md:items-center md:justify-between md:text-left">
+          <p className="max-w-2xl">
+            Wink is a real-time social connection app that helps people nearby connect through
+            mutual interest.
+          </p>
+          <p>2026, Wink. All rights reserved.</p>
         </div>
       </div>
     </footer>
