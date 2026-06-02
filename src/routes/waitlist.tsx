@@ -168,11 +168,11 @@ function WaitlistPage() {
               What is Wink
             </p>
             <h2 className="mt-3 font-display text-3xl leading-tight md:text-4xl">
-              Real-time. <em className="not-italic text-wink">Mutual only.</em>
+              Real Time. <em className="not-italic text-wink">Real People.</em>
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-base text-muted-foreground">
-              Not a dating app. Not a profile feed. Just two people, the same place, the
-              same moment.
+              Wink is a real-time social connection app that helps people nearby connect
+              through mutual interest in real time.
             </p>
           </div>
 
