@@ -330,10 +330,6 @@ function Problem() {
             </div>
           ))}
         </div>
-
-        <p className="mt-12 text-center font-display text-2xl text-foreground/90 md:text-3xl">
-          Wink removes the guesswork.
-        </p>
       </div>
     </section>
   );
