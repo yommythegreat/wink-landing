@@ -1,5 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { createFileRoute } from "@tanstack/react-router";
 import {
   Eye,
   EyeOff,
@@ -12,7 +11,6 @@ import {
   Lock,
   UserX,
   Radio,
-  ChevronDown,
   Check,
   X,
   GraduationCap,
@@ -22,13 +20,11 @@ import {
   Briefcase,
   Coffee,
   Users,
-  Instagram,
-  Mail,
 } from "lucide-react";
 import { WinkLogo } from "@/components/wink/WinkLogo";
-import { ThemeToggle } from "@/components/wink/ThemeToggle";
 import { PersonCircle } from "@/components/wink/PersonTile";
-import { XIcon, TikTokIcon } from "@/components/wink/SocialIcons";
+import { SiteNav } from "@/components/landing/SiteNav";
+import { SiteFooter } from "@/components/landing/SiteFooter";
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -89,113 +85,7 @@ function LandingPage() {
   );
 }
 
-/* ---------------- NAV ---------------- */
-
-function SiteNav() {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-  return (
-    <header
-      className={cn(
-        "sticky top-0 z-40 w-full transition-colors",
-        scrolled
-          ? "border-b border-border bg-background/85 backdrop-blur"
-          : "bg-transparent",
-      )}
-      style={{ paddingTop: "env(safe-area-inset-top)" }}
-    >
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
-        <Link to="/" className="flex items-center gap-2">
-          <WinkLogo className="h-7 w-7" />
-          <span className="font-display text-xl font-semibold tracking-tight">wink</span>
-        </Link>
-        <nav className="hidden items-center gap-8 md:flex">
-          <a href="#how" className="text-sm text-muted-foreground hover:text-foreground">
-            How it works
-          </a>
-          <a href="#safety" className="text-sm text-muted-foreground hover:text-foreground">
-            Safety
-          </a>
-          <a href="#pricing" className="text-sm text-muted-foreground hover:text-foreground">
-            Pricing
-          </a>
-          <a href="#faq" className="text-sm text-muted-foreground hover:text-foreground">
-            FAQ
-          </a>
-        </nav>
-        <div className="flex items-center gap-2">
-          <ThemeToggle />
-          <a
-            href={`${APP_URL}/login`}
-            className="hidden rounded-full px-4 py-2 text-sm font-medium text-foreground hover:bg-secondary md:inline-flex"
-          >
-            Log in
-          </a>
-          <a
-            href={`${APP_URL}/signup`}
-            className="rounded-full bg-wink px-4 py-2 text-sm font-medium text-wink-foreground transition-opacity hover:opacity-90"
-          >
-            Sign up
-          </a>
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-label="Toggle menu"
-            className="ml-1 inline-flex h-9 w-9 items-center justify-center rounded-full hover:bg-secondary md:hidden"
-          >
-            <ChevronDown className={cn("h-4 w-4 transition-transform", open && "rotate-180")} />
-          </button>
-        </div>
-      </div>
-      {open && (
-        <div className="border-t border-border bg-background md:hidden">
-          <div className="mx-auto flex max-w-6xl flex-col gap-1 px-5 py-3">
-            <a
-              href="#how"
-              onClick={() => setOpen(false)}
-              className="rounded-md px-2 py-2 text-sm hover:bg-secondary"
-            >
-              How it works
-            </a>
-            <a
-              href="#safety"
-              onClick={() => setOpen(false)}
-              className="rounded-md px-2 py-2 text-sm hover:bg-secondary"
-            >
-              Safety
-            </a>
-            <a
-              href="#pricing"
-              onClick={() => setOpen(false)}
-              className="rounded-md px-2 py-2 text-sm hover:bg-secondary"
-            >
-              Pricing
-            </a>
-            <a
-              href="#faq"
-              onClick={() => setOpen(false)}
-              className="rounded-md px-2 py-2 text-sm hover:bg-secondary"
-            >
-              FAQ
-            </a>
-            <a
-              href={`${APP_URL}/login`}
-              className="rounded-md px-2 py-2 text-sm hover:bg-secondary"
-            >
-              Log in
-            </a>
-          </div>
-        </div>
-      )}
-    </header>
-  );
-}
+/* SiteNav extracted to src/components/landing/SiteNav.tsx */
 
 /* ---------------- HERO ---------------- */
 
@@ -1096,85 +986,4 @@ function StoreBadge({ top, bottom }: { top: string; bottom: string }) {
   );
 }
 
-/* ---------------- FOOTER ---------------- */
-
-function SiteFooter() {
-  return (
-    <footer className="border-t border-border bg-background py-10">
-      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-5">
-        {/* Top row: brand + nav + socials */}
-        <div className="flex flex-col items-center justify-between gap-6 md:flex-row md:items-start">
-          <div className="flex items-center gap-2">
-            <WinkLogo className="h-5 w-5" />
-            <span className="font-display text-base font-semibold">wink</span>
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-muted-foreground">
-            <a href="#how" className="hover:text-foreground">
-              How it works
-            </a>
-            <a href="#safety" className="hover:text-foreground">
-              Safety
-            </a>
-            <a href="#pricing" className="hover:text-foreground">
-              Pricing
-            </a>
-            <a href="#faq" className="hover:text-foreground">
-              FAQ
-            </a>
-            <a href={`${APP_URL}/login`} className="hover:text-foreground">
-              Log in
-            </a>
-            <a href={`${APP_URL}/signup`} className="hover:text-foreground">
-              Sign up
-            </a>
-          </div>
-          <div className="flex items-center gap-3 text-muted-foreground">
-            <a
-              href="https://instagram.com/usewinkapp"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-              className="grid h-9 w-9 place-items-center rounded-full border border-border transition-colors hover:border-wink/40 hover:text-foreground"
-            >
-              <Instagram className="h-4 w-4" />
-            </a>
-            <a
-              href="https://x.com/usewinkapp"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="X (Twitter)"
-              className="grid h-9 w-9 place-items-center rounded-full border border-border transition-colors hover:border-wink/40 hover:text-foreground"
-            >
-              <XIcon className="h-4 w-4" />
-            </a>
-            <a
-              href="https://tiktok.com/@usewinkapp"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="TikTok"
-              className="grid h-9 w-9 place-items-center rounded-full border border-border transition-colors hover:border-wink/40 hover:text-foreground"
-            >
-              <TikTokIcon className="h-4 w-4" />
-            </a>
-            <a
-              href="mailto:hello@usewink.app"
-              aria-label="Email hello@usewink.app"
-              className="grid h-9 w-9 place-items-center rounded-full border border-border transition-colors hover:border-wink/40 hover:text-foreground"
-            >
-              <Mail className="h-4 w-4" />
-            </a>
-          </div>
-        </div>
-
-        {/* Bottom: tagline + copyright */}
-        <div className="flex flex-col items-center gap-2 border-t border-border pt-6 text-center text-xs text-muted-foreground md:flex-row md:items-center md:justify-between md:text-left">
-          <p className="max-w-2xl">
-            Wink is a real-time social connection app that helps people nearby connect through
-            mutual interest.
-          </p>
-          <p>2026, Wink. All rights reserved.</p>
-        </div>
-      </div>
-    </footer>
-  );
-}
+/* SiteFooter extracted to src/components/landing/SiteFooter.tsx */
