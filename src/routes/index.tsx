@@ -74,6 +74,7 @@ function LandingPage() {
       <HowItWorks />
       <Safety />
       <WhyDifferent />
+      <ForTheQuiet />
       <Pricing />
       <SocialProof />
       <FAQ />
@@ -504,6 +505,38 @@ function WhyDifferent() {
   );
 }
 
+/* ---------------- FOR THE QUIET ---------------- */
+
+function ForTheQuiet() {
+  return (
+    <section className="relative overflow-hidden py-20 md:py-28">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 50% at 50% 50%, color-mix(in oklab, var(--wink) 14%, transparent), transparent 70%)",
+        }}
+      />
+      <div className="relative mx-auto max-w-3xl px-5 text-center">
+        <p className="text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground">
+          For everyone who's ever frozen up
+        </p>
+        <h2 className="mt-3 font-display text-4xl leading-tight md:text-5xl">
+          Built for the people <em className="not-italic text-wink">social apps weren't.</em>
+        </h2>
+        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+          If you've ever wanted to say something and couldn't, Wink was made for you.
+          Social anxiety, shyness, or just the wrong moment — they all end the same way:
+          two people walking off in opposite directions. Wink lets you send a quiet signal
+          instead of taking a public risk. No one sees it unless they're sending the same
+          one back.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 /* ---------------- SAFETY ---------------- */
 
 function Safety() {
@@ -831,7 +864,7 @@ function Pricing() {
 const FAQS = [
   {
     q: "What is Wink?",
-    a: "Wink is a real-life dating and connection app. It helps you discover people physically near you who are also open to connecting, without having to walk up first.",
+    a: "Wink is a real-time social connection app that helps people nearby connect through mutual interest in real time.",
   },
   {
     q: "How does Wink work?",
@@ -866,12 +899,8 @@ const FAQS = [
     a: "Yes. Every match unlocks a 24-hour chat window so the focus stays on real-world meeting, not endless messaging.",
   },
   {
-    q: "Can I use Wink at concerts or events?",
-    a: "Absolutely. Concerts, festivals, conferences, and lounges are some of the best places to use Wink. Anywhere lots of people gather in one spot.",
-  },
-  {
-    q: "Does Wink work on university campuses?",
-    a: "Yes. Wink is especially powerful on campuses, where you regularly cross paths with the same people in lectures, libraries, and cafés.",
+    q: "Where can I use Wink?",
+    a: "Anywhere people gather. Concerts, festivals, conferences, lounges, cafés, university campuses, gym classes, and everyday moments in your neighbourhood — Wink works wherever there are other live users nearby.",
   },
 ];
 
