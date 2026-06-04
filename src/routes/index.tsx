@@ -69,12 +69,11 @@ function LandingPage() {
     <div className="min-h-[100dvh] bg-background text-foreground">
       <SiteNav />
       <Hero />
-      <Problem />
+      <ForTheQuiet />
       <UseCases />
       <HowItWorks />
       <Safety />
       <WhyDifferent />
-      <ForTheQuiet />
       <Pricing />
       <SocialProof />
       <FAQ />
@@ -296,71 +295,6 @@ function DiscoverScreen() {
   );
 }
 
-/* ---------------- PROBLEM ---------------- */
-
-function Problem() {
-  const moments = [
-    {
-      icon: Coffee,
-      title: "Eye contact at the café",
-      body: "You both looked twice. Then you both walked out.",
-    },
-    {
-      icon: Briefcase,
-      title: "The conference break",
-      body: "Same panel, same questions. The conversation never restarted.",
-    },
-    {
-      icon: Music2,
-      title: "That concert moment",
-      body: "You vibed. The song ended. So did the chance.",
-    },
-    {
-      icon: Eye,
-      title: "The almost-approach",
-      body: "You hesitated. They left. You replayed it for days.",
-    },
-  ];
-  return (
-    <section className="border-t border-border bg-surface/40 py-20 md:py-28">
-      <div className="mx-auto max-w-6xl px-5">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground">
-            The problem
-          </p>
-          <h2 className="mt-3 font-display text-4xl leading-tight md:text-5xl">
-            You've been here <em className="not-italic text-wink">before.</em>
-          </h2>
-          <p className="mx-auto mt-5 max-w-lg text-base text-muted-foreground md:text-lg">
-            Sometimes the connection is there. The confidence isn't. Most people don't fear
-            attraction; they fear rejection, awkwardness, and misreading the moment.
-          </p>
-        </div>
-
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {moments.map((m) => (
-            <div
-              key={m.title}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-wink/40 hover:shadow-lg"
-            >
-              <div
-                className="absolute inset-0 -z-0 opacity-0 transition-opacity group-hover:opacity-100"
-                style={{
-                  background:
-                    "radial-gradient(circle at 30% 0%, color-mix(in oklab, var(--wink) 12%, transparent), transparent 70%)",
-                }}
-              />
-              <m.icon className="relative h-6 w-6 text-wink" />
-              <h3 className="relative mt-4 font-display text-xl">{m.title}</h3>
-              <p className="relative mt-2 text-sm text-muted-foreground">{m.body}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ---------------- HOW IT WORKS ---------------- */
 
 function HowItWorks() {
@@ -509,13 +443,13 @@ function WhyDifferent() {
 
 function ForTheQuiet() {
   return (
-    <section className="relative overflow-hidden py-20 md:py-28">
+    <section className="relative overflow-hidden border-t border-border bg-surface/40 py-20 md:py-28">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 60% 50% at 50% 50%, color-mix(in oklab, var(--wink) 14%, transparent), transparent 70%)",
+            "radial-gradient(ellipse 60% 50% at 50% 50%, color-mix(in oklab, var(--wink) 10%, transparent), transparent 70%)",
         }}
       />
       <div className="relative mx-auto max-w-3xl px-5 text-center">
@@ -523,14 +457,14 @@ function ForTheQuiet() {
           For everyone who's ever frozen up
         </p>
         <h2 className="mt-3 font-display text-4xl leading-tight md:text-5xl">
-          Built for the people <em className="not-italic text-wink">social apps weren't.</em>
+          You've been here <em className="not-italic text-wink">before.</em>
         </h2>
         <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-          If you've ever wanted to say something and couldn't, Wink was made for you.
-          Social anxiety, shyness, or just the wrong moment — they all end the same way:
-          two people walking off in opposite directions. Wink lets you send a quiet signal
-          instead of taking a public risk. No one sees it unless they're sending the same
-          one back.
+          Sometimes the connection is there. The confidence isn't. Most people don't fear
+          attraction; they fear rejection, awkwardness, and misreading the moment. If you've
+          ever wanted to say something and couldn't — social anxiety, shyness, or just the
+          wrong moment — Wink was made for you. Send a quiet signal instead of taking a
+          public risk. No one sees it unless they're sending the same one back.
         </p>
       </div>
     </section>
