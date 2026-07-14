@@ -80,6 +80,7 @@ function TermsPage() {
               <li>Use Wink for commercial solicitation, spam, or recruitment outside Wink's intended use.</li>
               <li>Use bots, scrapers, or automated tools to access the service.</li>
               <li>Attempt to circumvent the discovery radius, location requirements, or any safety feature.</li>
+              <li>Join a Wink Spot for a place you don't actually go to, or attempt to circumvent a Spot's house rules.</li>
               <li>Upload content you don't own or have rights to share, including other people's photos.</li>
               <li>Share illegal content or content that infringes others' rights.</li>
             </ul>
@@ -107,8 +108,10 @@ function TermsPage() {
           <Section title="5. Matching, chats, and contact sharing">
             <p>
               Wink does not guarantee that you will match with anyone, meet
-              anyone, or form any relationship. Mutual matches unlock a 24-hour
-              chat window. After 24 hours the chat is permanently deleted.
+              anyone, or form any relationship. This applies equally whether a
+              wink is sent through Discover or from inside a Wink Spot. Mutual
+              matches unlock a 24-hour chat window. After 24 hours the chat is
+              permanently deleted.
             </p>
             <p>
               When you tap Share Contact, your saved phone number and social

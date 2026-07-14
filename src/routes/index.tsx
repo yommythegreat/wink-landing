@@ -39,24 +39,24 @@ const APP_URL: string = import.meta.env.VITE_APP_URL ?? "";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Wink: Real-Time Social Connection App" },
+      { title: "Wink — Connect Live, or at Your Favorite Spots" },
       {
         name: "description",
         content:
-          "Wink helps people nearby find out if the interest is mutual, before the moment passes. A real-time social connection app for concerts, campuses, cafes, and anywhere people gather.",
+          "Wink helps you connect two ways: go live to meet people nearby right now, or join Wink Spots — the cafés, gyms, and lounges you already go to — and connect with the regulars.",
       },
-      { property: "og:title", content: "Wink: Real-Time Social Connection App" },
+      { property: "og:title", content: "Wink — Live Connection or Your Favorite Spots" },
       {
         property: "og:description",
         content:
-          "Find out if the interest is mutual before the moment passes. Not a dating app. Wink is a real-time social connection app for concerts, campuses, cafes, and anywhere people gather.",
+          "Two ways to connect: live and nearby, or through the places you already go. Not a dating app. Just people who might click.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       {
         name: "keywords",
         content:
-          "real-time social connection app, mutual interest app, proximity social app, nearby people app, find out if it's mutual, social connection at concerts, campus connection app, alternative to dating apps",
+          "real-time social connection app, place-based social app, proximity social app, nearby people app, meet people at your gym, meet people at your cafe, spot-based connection app, mutual interest app, alternative to dating apps",
       },
     ],
     links: [{ rel: "canonical", href: "https://wink.app/" }],
@@ -69,6 +69,7 @@ function LandingPage() {
     <div className="min-h-[100dvh] bg-background text-foreground">
       <SiteNav />
       <Hero />
+      <TwoWaysToConnect />
       <ForTheQuiet />
       <UseCases />
       <HowItWorks />
@@ -105,7 +106,7 @@ function Hero() {
             Never miss <em className="not-italic text-wink">the moment</em> again.
           </h1>
           <p className="mt-5 max-w-md text-lg text-muted-foreground">
-            See someone nearby? Find out if it's mutual without ever walking up.
+            Wink when someone catches your eye — right now, or at the place you always go.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button
@@ -295,10 +296,61 @@ function DiscoverScreen() {
   );
 }
 
+/* ---------------- TWO WAYS TO CONNECT ---------------- */
+
+function TwoWaysToConnect() {
+  const pillars = [
+    {
+      icon: Radio,
+      eyebrow: "Discover",
+      title: "Live, right now.",
+      body: "Turn on visibility and see who's nearby. Wink if you're interested — no messages until it's mutual.",
+      footnote: "5–30 min sessions",
+    },
+    {
+      icon: MapPin,
+      eyebrow: "Wink Spots",
+      title: "Your regular places.",
+      body: "Join the gym, café, or lounge you already go to. Browse the regulars and wink anytime — no live session needed.",
+      footnote: "Always on, once you've joined",
+    },
+  ];
+  return (
+    <section id="spots" className="relative border-t border-border py-20 md:py-28">
+      <div className="mx-auto max-w-6xl px-5">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground">
+            Two ways to connect
+          </p>
+          <h2 className="mt-3 font-display text-4xl leading-tight md:text-5xl">
+            Live in the moment, <em className="not-italic text-wink">or through the places you go.</em>
+          </h2>
+        </div>
+
+        <div className="mx-auto mt-14 grid max-w-4xl gap-6 md:grid-cols-2">
+          {pillars.map((p) => (
+            <div key={p.eyebrow} className="rounded-3xl border border-border bg-card p-8">
+              <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-wink/10 text-wink">
+                <p.icon className="h-6 w-6" />
+              </div>
+              <p className="mt-5 text-xs font-medium uppercase tracking-[0.2em] text-wink">
+                {p.eyebrow}
+              </p>
+              <h3 className="mt-2 font-display text-2xl leading-tight">{p.title}</h3>
+              <p className="mt-3 text-sm text-muted-foreground">{p.body}</p>
+              <p className="mt-5 text-xs text-muted-foreground/70">{p.footnote}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ---------------- HOW IT WORKS ---------------- */
 
 function HowItWorks() {
-  const steps = [
+  const discoverSteps = [
     {
       n: "01",
       title: "Spot someone",
@@ -324,6 +376,32 @@ function HowItWorks() {
       icon: Timer,
     },
   ];
+  const spotsSteps = [
+    {
+      n: "01",
+      title: "Find a Spot",
+      body: "Cafés, gyms, lounges — pick a place you actually go.",
+      icon: MapPin,
+    },
+    {
+      n: "02",
+      title: "Join",
+      body: "Agree to the house rules and you're in. No live session required.",
+      icon: Check,
+    },
+    {
+      n: "03",
+      title: "Browse members",
+      body: "See who else is a regular. Wink at anyone you'd like to meet.",
+      icon: Users,
+    },
+    {
+      n: "04",
+      title: "Wink anytime",
+      body: "No time limit. Wink whenever you want, day or night.",
+      icon: Heart,
+    },
+  ];
   return (
     <section id="how" className="relative py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-5">
@@ -332,61 +410,116 @@ function HowItWorks() {
             How it works
           </p>
           <h2 className="mt-3 font-display text-4xl leading-tight md:text-5xl">
-            Four steps from <em className="not-italic text-wink">eye contact to chat.</em>
+            Two flows, <em className="not-italic text-wink">same mutual-only rule.</em>
           </h2>
         </div>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {steps.map((s, i) => (
-            <div key={s.n} className="relative rounded-3xl border border-border bg-card p-6">
-              <div className="flex items-center justify-between">
-                <span className="font-display text-3xl text-wink">{s.n}</span>
-                <s.icon className="h-5 w-5 text-muted-foreground" />
+        <div className="mt-14">
+          <p className="text-center text-xs font-medium uppercase tracking-[0.2em] text-wink">
+            Discover
+          </p>
+          <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {discoverSteps.map((s, i) => (
+              <div key={s.n} className="relative rounded-3xl border border-border bg-card p-6">
+                <div className="flex items-center justify-between">
+                  <span className="font-display text-3xl text-wink">{s.n}</span>
+                  <s.icon className="h-5 w-5 text-muted-foreground" />
+                </div>
+                <h3 className="mt-6 font-display text-2xl leading-tight">{s.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{s.body}</p>
+                {i < discoverSteps.length - 1 && (
+                  <div className="absolute -right-3 top-1/2 hidden h-px w-6 -translate-y-1/2 bg-border lg:block" />
+                )}
               </div>
-              <h3 className="mt-6 font-display text-2xl leading-tight">{s.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{s.body}</p>
-              {i < steps.length - 1 && (
-                <div className="absolute -right-3 top-1/2 hidden h-px w-6 -translate-y-1/2 bg-border lg:block" />
-              )}
-            </div>
-          ))}
+            ))}
+          </div>
+
+          <div className="mt-8 grid items-center gap-8 md:grid-cols-3">
+            <MiniMock title="Go Live" subtitle="Visibility on">
+              <div className="flex h-full flex-col items-center justify-center gap-3 p-4">
+                <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-wink/10">
+                  <span className="absolute h-full w-full animate-ping rounded-full bg-wink/20" />
+                  <Radio className="h-7 w-7 text-wink" />
+                </div>
+                <span className="text-xs font-medium">12 nearby in 50 m</span>
+              </div>
+            </MiniMock>
+            <MiniMock title="It's mutual" subtitle="Match unlocked">
+              <div className="flex h-full flex-col items-center justify-center gap-3 p-4">
+                <div className="flex items-center -space-x-3">
+                  <PersonCircle seed="you" size={56} />
+                  <div className="z-10 flex h-10 w-10 items-center justify-center rounded-full bg-wink text-wink-foreground shadow-lg">
+                    <Heart className="h-4 w-4 fill-current" />
+                  </div>
+                  <PersonCircle seed="june" size={56} />
+                </div>
+                <span className="text-xs font-medium">You and June matched</span>
+              </div>
+            </MiniMock>
+            <MiniMock title="24h chat" subtitle="Make it count">
+              <div className="flex h-full flex-col gap-2 p-4 text-left">
+                <div className="ml-auto max-w-[80%] rounded-2xl rounded-tr-sm bg-wink px-3 py-1.5 text-xs text-wink-foreground">
+                  Hey, third floor café?
+                </div>
+                <div className="mr-auto max-w-[80%] rounded-2xl rounded-tl-sm bg-secondary px-3 py-1.5 text-xs">
+                  On my way ✨
+                </div>
+                <div className="mt-auto inline-flex items-center gap-1.5 self-center rounded-full bg-secondary px-2 py-0.5 text-[10px] text-muted-foreground">
+                  <Timer className="h-3 w-3" /> 23h 41m left
+                </div>
+              </div>
+            </MiniMock>
+          </div>
         </div>
 
-        <div className="mt-16 grid items-center gap-8 md:grid-cols-3">
-          <MiniMock title="Go Live" subtitle="Visibility on">
-            <div className="flex h-full flex-col items-center justify-center gap-3 p-4">
-              <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-wink/10">
-                <span className="absolute h-full w-full animate-ping rounded-full bg-wink/20" />
-                <Radio className="h-7 w-7 text-wink" />
-              </div>
-              <span className="text-xs font-medium">12 nearby in 50 m</span>
-            </div>
-          </MiniMock>
-          <MiniMock title="It's mutual" subtitle="Match unlocked">
-            <div className="flex h-full flex-col items-center justify-center gap-3 p-4">
-              <div className="flex items-center -space-x-3">
-                <PersonCircle seed="you" size={56} />
-                <div className="z-10 flex h-10 w-10 items-center justify-center rounded-full bg-wink text-wink-foreground shadow-lg">
-                  <Heart className="h-4 w-4 fill-current" />
+        <div className="mt-16">
+          <p className="text-center text-xs font-medium uppercase tracking-[0.2em] text-wink">
+            Wink Spots
+          </p>
+          <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {spotsSteps.map((s, i) => (
+              <div key={s.n} className="relative rounded-3xl border border-border bg-card p-6">
+                <div className="flex items-center justify-between">
+                  <span className="font-display text-3xl text-wink">{s.n}</span>
+                  <s.icon className="h-5 w-5 text-muted-foreground" />
                 </div>
-                <PersonCircle seed="june" size={56} />
+                <h3 className="mt-6 font-display text-2xl leading-tight">{s.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{s.body}</p>
+                {i < spotsSteps.length - 1 && (
+                  <div className="absolute -right-3 top-1/2 hidden h-px w-6 -translate-y-1/2 bg-border lg:block" />
+                )}
               </div>
-              <span className="text-xs font-medium">You and June matched</span>
-            </div>
-          </MiniMock>
-          <MiniMock title="24h chat" subtitle="Make it count">
-            <div className="flex h-full flex-col gap-2 p-4 text-left">
-              <div className="ml-auto max-w-[80%] rounded-2xl rounded-tr-sm bg-wink px-3 py-1.5 text-xs text-wink-foreground">
-                Hey, third floor café?
+            ))}
+          </div>
+
+          <div className="mt-8 grid items-center gap-8 md:grid-cols-3">
+            <MiniMock title="Join Spot" subtitle="House rules agreed">
+              <div className="flex h-full flex-col items-center justify-center gap-3 p-4">
+                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-wink/10">
+                  <Check className="h-8 w-8 text-wink" />
+                </div>
+                <span className="text-xs font-medium">You're in</span>
               </div>
-              <div className="mr-auto max-w-[80%] rounded-2xl rounded-tl-sm bg-secondary px-3 py-1.5 text-xs">
-                On my way ✨
+            </MiniMock>
+            <MiniMock title="Browse members" subtitle="12 regulars">
+              <div className="flex h-full flex-col items-center justify-center gap-3 p-4">
+                <div className="flex items-center -space-x-3">
+                  <PersonCircle seed="regular-1" size={44} />
+                  <PersonCircle seed="regular-2" size={44} />
+                  <PersonCircle seed="regular-3" size={44} />
+                </div>
+                <span className="text-xs font-medium">Members at Cafe One</span>
               </div>
-              <div className="mt-auto inline-flex items-center gap-1.5 self-center rounded-full bg-secondary px-2 py-0.5 text-[10px] text-muted-foreground">
-                <Timer className="h-3 w-3" /> 23h 41m left
+            </MiniMock>
+            <MiniMock title="Wink anytime" subtitle="No live session">
+              <div className="flex h-full flex-col items-center justify-center gap-3 p-4">
+                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-wink/10">
+                  <Heart className="h-7 w-7 fill-wink text-wink" />
+                </div>
+                <span className="text-xs font-medium">Winked at Sarah</span>
               </div>
-            </div>
-          </MiniMock>
+            </MiniMock>
+          </div>
         </div>
       </div>
     </section>
@@ -478,7 +611,7 @@ function Safety() {
     {
       icon: EyeOff,
       title: "Invisible by default",
-      body: "You're never on Wink unless you choose to be live.",
+      body: "On Discover, you're never visible unless you choose to go live.",
     },
     {
       icon: Heart,
@@ -487,8 +620,13 @@ function Safety() {
     },
     {
       icon: MapPin,
-      title: "Limited radius",
-      body: "Only profiles in your immediate area can see you.",
+      title: "Limited radius, on Discover",
+      body: "When you're live, only profiles in your immediate area can see you.",
+    },
+    {
+      icon: ShieldCheck,
+      title: "Spot rules",
+      body: "Every Spot has house rules members agree to before joining.",
     },
     {
       icon: Timer,
@@ -501,9 +639,14 @@ function Safety() {
       body: "Share your number only if you want to.",
     },
     {
+      icon: Check,
+      title: "Leave any Spot, anytime",
+      body: "Joining is never permanent. Step away whenever you want.",
+    },
+    {
       icon: UserX,
       title: "Permanent blocks",
-      body: "Block once. Never seen again. Anywhere.",
+      body: "Block once. Never seen again — on Discover or in any Spot.",
     },
   ];
   return (
@@ -546,48 +689,56 @@ function UseCases() {
       icon: GraduationCap,
       slug: "universities",
       title: "Universities",
+      pillar: "Discover" as const,
       body: "Same lecture hall, same library, same person you keep noticing.",
     },
     {
       icon: Music2,
       slug: "concerts",
       title: "Concerts",
+      pillar: "Discover" as const,
       body: "See someone vibing with you? Find out if it's mutual.",
     },
     {
       icon: PartyPopper,
       slug: "festivals",
       title: "Festivals",
+      pillar: "Discover" as const,
       body: "Thousands of people. One real connection.",
     },
     {
       icon: Wine,
       slug: "lounges",
       title: "Lounges & bars",
-      body: "Skip the awkward intro. Find out if you're noticing each other.",
+      pillar: "Spots" as const,
+      body: "Join your regular lounge as a Spot. See who else goes, wink anytime.",
     },
     {
       icon: Briefcase,
       slug: "conferences",
       title: "Conferences",
+      pillar: "Discover" as const,
       body: "Skip the LinkedIn DM. Find out who else is open to talking.",
     },
     {
       icon: Coffee,
       slug: "cafes",
       title: "Cafés",
-      body: "Tuesday morning, third table. You both noticed.",
+      pillar: "Spots" as const,
+      body: "Join your usual café as a Spot. Wink at a regular, no live session needed.",
     },
     {
       icon: Users,
       slug: "social-events",
       title: "Social events",
+      pillar: "Discover" as const,
       body: "Parties, meetups, gallery openings, wherever you show up.",
     },
     {
       icon: Sparkles,
       slug: "everyday",
       title: "Everyday moments",
+      pillar: "Discover" as const,
       body: "Because the best ones happen when you least expect.",
     },
   ];
@@ -617,6 +768,9 @@ function UseCases() {
                 />
                 <span className="absolute left-2 top-2 inline-flex h-7 w-7 items-center justify-center rounded-full bg-background/80 text-wink backdrop-blur">
                   <c.icon className="h-3.5 w-3.5" />
+                </span>
+                <span className="absolute right-2 top-2 rounded-full bg-background/80 px-2 py-1 text-[9px] font-medium uppercase tracking-wider text-wink backdrop-blur">
+                  {c.pillar}
                 </span>
               </div>
               <div className="p-4">
@@ -699,10 +853,10 @@ const PRICING_TIERS = [
     tagline: "Get a feel for it",
     highlight: false,
     features: [
-      "1 live session per day",
-      "5 min session length",
-      "30 min wink-back window",
-      "All matching, chat, and safety features",
+      "3 free matches total — Discover or Spots, your choice",
+      "1 live Discover session per day, 5 min length",
+      "Join unlimited Spots and browse members anytime",
+      "All chat and safety features",
     ],
   },
   {
@@ -710,10 +864,10 @@ const PRICING_TIERS = [
     tagline: "When you're going out more often",
     highlight: true,
     features: [
-      "Unlimited live sessions per day",
-      "Longer session lengths",
-      "24 hour wink-back window",
-      "Same matching, chat, and safety features",
+      "Unlimited matches across Discover and Spots",
+      "Unlimited live Discover sessions, longer session lengths",
+      "Wink back on any match, including inside Spots",
+      "Same chat and safety features",
     ],
   },
 ];
@@ -798,19 +952,23 @@ function Pricing() {
 const FAQS = [
   {
     q: "What is Wink?",
-    a: "Wink is a real-time social connection app that helps people nearby connect through mutual interest in real time.",
+    a: "Wink helps you connect with people you notice — live and nearby, or at the places you already go.",
+  },
+  {
+    q: "What's the difference between Discover and Wink Spots?",
+    a: "Discover is real-time: turn on visibility and browse who's nearby right now, for a short live session. Wink Spots is place-based: join the gym, café, or lounge you actually go to, and wink at other members anytime — no live session required. Both work the same way once you match: mutual interest unlocks a 24-hour chat.",
   },
   {
     q: "How does Wink work?",
-    a: "Turn on Go Live to become visible to nearby users. Browse active profiles in your immediate area. If you both like each other, it's a mutual match and you unlock a 24-hour chat.",
+    a: "On Discover, turn on Go Live to browse active profiles nearby. In Wink Spots, join a Spot and browse its members whenever you want. Either way, you wink privately — if it's mutual, you unlock a 24-hour chat.",
   },
   {
     q: "Is Wink a dating app?",
-    a: "No. Wink is a real-time social connection app. When you're at a concert, on campus, in a café, or anywhere people gather, Wink helps you find out if the interest is mutual before the moment passes. Not a dating app. Not a profile feed. Just two people, the same place, the same moment.",
+    a: "No. Wink is a social connection app with two modes: live, real-time discovery for the moment you're in, and Wink Spots for the places you already go. Not a dating app. Not a profile feed. Just people, mutual interest, and a real chance to connect.",
   },
   {
     q: "Is Wink free?",
-    a: "Yes, Wink is free to use. The free tier gives you one live session per day capped at 5 minutes, and a 30-minute window to wink back when someone winks you. Premium unlocks unlimited sessions, longer session lengths, and a 24-hour wink-back window. Pricing and plan options are shown inside the app.",
+    a: "Yes, Wink is free to use. Free accounts get 3 matches total (from Discover or Spots), one live Discover session per day capped at 5 minutes, and unlimited Spot joining/browsing. Premium unlocks unlimited matches, unlimited live sessions, longer session lengths, and wink-back on any match. Pricing and plan options are shown inside the app.",
   },
   {
     q: "What happens after a match?",
@@ -822,11 +980,11 @@ const FAQS = [
   },
   {
     q: "How does location work?",
-    a: "Wink uses your phone's location to show you only people within a small radius. You're invisible by default and only appear when you choose to go live.",
+    a: "On Discover, your phone's location shows you only people within a small radius while you're live — you're invisible by default. Wink Spots works differently: we resolve your city (not a live radius) so you can see which Spots are near you, and Spot membership is what determines who you can see and wink at, not moment-to-moment GPS.",
   },
   {
     q: "Is Wink safe?",
-    a: "Yes. Wink is invisible-by-default, mutual-only, and includes permanent blocking, optional contact sharing, and disappearing chats. You're always in control.",
+    a: "Yes. Wink is mutual-only on both Discover and Spots, and includes permanent blocking, Spot house rules, optional contact sharing, and disappearing chats. You're always in control.",
   },
   {
     q: "Do chats disappear?",
@@ -834,7 +992,7 @@ const FAQS = [
   },
   {
     q: "Where can I use Wink?",
-    a: "Anywhere people gather. Concerts, festivals, conferences, lounges, cafés, university campuses, gym classes, and everyday moments in your neighbourhood — Wink works wherever there are other live users nearby.",
+    a: "Anywhere people gather. Concerts, festivals, conferences, university campuses, and everyday moments work with Discover's live mode. Cafés, lounges, and other regular spots you go to can be joined directly as a Wink Spot — no live session needed.",
   },
 ];
 
@@ -897,9 +1055,9 @@ function FinalCTA() {
       />
       <div className="relative mx-auto max-w-3xl px-5 text-center">
         <h2 className="font-display text-4xl leading-[1.05] md:text-6xl">
-          The next time you lock eyes…
+          Someone you just noticed, or a familiar face at your usual spot…
           <br />
-          <em className="not-italic text-wink">don't miss the moment.</em>
+          <em className="not-italic text-wink">don't miss it.</em>
         </h2>
         <p className="mx-auto mt-5 max-w-md text-base text-muted-foreground md:text-lg">
           Join the real-world connection movement. Free to start. Mutual only. Always private.

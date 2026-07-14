@@ -62,10 +62,17 @@ function PrivacyPage() {
               from Profile › Edit.
             </p>
             <p>
-              <strong className="text-foreground">Location.</strong> When you tap
-              Go Live, your device's GPS coordinates are recorded so we can show
-              you to other nearby Wink users. Location is only captured while you
-              are actively live. We do not track you in the background.
+              <strong className="text-foreground">Location.</strong> Wink uses
+              your location two ways. On Discover, when you tap Go Live your
+              device's GPS coordinates are recorded so we can show you to other
+              nearby Wink users — this is only captured while you are actively
+              live. For Wink Spots, we resolve your approximate location to the
+              nearest city we've launched in (not a live radius) so we can show
+              you Spots near you; this check happens when you open the Spots tab,
+              not continuously. If you're outside every launched city, we store
+              your approximate coordinates so we can notify you when Wink
+              launches nearby. We do not track you in the background in either
+              case.
             </p>
             <p>
               <strong className="text-foreground">Contact info.</strong> Optional
@@ -105,7 +112,9 @@ function PrivacyPage() {
               <strong className="text-foreground">With other Wink users.</strong>{" "}
               Your display name, bio, avatar, age (derived from date of birth),
               gender, and approximate distance are shown to other users while you
-              are live in Discover. Your contact info is only shared inside a chat
+              are live in Discover. Inside a Wink Spot, your display name, bio,
+              and avatar are shown to other members of that same Spot — never to
+              anyone outside it. Your contact info is only shared inside a chat
               when you tap Share Contact.
             </p>
             <p>

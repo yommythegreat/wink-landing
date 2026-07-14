@@ -27,6 +27,9 @@ export function SiteFooter({ variant = "home" }: { variant?: "home" | "external"
             <a href={`${prefix}#how`} className="hover:text-foreground">
               How it works
             </a>
+            <a href={`${prefix}#spots`} className="hover:text-foreground">
+              Spots
+            </a>
             <a href={`${prefix}#safety`} className="hover:text-foreground">
               Safety
             </a>
@@ -92,8 +95,8 @@ export function SiteFooter({ variant = "home" }: { variant?: "home" | "external"
         {/* Bottom: tagline + copyright */}
         <div className="flex flex-col items-center gap-2 border-t border-border pt-6 text-center text-xs text-muted-foreground md:flex-row md:items-center md:justify-between md:text-left">
           <p className="max-w-2xl">
-            Wink is a real-time social connection app that helps people nearby connect through
-            mutual interest.
+            Wink helps you connect with people you notice — live and nearby, or at the places you
+            already go.
           </p>
           <p>2026, Wink. All rights reserved.</p>
         </div>

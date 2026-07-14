@@ -49,6 +49,12 @@ export function SiteNav({ variant = "home" }: { variant?: "home" | "external" })
             How it works
           </a>
           <a
+            href={`${prefix}#spots`}
+            className="text-sm text-muted-foreground hover:text-foreground"
+          >
+            Spots
+          </a>
+          <a
             href={`${prefix}#safety`}
             className="text-sm text-muted-foreground hover:text-foreground"
           >
@@ -100,6 +106,13 @@ export function SiteNav({ variant = "home" }: { variant?: "home" | "external" })
               className="rounded-md px-2 py-2 text-sm hover:bg-secondary"
             >
               How it works
+            </a>
+            <a
+              href={`${prefix}#spots`}
+              onClick={() => setOpen(false)}
+              className="rounded-md px-2 py-2 text-sm hover:bg-secondary"
+            >
+              Spots
             </a>
             <a
               href={`${prefix}#safety`}
