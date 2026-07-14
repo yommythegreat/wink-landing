@@ -65,7 +65,7 @@ function PrivacyPage() {
               <strong className="text-foreground">Location.</strong> Wink uses
               your location two ways. On Discover, when you tap Go Live your
               device's GPS coordinates are recorded so we can show you to other
-              nearby Wink users — this is only captured while you are actively
+              nearby Wink users. This is only captured while you are actively
               live. For Wink Spots, we resolve your approximate location to the
               nearest city we've launched in (not a live radius) so we can show
               you Spots near you; this check happens when you open the Spots tab,
@@ -113,7 +113,7 @@ function PrivacyPage() {
               Your display name, bio, avatar, age (derived from date of birth),
               gender, and approximate distance are shown to other users while you
               are live in Discover. Inside a Wink Spot, your display name, bio,
-              and avatar are shown to other members of that same Spot — never to
+              and avatar are shown to other members of that same Spot, never to
               anyone outside it. Your contact info is only shared inside a chat
               when you tap Share Contact.
             </p>

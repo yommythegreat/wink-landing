@@ -73,11 +73,11 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
       { name: "theme-color", content: "#0a0a0a" },
-      { title: "Wink — A small knowing gesture, shared." },
+      { title: "Wink. A small knowing gesture, shared." },
       {
         name: "description",
         content:
-          "Wink helps you connect with people in your moment — for dating or networking. Be present. Be seen.",
+          "Wink helps you connect with people in your moment, for dating or networking. Be present. Be seen.",
       },
       { name: "author", content: "Wink" },
       { property: "og:title", content: "Wink" },

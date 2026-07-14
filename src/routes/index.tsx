@@ -39,13 +39,13 @@ const APP_URL: string = import.meta.env.VITE_APP_URL ?? "";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Wink — Connect Live, or at Your Favorite Spots" },
+      { title: "Wink: Connect Live, or at Your Favorite Spots" },
       {
         name: "description",
         content:
-          "Wink helps you connect two ways: go live to meet people nearby right now, or join Wink Spots — the cafés, gyms, and lounges you already go to — and connect with the regulars.",
+          "Wink helps you connect two ways: go live to meet people nearby right now, or join Wink Spots (the cafés, gyms, and lounges you already go to) and connect with the regulars.",
       },
-      { property: "og:title", content: "Wink — Live Connection or Your Favorite Spots" },
+      { property: "og:title", content: "Wink: Live Connection or Your Favorite Spots" },
       {
         property: "og:description",
         content:
@@ -106,7 +106,7 @@ function Hero() {
             Never miss <em className="not-italic text-wink">the moment</em> again.
           </h1>
           <p className="mt-5 max-w-md text-lg text-muted-foreground">
-            Wink when someone catches your eye — right now, or at the place you always go.
+            Wink when someone catches your eye. Right now, or at the place you always go.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button
@@ -304,14 +304,14 @@ function TwoWaysToConnect() {
       icon: Radio,
       eyebrow: "Discover",
       title: "Live, right now.",
-      body: "Turn on visibility and see who's nearby. Wink if you're interested — no messages until it's mutual.",
+      body: "Turn on visibility and see who's nearby. Wink if you're interested. No messages until it's mutual.",
       footnote: "5–30 min sessions",
     },
     {
       icon: MapPin,
       eyebrow: "Wink Spots",
       title: "Your regular places.",
-      body: "Join the gym, café, or lounge you already go to. Browse the regulars and wink anytime — no live session needed.",
+      body: "Join the gym, café, or lounge you already go to. Browse the regulars and wink anytime. No live session needed.",
       footnote: "Always on, once you've joined",
     },
   ];
@@ -380,7 +380,7 @@ function HowItWorks() {
     {
       n: "01",
       title: "Find a Spot",
-      body: "Cafés, gyms, lounges — pick a place you actually go.",
+      body: "Cafés, gyms, lounges. Pick a place you actually go.",
       icon: MapPin,
     },
     {
@@ -595,8 +595,8 @@ function ForTheQuiet() {
         <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
           Sometimes the connection is there. The confidence isn't. Most people don't fear
           attraction; they fear rejection, awkwardness, and misreading the moment. If you've
-          ever wanted to say something and couldn't — social anxiety, shyness, or just the
-          wrong moment — Wink was made for you. Send a quiet signal instead of taking a
+          ever wanted to say something and couldn't (social anxiety, shyness, or just the
+          wrong moment), Wink was made for you. Send a quiet signal instead of taking a
           public risk. No one sees it unless they're sending the same one back.
         </p>
       </div>
@@ -646,7 +646,7 @@ function Safety() {
     {
       icon: UserX,
       title: "Permanent blocks",
-      body: "Block once. Never seen again — on Discover or in any Spot.",
+      body: "Block once. Never seen again, on Discover or in any Spot.",
     },
   ];
   return (
@@ -853,7 +853,7 @@ const PRICING_TIERS = [
     tagline: "Get a feel for it",
     highlight: false,
     features: [
-      "3 free matches total — Discover or Spots, your choice",
+      "3 free matches total, from Discover or Spots",
       "1 live Discover session per day, 5 min length",
       "Join unlimited Spots and browse members anytime",
       "All chat and safety features",
@@ -952,15 +952,15 @@ function Pricing() {
 const FAQS = [
   {
     q: "What is Wink?",
-    a: "Wink helps you connect with people you notice — live and nearby, or at the places you already go.",
+    a: "Wink helps you connect with people you notice, live and nearby or at the places you already go.",
   },
   {
     q: "What's the difference between Discover and Wink Spots?",
-    a: "Discover is real-time: turn on visibility and browse who's nearby right now, for a short live session. Wink Spots is place-based: join the gym, café, or lounge you actually go to, and wink at other members anytime — no live session required. Both work the same way once you match: mutual interest unlocks a 24-hour chat.",
+    a: "Discover is real-time: turn on visibility and browse who's nearby right now, for a short live session. Wink Spots is place-based: join the gym, café, or lounge you actually go to, and wink at other members anytime. No live session required. Both work the same way once you match: mutual interest unlocks a 24-hour chat.",
   },
   {
     q: "How does Wink work?",
-    a: "On Discover, turn on Go Live to browse active profiles nearby. In Wink Spots, join a Spot and browse its members whenever you want. Either way, you wink privately — if it's mutual, you unlock a 24-hour chat.",
+    a: "On Discover, turn on Go Live to browse active profiles nearby. In Wink Spots, join a Spot and browse its members whenever you want. Either way, you wink privately. If it's mutual, you unlock a 24-hour chat.",
   },
   {
     q: "Is Wink a dating app?",
@@ -980,7 +980,7 @@ const FAQS = [
   },
   {
     q: "How does location work?",
-    a: "On Discover, your phone's location shows you only people within a small radius while you're live — you're invisible by default. Wink Spots works differently: we resolve your city (not a live radius) so you can see which Spots are near you, and Spot membership is what determines who you can see and wink at, not moment-to-moment GPS.",
+    a: "On Discover, your phone's location shows you only people within a small radius while you're live. You're invisible by default. Wink Spots works differently: we resolve your city (not a live radius) so you can see which Spots are near you, and Spot membership is what determines who you can see and wink at, not moment-to-moment GPS.",
   },
   {
     q: "Is Wink safe?",
@@ -992,7 +992,7 @@ const FAQS = [
   },
   {
     q: "Where can I use Wink?",
-    a: "Anywhere people gather. Concerts, festivals, conferences, university campuses, and everyday moments work with Discover's live mode. Cafés, lounges, and other regular spots you go to can be joined directly as a Wink Spot — no live session needed.",
+    a: "Anywhere people gather. Concerts, festivals, conferences, university campuses, and everyday moments work with Discover's live mode. Cafés, lounges, and other regular spots you go to can be joined directly as a Wink Spot. No live session needed.",
   },
 ];
 
