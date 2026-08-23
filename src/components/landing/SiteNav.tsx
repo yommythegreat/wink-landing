@@ -51,7 +51,7 @@ export function SiteNav({
           {nav.links.map((l) => (
             <a
               key={l.label}
-              href={`${prefix}${l.href}`}
+              href={l.external ? l.href : `${prefix}${l.href}`}
               className="text-[14px] font-medium text-[color:var(--color-ink-dim)] transition-colors hover:text-ink"
             >
               {l.label}

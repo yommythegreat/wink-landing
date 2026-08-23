@@ -1,8 +1,8 @@
 // All landing-page copy + tunable numbers.
 //
-// Numbers are illustrative for pre-launch — bump by hand as real
-// milestones hit. When we're ready to show real waitlist volume, swap
-// WAITLIST_COUNT for a server-fn reading from Supabase.
+// Numbers are illustrative for pre-launch. Bump by hand as real
+// milestones hit. When we're ready to show real waitlist volume,
+// swap WAITLIST_COUNT for a server-fn reading from Supabase.
 
 export const WAITLIST_COUNT = 8420;
 export const SPOT_COUNT = 117;
@@ -26,6 +26,7 @@ export const nav = {
     { label: "Wink Live", href: "#products" },
     { label: "Wink Spot", href: "#products" },
     { label: "FAQ", href: "#faq" },
+    { label: "Blog", href: "/blog", external: true },
   ],
   cta: { label: "Get early access", href: "#join" },
 };
@@ -37,11 +38,11 @@ export const hero = {
     accent: "your day.",
   },
   lede: [
-    "Wink is two ways to meet someone real: ",
+    "Wink is two ways to meet someone real. ",
     { b: "Wink Live" },
     " for whoever is around you right now, and ",
     { b: "Wink Spot" },
-    " for the places and interests you keep coming back to. One wink either way — and it stays private unless they wink back.",
+    " for the places and interests you keep coming back to. Send one wink. They see it in their Wink In. When they wink back, it's a match.",
   ] as const,
   primaryCta: { label: "Get early access", href: "#join" },
   secondaryCta: { label: "See how it works", href: "#products" },
@@ -58,42 +59,42 @@ export const products = {
   sub: "Tap a card to open everything you need to know.",
   live: {
     name: "Wink Live",
-    tagline: "Who is open to connecting near you, in this hour.",
-    tags: ["Nearby", "Live now", "Private winks", "24-hour chat"],
+    tagline: "Who is around you right now, in a short live session.",
+    tags: ["Nearby", "Live session", "Wink In", "24-hour chat"],
     lblOpen: "Everything about Wink Live",
     lblClose: "Close",
     bubbleEyebrow: "Wink Live · everything you need to know",
     bubbleHeadline:
-      "The people around you now — not a catalogue of strangers.",
+      "The people around you now, not a catalogue of strangers.",
     bubbleLede: [
-      "Switch on ",
-      { b: "Available to Connect" },
-      " and Wink Live shows the small handful of people nearby who did the same. No swiping through a city. See someone worth knowing? One wink. It stays completely private unless they wink back.",
+      "Tap ",
+      { b: "Go Live" },
+      " to start a short session. While you're live, Wink Live shows the small handful of people nearby who are also live. See someone worth knowing? One wink. It lands in their Wink In, private between the two of you. When they wink back, it's a match.",
     ] as const,
     steps: [
       {
         n: "01",
-        title: "Go available",
-        body: "One toggle. You are only visible while it is on, and only to people close by.",
+        title: "Go Live",
+        body: "Start a session (a few minutes). You are only visible while it is running, and only to other live users close by.",
       },
       {
         n: "02",
         title: "Send one wink",
-        body: "No opener to write, no bio essay. Silent, private, and never seen unless it is mutual.",
+        body: "One tap, no opener to write. It shows up in their Wink In. Nobody else sees it.",
       },
       {
         n: "03",
         title: "Meet before the moment closes",
-        body: "Two winks open a 24-hour chat. Long enough to meet today, short enough to stop pen-palling.",
+        body: "When they wink back, that's a match. A 24-hour chat opens. Long enough to meet today, short enough to stop pen-palling.",
       },
     ],
     panelA: {
       title: `Who can see you · 300 m`,
-      caption: `Six people nearby switched on Available to Connect. Outside the ring, nobody sees you at all.`,
+      caption: `Six other live users nearby right now. Outside the ring, nobody sees you at all.`,
     },
     panelB: {
       title: "Chat window · 24 hours",
-      caption: "Free, always · a wink stays hidden until it is mutual",
+      caption: "Free, always. A wink stays private between you and the recipient.",
     },
     cta: { label: "Get Wink Live", href: "#join" },
     note: `${LIVE_CITY} first, ${LIVE_YEAR}`,
@@ -114,13 +115,13 @@ export const products = {
     bubbleLede: [
       `Spots are the real venues and scenes in your city, grouped in ${CATEGORY_COUNTS.length} categories. Join one and you are saying `,
       { i: "I am open to meeting through this place" },
-      " — that is when its members become visible to you, and you to them.",
+      ". That is when its members become visible to you, and you to them.",
     ] as const,
     steps: [
       {
         n: "01",
         title: "Browse your city",
-        body: `${CATEGORY_COUNTS.length} categories, real venues — cover, address, how many members, how many available now.`,
+        body: `${CATEGORY_COUNTS.length} categories, real venues, cover photo, address, how many members, how many available now.`,
       },
       {
         n: "02",
@@ -130,16 +131,16 @@ export const products = {
       {
         n: "03",
         title: "Wink through what you share",
-        body: "Profiles show mutual Spots — the real social proof. Spot winks never expire; mutual opens the chat.",
+        body: "Profiles show mutual Spots, the real social proof. Spot winks never expire. When they wink back, the chat opens.",
       },
     ],
     panelA: {
       title: `${SPOT_COUNT} Spots live in ${LIVE_CITY}`,
-      caption: `${CATEGORY_COUNTS.length} categories, every venue verified before it goes live`,
+      caption: `${CATEGORY_COUNTS.length} categories, every venue verified before it goes live.`,
     },
     panelB: {
       title: "Mutual Spots",
-      caption: "Profiles lead with the Spots you both joined · Spot winks never expire",
+      caption: "Profiles lead with the Spots you both joined. Spot winks never expire.",
       legend: [
         { label: "Your Spots", value: "6" },
         { label: "Theirs", value: "9" },
@@ -160,15 +161,15 @@ export const howItWorks = {
   steps: [
     {
       title: "Show you're open",
-      body: "Flip Available to Connect, or join a Spot. Nothing happens to your profile until you do — no passive lurking.",
+      body: "Go Live for a session, or join a Spot. Nothing happens to your profile until you do. No passive lurking.",
     },
     {
       title: "Send a wink",
-      body: "One tap, no message. Live winks fade with the moment; Spot winks wait quietly until they answer.",
+      body: "One tap, no message. Live winks fade with the session. Spot winks wait quietly until the recipient answers.",
     },
     {
       title: "They wink back",
-      body: "That's a match, and a 24-hour chat. Swap contacts, agree a place, and close the app — that's the point.",
+      body: "That's a match, and a 24-hour chat. Swap contacts, agree a place, and close the app. That's the point.",
     },
   ],
 };
@@ -178,7 +179,6 @@ export const quote = {
     lead: "The best first date starts ",
     accent: "where you already were.",
   },
-  credit: `Wink Spot · Ikoyi, ${LIVE_CITY}`,
 };
 
 export const trust = {
@@ -189,22 +189,22 @@ export const trust = {
   },
   toggleDemo: {
     off: {
-      label: "Toggle off",
-      caption: "You are invisible. Not hidden-but-discoverable — off the map entirely.",
+      label: "No session running",
+      caption: "You are invisible to everyone. Off the map entirely.",
     },
     on: {
-      label: "Available to connect",
-      caption: `Visible for 300 m, to people who also switched on. Winks stay private.`,
+      label: "Live session",
+      caption: `Visible for 300 m during the session, to other live users nearby. Winks land in Wink In.`,
     },
   },
   principles: [
     {
       title: "Winks are private",
-      body: "Nobody knows you winked unless they wink back. No leaderboards, no read receipts, no seen-by.",
+      body: "A wink shows up in the recipient's Wink In and nowhere else. No leaderboards, no read receipts, no seen-by.",
     },
     {
       title: "You choose when you're visible",
-      body: 'Live visibility is a toggle, Spot visibility is a join. Off means invisible — not "hidden but discoverable".',
+      body: 'Go Live for a session, or join a Spot. Off the session (or not in a Spot) means invisible. Not "hidden but discoverable".',
     },
     {
       title: "Real places, reviewed",
@@ -222,11 +222,11 @@ export const faq = {
   items: [
     {
       q: "What's the difference between Wink Live and Wink Spot?",
-      a: "Live is about time — who is nearby and open right now. Spot is about place and interest — the venues and scenes you keep returning to, where a wink can wait for days. Same profile, same wink, same 24-hour chat once you match.",
+      a: "Live is about time. Who is nearby and open right now, in a short live session. Spot is about place and interest. The venues and scenes you keep returning to, where a wink can wait for days. Same profile, same wink, same 24-hour chat once you match.",
     },
     {
       q: "Can people see that I winked at them?",
-      a: "No. A wink is invisible until it is mutual. If they never wink back, they never know — and neither does anyone else.",
+      a: "The recipient does. Your wink shows up in their Wink In. Nobody else does, and nothing happens (no chat, no notification anywhere else) until they wink back.",
     },
     {
       q: "Why does the chat only last 24 hours?",
@@ -234,11 +234,11 @@ export const faq = {
     },
     {
       q: "Which cities are live?",
-      a: `${LIVE_CITY} first, with ${SPOT_COUNT} Spots across ${CATEGORY_COUNTS.length} categories. Other cities open as we map and verify their venues — if yours isn't live, you can suggest Spots and we'll tell you when it launches.`,
+      a: `${LIVE_CITY} first, with ${SPOT_COUNT} Spots across ${CATEGORY_COUNTS.length} categories. Other cities open as we map and verify their venues. If yours isn't live, you can suggest Spots and we'll tell you when it launches.`,
     },
     {
       q: "Is it free?",
-      a: "Yes. Winking, matching, joining Spots and chatting are free. There is no paid queue-jump — that would break the whole idea.",
+      a: "Yes. Winking, matching, joining Spots and chatting are free. There is no paid queue-jump. That would break the whole idea.",
     },
   ],
 };
@@ -249,7 +249,7 @@ export const finalCta = {
     lead: "Stop swiping.",
     accent: "Start winking.",
   },
-  note: "Wink Live · Wink Spot ·",
+  note: "Wink Live · Wink Spot",
 };
 
 export const footer = {
@@ -259,17 +259,17 @@ export const footer = {
     { label: "Wink Live", href: "/#products" },
     { label: "Wink Spot", href: "/#products" },
     { label: "FAQ", href: "/#faq" },
+    { label: "Blog", href: "/blog" },
     { label: "Waitlist", href: "/#join" },
   ],
   secondaryLinks: [
-    { label: "Blog", href: "/blog" },
     { label: "Privacy", href: "/privacy" },
     { label: "Terms", href: "/terms" },
   ],
 };
 
 export const seo = {
-  title: "Wink — Meet the people already in your day.",
+  title: "Wink. Meet the people already in your day.",
   description:
-    "Wink is two ways to meet someone real. Wink Live for whoever is around you right now; Wink Spot for the places and interests you keep coming back to. One wink either way — private unless they wink back.",
+    "Wink is two ways to meet someone real. Wink Live for whoever is around you right now. Wink Spot for the places and interests you keep coming back to. Send one wink. They see it in Wink In. When they wink back, it's a match.",
 };

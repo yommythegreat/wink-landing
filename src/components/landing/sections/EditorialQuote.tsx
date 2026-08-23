@@ -2,11 +2,10 @@ import { PhotoPlaceholder } from "../PhotoPlaceholder";
 import { useReveal } from "@/lib/useReveal";
 import { quote } from "../copy";
 
-// Full-bleed editorial band: photo + a large overlay quote + credit.
-// Sits between the HOW section and the Trust section as a mood break.
+// Full-bleed editorial band: photo + a large overlay quote. Sits
+// between the HOW section and the Trust section as a mood break.
 export function EditorialQuote() {
   const qRef = useReveal<HTMLParagraphElement>();
-  const cRef = useReveal<HTMLSpanElement>();
   return (
     <section className="relative z-[2]">
       <div className="relative isolate overflow-hidden">
@@ -26,14 +25,6 @@ export function EditorialQuote() {
               {quote.line.lead}
               <span className="text-accent">{quote.line.accent}</span>
             </p>
-            <span
-              ref={cRef}
-              data-reveal
-              style={{ "--reveal-delay": "0.12s" } as React.CSSProperties}
-              className="mt-4 inline-block font-mono text-[11px] uppercase tracking-[0.28em] text-white/70"
-            >
-              {quote.credit}
-            </span>
           </div>
         </div>
       </div>

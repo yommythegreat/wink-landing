@@ -25,17 +25,6 @@ export function Eyebrow({
         className,
       )}
     >
-      <span
-        aria-hidden
-        className={cn(
-          "inline-block h-px w-[22px]",
-          tone === "ink-mute"
-            ? "bg-ink-mute"
-            : tone === "snow-mute"
-              ? "bg-snow-mute"
-              : "bg-accent",
-        )}
-      />
       {children}
     </span>
   );
