@@ -18,7 +18,6 @@ export const CATEGORY_COUNTS: { label: string; count: number }[] = [
 ];
 export const NEARBY_AVAILABLE = 6;
 export const LIVE_CITY = "Lagos";
-export const LIVE_YEAR = "2026";
 
 export const nav = {
   brand: "Wink",
@@ -80,12 +79,12 @@ export const products = {
       {
         n: "02",
         title: "Send one wink",
-        body: "One tap, no opener to write. It shows up in their Wink In. Nobody else sees it.",
+        body: "One tap and it shows up in their Wink In. Nobody else sees it.",
       },
       {
         n: "03",
         title: "Meet before the moment closes",
-        body: "When they wink back, that's a match. A 24-hour chat opens. Long enough to meet today, short enough to stop pen-palling.",
+        body: "When they wink back, that's a match. A 24-hour chat opens. Meet, exchange numbers, or move on.",
       },
     ],
     panelA: {
@@ -94,16 +93,16 @@ export const products = {
     },
     panelB: {
       title: "Chat window · 24 hours",
-      caption: "Free, always. A wink stays private between you and the recipient.",
+      caption: "A wink stays private between you and the recipient.",
     },
     cta: { label: "Get Wink Live", href: "#join" },
-    note: `${LIVE_CITY} first, ${LIVE_YEAR}`,
+    note: "",
   },
   spot: {
     name: "Wink Spot",
     tagline: "Join the places you already love. Meet the regulars.",
     tags: [
-      `${CATEGORY_COUNTS.length} categories`,
+      "Several categories",
       "Join to opt in",
       "Mutual spots",
       "Never expires",
@@ -113,7 +112,7 @@ export const products = {
     bubbleEyebrow: "Wink Spot · everything you need to know",
     bubbleHeadline: "Places you like. People who like them too.",
     bubbleLede: [
-      `Spots are the real venues and scenes in your city, grouped in ${CATEGORY_COUNTS.length} categories. Join one and you are saying `,
+      "Spots are the real venues and scenes in your city, grouped in several categories. Join one and you are saying ",
       { i: "I am open to meeting through this place" },
       ". That is when its members become visible to you, and you to them.",
     ] as const,
@@ -121,22 +120,22 @@ export const products = {
       {
         n: "01",
         title: "Browse your city",
-        body: `${CATEGORY_COUNTS.length} categories, real venues, cover photo, address, how many members, how many available now.`,
+        body: "Several categories, real venues, cover photo, address, how many members, how many available now.",
       },
       {
         n: "02",
         title: "Join a Spot",
-        body: "Read-only until you join. Joining reveals members and puts you in the same room, honestly.",
+        body: "Joining reveals members and puts you in the same room.",
       },
       {
         n: "03",
         title: "Wink through what you share",
-        body: "Profiles show mutual Spots, the real social proof. Spot winks never expire. When they wink back, the chat opens.",
+        body: "Profiles show mutual Spots. Wink at someone anytime. Spot winks never expire. When they wink back, the chat opens.",
       },
     ],
     panelA: {
-      title: `${SPOT_COUNT} Spots live in ${LIVE_CITY}`,
-      caption: `${CATEGORY_COUNTS.length} categories, every venue verified before it goes live.`,
+      title: "Spots across different cities",
+      caption: "Several categories, every venue verified before it goes live.",
     },
     panelB: {
       title: "Mutual Spots",
@@ -263,11 +262,10 @@ export const footer = {
     { label: "Privacy", href: "/privacy" },
     { label: "Terms", href: "/terms" },
   ],
-  // Placeholder handles — swap real URLs before deploy to prod.
   socials: [
-    { label: "Instagram", href: "https://instagram.com/usewink", icon: "instagram" as const },
-    { label: "X", href: "https://x.com/usewink", icon: "x" as const },
-    { label: "TikTok", href: "https://tiktok.com/@usewink", icon: "tiktok" as const },
+    { label: "Instagram", href: "https://www.instagram.com/usewinkapp", icon: "instagram" as const },
+    { label: "X", href: "https://x.com/usewinkapp", icon: "x" as const },
+    { label: "TikTok", href: "https://www.tiktok.com/@usewinkapp", icon: "tiktok" as const },
   ],
 };
 

@@ -315,14 +315,16 @@ function Bubble({
                   {data.cta.label}
                   <span aria-hidden>→</span>
                 </a>
-                <span
-                  className={cn(
-                    "font-mono text-[10px] uppercase tracking-[0.24em]",
-                    isSpot ? "text-[color:var(--color-snow-mute)]" : "text-[color:var(--color-ink-mute)]",
-                  )}
-                >
-                  {data.note}
-                </span>
+                {data.note ? (
+                  <span
+                    className={cn(
+                      "font-mono text-[10px] uppercase tracking-[0.24em]",
+                      isSpot ? "text-[color:var(--color-snow-mute)]" : "text-[color:var(--color-ink-mute)]",
+                    )}
+                  >
+                    {data.note}
+                  </span>
+                ) : null}
               </div>
             </aside>
           </div>
