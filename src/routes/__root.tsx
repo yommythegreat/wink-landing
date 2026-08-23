@@ -72,16 +72,8 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
-      { name: "theme-color", content: "#0a0a0a" },
-      { title: "Wink. A small knowing gesture, shared." },
-      {
-        name: "description",
-        content:
-          "Wink helps you connect with people in your moment, for dating or networking. Be present. Be seen.",
-      },
+      { name: "theme-color", content: "#f0eee9" },
       { name: "author", content: "Wink" },
-      { property: "og:title", content: "Wink" },
-      { property: "og:description", content: "Connect with people in your moment." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
@@ -89,9 +81,12 @@ export const Route = createRootRoute({
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      // JetBrains Mono for editorial eyebrows/labels. Body/headings
+      // use SF Pro (system stack) — Apple ships it on macOS/iOS, and
+      // the fallback (system-ui) keeps type consistent on other OSes.
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap",
       },
     ],
   }),

@@ -5,14 +5,18 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Wink design system.
+ * Wink editorial design system.
  *
- * Brand foundations from the logo:
- *   Ink     #0a0a0a
- *   Paper   #f5f5f7
- *   Accent  #ff3b6b  (the iris — the "wink")
+ * Brand foundations:
+ *   Accent  #ff3b6b  — the wink iris
+ *   Paper   #f0eee9  — warm cream body
+ *   Ink     #16140f  — near-black text
+ *   Dark    #0a0a0a  — cinematic interlude sections
  *
- * All colors use oklch. Two themes: light (default) and dark.
+ * Two moods live on the same page: warm paper for the everyday sections
+ * and a near-black cinematic backdrop for the trust + final CTA bands.
+ * Section wrappers choose their mood via the section-paper / section-dark
+ * utilities defined at the bottom of this file.
  */
 
 @theme inline {
@@ -48,150 +52,251 @@
   --color-surface-foreground: var(--surface-foreground);
   --color-wink: var(--wink);
   --color-wink-foreground: var(--wink-foreground);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 
-  --font-display: "Fraunces", ui-serif, Georgia, serif;
-  --font-sans: "Inter Tight", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Editorial palette — new landing */
+  --color-paper: #f0eee9;
+  --color-paper-2: #e7e4dc;
+  --color-ink: #16140f;
+  --color-ink-dim: rgba(22, 20, 15, 0.62);
+  --color-ink-mute: rgba(22, 20, 15, 0.40);
+  --color-paper-line: rgba(20, 18, 15, 0.12);
+
+  --color-dark-0: #050507;
+  --color-dark-1: #0a0a0a;
+  --color-dark-2: #141416;
+  --color-dark-line: rgba(255, 255, 255, 0.10);
+  --color-snow: #f5f5f7;
+  --color-snow-dim: rgba(245, 245, 247, 0.62);
+  --color-snow-mute: rgba(245, 245, 247, 0.38);
+
+  --font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-sans: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 :root {
   --radius: 0.875rem;
 
-  /* Paper */
-  --background: oklch(0.985 0.002 90);
-  --foreground: oklch(0.16 0.01 270);
+  /* Paper defaults */
+  --background: #f0eee9;
+  --foreground: #16140f;
 
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.16 0.01 270);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.16 0.01 270);
+  --card: #ffffff;
+  --card-foreground: #16140f;
+  --popover: #ffffff;
+  --popover-foreground: #16140f;
 
-  --surface: oklch(0.97 0.003 90);
-  --surface-foreground: oklch(0.16 0.01 270);
+  --surface: #e7e4dc;
+  --surface-foreground: #16140f;
 
-  /* Primary = ink */
-  --primary: oklch(0.16 0.01 270);
-  --primary-foreground: oklch(0.985 0.002 90);
+  --primary: #16140f;
+  --primary-foreground: #f0eee9;
 
-  --secondary: oklch(0.95 0.005 90);
-  --secondary-foreground: oklch(0.16 0.01 270);
+  --secondary: #e7e4dc;
+  --secondary-foreground: #16140f;
 
-  --muted: oklch(0.95 0.005 90);
-  --muted-foreground: oklch(0.5 0.015 270);
+  --muted: #e7e4dc;
+  --muted-foreground: rgba(22, 20, 15, 0.62);
 
-  /* Accent = wink coral #ff3b6b */
-  --wink: oklch(0.66 0.22 12);
-  --wink-foreground: oklch(0.99 0.01 90);
-  --accent: oklch(0.66 0.22 12);
-  --accent-foreground: oklch(0.99 0.01 90);
+  /* Accent = wink #ff3b6b */
+  --wink: #ff3b6b;
+  --wink-foreground: #ffffff;
+  --accent: #ff3b6b;
+  --accent-foreground: #ffffff;
 
-  --destructive: oklch(0.58 0.24 27);
-  --destructive-foreground: oklch(0.99 0.01 90);
+  --destructive: #d13a3a;
+  --destructive-foreground: #ffffff;
 
-  --border: oklch(0.9 0.005 270);
-  --input: oklch(0.9 0.005 270);
-  --ring: oklch(0.66 0.22 12);
-
-  --chart-1: oklch(0.66 0.22 12);
-  --chart-2: oklch(0.7 0.15 60);
-  --chart-3: oklch(0.55 0.12 250);
-  --chart-4: oklch(0.7 0.18 150);
-  --chart-5: oklch(0.6 0.2 320);
-
-  --sidebar: oklch(0.985 0.002 90);
-  --sidebar-foreground: oklch(0.16 0.01 270);
-  --sidebar-primary: oklch(0.16 0.01 270);
-  --sidebar-primary-foreground: oklch(0.985 0.002 90);
-  --sidebar-accent: oklch(0.95 0.005 90);
-  --sidebar-accent-foreground: oklch(0.16 0.01 270);
-  --sidebar-border: oklch(0.9 0.005 270);
-  --sidebar-ring: oklch(0.66 0.22 12);
-}
-
-.dark {
-  /* Ink */
-  --background: oklch(0.13 0.005 270);
-  --foreground: oklch(0.97 0.005 90);
-
-  --card: oklch(0.18 0.008 270);
-  --card-foreground: oklch(0.97 0.005 90);
-  --popover: oklch(0.18 0.008 270);
-  --popover-foreground: oklch(0.97 0.005 90);
-
-  --surface: oklch(0.2 0.008 270);
-  --surface-foreground: oklch(0.97 0.005 90);
-
-  --primary: oklch(0.97 0.005 90);
-  --primary-foreground: oklch(0.13 0.005 270);
-
-  --secondary: oklch(0.24 0.01 270);
-  --secondary-foreground: oklch(0.97 0.005 90);
-
-  --muted: oklch(0.24 0.01 270);
-  --muted-foreground: oklch(0.7 0.01 270);
-
-  --wink: oklch(0.7 0.22 12);
-  --wink-foreground: oklch(0.13 0.005 270);
-  --accent: oklch(0.7 0.22 12);
-  --accent-foreground: oklch(0.13 0.005 270);
-
-  --destructive: oklch(0.7 0.19 22);
-  --destructive-foreground: oklch(0.97 0.005 90);
-
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.7 0.22 12);
-
-  --chart-1: oklch(0.7 0.22 12);
-  --chart-2: oklch(0.75 0.15 60);
-  --chart-3: oklch(0.65 0.14 250);
-  --chart-4: oklch(0.75 0.18 150);
-  --chart-5: oklch(0.7 0.2 320);
-
-  --sidebar: oklch(0.16 0.008 270);
-  --sidebar-foreground: oklch(0.97 0.005 90);
-  --sidebar-primary: oklch(0.7 0.22 12);
-  --sidebar-primary-foreground: oklch(0.13 0.005 270);
-  --sidebar-accent: oklch(0.24 0.01 270);
-  --sidebar-accent-foreground: oklch(0.97 0.005 90);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.7 0.22 12);
+  --border: rgba(20, 18, 15, 0.12);
+  --input: rgba(20, 18, 15, 0.14);
+  --ring: #ff3b6b;
 }
 
 @layer base {
   * {
     border-color: var(--color-border);
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 
   html, body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-paper);
+    color: var(--color-ink);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
-  h1, h2, h3, .font-display {
-    font-family: var(--font-display);
-    letter-spacing: -0.02em;
+  ::selection {
+    background: var(--color-accent);
+    color: #fff;
   }
 }
 
-@keyframes eyeBlink {
-  0%   { transform: scaleY(1); }
-  40%  { transform: scaleY(0.05); }
-  60%  { transform: scaleY(0.05); }
-  100% { transform: scaleY(1); }
+/* ────────────────── Type utilities ────────────────── */
+
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 0.96;
+  font-size: clamp(44px, 8.2vw, 132px);
+  text-wrap: balance;
+}
+
+@utility h-xl {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.0;
+  font-size: clamp(38px, 5.6vw, 86px);
+  text-wrap: balance;
+}
+
+@utility h-lg {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+  font-size: clamp(30px, 4vw, 58px);
+  text-wrap: balance;
+}
+
+@utility h-md {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  font-size: clamp(24px, 2.6vw, 38px);
+}
+
+@utility lede {
+  font-size: clamp(17px, 1.5vw, 22px);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--color-ink-dim);
+  max-width: 60ch;
+  text-wrap: pretty;
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ────────────────── Section moods ────────────────── */
+
+@utility section-paper {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+@utility section-paper-2 {
+  background: var(--color-paper-2);
+  color: var(--color-ink);
+}
+
+@utility section-dark {
+  background: var(--color-dark-1);
+  color: var(--color-snow);
+}
+
+/* ────────────────── Reveal animations ────────────────── */
+
+/* Set on <html> when the visitor prefers reduced motion. Sections opt in
+   by setting [data-revealed="true"] from the useReveal hook. */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.7s var(--ease-editorial),
+    transform 0.7s var(--ease-editorial);
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+[data-reveal][data-revealed="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ────────────────── Marquee ────────────────── */
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@utility marquee-track {
+  display: inline-flex;
+  animation: marquee 40s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* ────────────────── Card expand animation ────────────────── */
+
+/* grid-template-rows trick for smooth height transition without JS
+   measuring. The bubble is always in the DOM but visually collapsed
+   until aria-expanded flips on its trigger.  */
+@utility bubble-region {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.55s var(--ease-editorial);
+}
+
+.bubble-region[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+
+.bubble-region > * {
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ────────────────── Paper grain overlay ────────────────── */
+
+@utility paper-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/></svg>");
 }

@@ -1,22 +1,24 @@
 import { useEffect, useState } from "react";
-import { Link } from "@tanstack/react-router";
-import { ChevronDown } from "lucide-react";
-import { WinkLogo } from "@/components/wink/WinkLogo";
-import { ThemeToggle } from "@/components/wink/ThemeToggle";
 import { cn } from "@/lib/utils";
+import { nav } from "./copy";
 
-// Points to the deployed wink-user-dashboard worker — set via VITE_APP_URL env var.
-const APP_URL: string = import.meta.env.VITE_APP_URL ?? "";
-
-/**
- * `variant` controls how the in-page anchor links behave.
- *  - "home": plain `#how` etc. (only works on the index page).
- *  - "external": `/#how` etc. so clicking from a subpage (privacy, terms)
- *    routes back to home and scrolls to the section.
- */
-export function SiteNav({ variant = "home" }: { variant?: "home" | "external" }) {
+// Editorial sticky nav. Two states:
+//   idle    — transparent over paper, subtle underline links
+//   scrolled — solid paper background + border to signal shift
+//
+// Mobile: brand + CTA visible; nav-links collapse into a small
+// menu button (details/summary — no JS needed for open/close).
+// `variant="external"` prepends `/` to hash-anchor links so they route
+// back to the landing page first when the visitor is on /privacy or
+// /terms. Home uses bare hashes so anchors scroll in place.
+export function SiteNav({
+  variant = "home",
+}: {
+  variant?: "home" | "external";
+} = {}) {
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
+  const prefix = variant === "external" ? "/" : "";
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
@@ -24,126 +26,74 @@ export function SiteNav({ variant = "home" }: { variant?: "home" | "external" })
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const prefix = variant === "external" ? "/" : "";
-
   return (
-    <header
+    <nav
       className={cn(
-        "sticky top-0 z-40 w-full transition-colors",
+        "sticky top-0 z-50 transition-colors duration-300",
         scrolled
-          ? "border-b border-border bg-background/85 backdrop-blur"
-          : "bg-transparent",
+          ? "border-b border-[color:var(--color-paper-line)] bg-paper/85 backdrop-blur"
+          : "border-b border-transparent bg-transparent",
       )}
-      style={{ paddingTop: "env(safe-area-inset-top)" }}
     >
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
-        <Link to="/" className="flex items-center gap-2">
-          <WinkLogo className="h-7 w-7" />
-          <span className="font-display text-xl font-semibold tracking-tight">wink</span>
-        </Link>
-        <nav className="hidden items-center gap-8 md:flex">
+      <div className="mx-auto flex max-w-[1240px] items-center justify-between gap-4 px-6 py-4 md:px-10 md:py-5">
+        <a
+          href={variant === "external" ? "/" : "#top"}
+          className="flex items-center gap-2 text-ink"
+          aria-label="Wink home"
+        >
+          <BrandMark />
+          <span className="text-lg font-semibold tracking-tight">
+            {nav.brand}
+          </span>
+        </a>
+
+        <div className="hidden items-center gap-6 md:flex">
+          {nav.links.map((l) => (
+            <a
+              key={l.label}
+              href={`${prefix}${l.href}`}
+              className="text-[14px] font-medium text-[color:var(--color-ink-dim)] transition-colors hover:text-ink"
+            >
+              {l.label}
+            </a>
+          ))}
           <a
-            href={`${prefix}#how`}
-            className="text-sm text-muted-foreground hover:text-foreground"
+            href={`${prefix}${nav.cta.href}`}
+            className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
           >
-            How it works
+            {nav.cta.label}
           </a>
-          <a
-            href={`${prefix}#spots`}
-            className="text-sm text-muted-foreground hover:text-foreground"
-          >
-            Spots
-          </a>
-          <a
-            href={`${prefix}#safety`}
-            className="text-sm text-muted-foreground hover:text-foreground"
-          >
-            Safety
-          </a>
-          <a
-            href={`${prefix}#pricing`}
-            className="text-sm text-muted-foreground hover:text-foreground"
-          >
-            Pricing
-          </a>
-          <a
-            href={`${prefix}#faq`}
-            className="text-sm text-muted-foreground hover:text-foreground"
-          >
-            FAQ
-          </a>
-        </nav>
-        <div className="flex items-center gap-2">
-          <ThemeToggle />
-          <a
-            href={`${APP_URL}/login`}
-            className="hidden rounded-full px-4 py-2 text-sm font-medium text-foreground hover:bg-secondary md:inline-flex"
-          >
-            Log in
-          </a>
-          <a
-            href={`${APP_URL}/signup`}
-            className="rounded-full bg-wink px-4 py-2 text-sm font-medium text-wink-foreground transition-opacity hover:opacity-90"
-          >
-            Sign up
-          </a>
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-label="Toggle menu"
-            className="ml-1 inline-flex h-9 w-9 items-center justify-center rounded-full hover:bg-secondary md:hidden"
-          >
-            <ChevronDown className={cn("h-4 w-4 transition-transform", open && "rotate-180")} />
-          </button>
         </div>
+
+        <a
+          href={`${prefix}${nav.cta.href}`}
+          className="inline-flex items-center rounded-full bg-accent px-4 py-2 text-[13px] font-semibold text-white md:hidden"
+        >
+          Early access
+        </a>
       </div>
-      {open && (
-        <div className="border-t border-border bg-background md:hidden">
-          <div className="mx-auto flex max-w-6xl flex-col gap-1 px-5 py-3">
-            <a
-              href={`${prefix}#how`}
-              onClick={() => setOpen(false)}
-              className="rounded-md px-2 py-2 text-sm hover:bg-secondary"
-            >
-              How it works
-            </a>
-            <a
-              href={`${prefix}#spots`}
-              onClick={() => setOpen(false)}
-              className="rounded-md px-2 py-2 text-sm hover:bg-secondary"
-            >
-              Spots
-            </a>
-            <a
-              href={`${prefix}#safety`}
-              onClick={() => setOpen(false)}
-              className="rounded-md px-2 py-2 text-sm hover:bg-secondary"
-            >
-              Safety
-            </a>
-            <a
-              href={`${prefix}#pricing`}
-              onClick={() => setOpen(false)}
-              className="rounded-md px-2 py-2 text-sm hover:bg-secondary"
-            >
-              Pricing
-            </a>
-            <a
-              href={`${prefix}#faq`}
-              onClick={() => setOpen(false)}
-              className="rounded-md px-2 py-2 text-sm hover:bg-secondary"
-            >
-              FAQ
-            </a>
-            <a
-              href={`${APP_URL}/login`}
-              className="rounded-md px-2 py-2 text-sm hover:bg-secondary"
-            >
-              Log in
-            </a>
-          </div>
-        </div>
-      )}
-    </header>
+    </nav>
+  );
+}
+
+function BrandMark() {
+  // Tiny square with the wink logo cue — dark tile + iris.
+  return (
+    <span
+      aria-hidden
+      className="grid h-8 w-8 place-items-center rounded-[10px] bg-ink"
+    >
+      <svg viewBox="0 0 32 32" className="h-4 w-4">
+        <circle cx="12" cy="16" r="3" fill="#f0eee9" />
+        <circle cx="12" cy="16" r="1.2" fill="#ff3b6b" />
+        <path
+          d="M20 15 Q22 13 24 15"
+          stroke="#f0eee9"
+          strokeWidth="1.6"
+          fill="none"
+          strokeLinecap="round"
+        />
+      </svg>
+    </span>
   );
 }
