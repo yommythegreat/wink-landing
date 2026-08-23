@@ -264,7 +264,7 @@ export const finalCta = {
 export const footer = {
   copyright: "© 2026 Wink",
   tagline:
-    "Wink helps you connect with people you notice, live and nearby or at the places you already go.",
+    "Wink helps you connect with people you notice nearby or through the places you already go.",
   primaryLinks: [
     { label: "Wink Live", href: "/#products" },
     { label: "Wink Spot", href: "/#products" },
