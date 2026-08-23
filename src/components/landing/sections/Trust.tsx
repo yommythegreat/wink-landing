@@ -5,6 +5,7 @@ import { trust } from "../copy";
 
 export function Trust() {
   const h2Ref = useReveal<HTMLHeadingElement>();
+  const subRef = useReveal<HTMLParagraphElement>();
   return (
     <SectionShell mood="dark" className="py-24 md:py-32">
       <Eyebrow tone="snow-mute">{trust.eyebrow}</Eyebrow>
@@ -15,6 +16,14 @@ export function Trust() {
             {trust.headline.lead}
             <span className="text-accent">{trust.headline.accent}</span>
           </h2>
+          <p
+            ref={subRef}
+            data-reveal
+            style={{ "--reveal-delay": "0.1s" } as React.CSSProperties}
+            className="lede mt-6 max-w-[42ch] text-[color:var(--color-snow-dim)]"
+          >
+            {trust.sub}
+          </p>
           <ToggleDemo />
         </div>
 

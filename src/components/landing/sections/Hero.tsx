@@ -1,4 +1,3 @@
-import { Eyebrow } from "../Eyebrow";
 import { SectionShell } from "../SectionShell";
 import { PhotoPlaceholder } from "../PhotoPlaceholder";
 import { useReveal } from "@/lib/useReveal";
@@ -6,7 +5,7 @@ import { hero, WAITLIST_COUNT } from "../copy";
 
 export function Hero() {
   const h1Ref = useReveal<HTMLHeadingElement>();
-  const ledeRef = useReveal<HTMLParagraphElement>();
+  const ledeRef = useReveal<HTMLDivElement>();
   const ctaRef = useReveal<HTMLDivElement>();
   const proofRef = useReveal<HTMLDivElement>();
 
@@ -14,32 +13,35 @@ export function Hero() {
     <SectionShell id="hero" mood="paper" className="pt-24 pb-20 md:pt-28 md:pb-28">
       <div className="grid gap-14 md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] md:gap-16">
         <div className="flex flex-col justify-center">
-          <Eyebrow>Wink Live · Wink Spot</Eyebrow>
           <h1
             ref={h1Ref}
             data-reveal
             style={{ "--reveal-delay": "0.06s" } as React.CSSProperties}
-            className="display mt-6 text-ink"
+            className="display text-ink"
           >
             {hero.headline.lead}
             <br />
             {hero.headline.tail}
             <span className="text-accent">{hero.headline.accent}</span>
           </h1>
-          <p
+          <div
             ref={ledeRef}
             data-reveal
             style={{ "--reveal-delay": "0.14s" } as React.CSSProperties}
-            className="lede mt-6"
+            className="mt-6 space-y-4"
           >
-            {hero.lede.map((chunk, i) =>
-              typeof chunk === "string" ? (
-                <span key={i}>{chunk}</span>
-              ) : (
-                <b key={i}>{chunk.b}</b>
-              ),
-            )}
-          </p>
+            {hero.lede.map((para, i) => (
+              <p key={i} className="lede">
+                {para.map((chunk, j) =>
+                  typeof chunk === "string" ? (
+                    <span key={j}>{chunk}</span>
+                  ) : (
+                    <b key={j}>{chunk.b}</b>
+                  ),
+                )}
+              </p>
+            ))}
+          </div>
           <div
             ref={ctaRef}
             data-reveal

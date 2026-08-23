@@ -17,7 +17,6 @@ export const CATEGORY_COUNTS: { label: string; count: number }[] = [
   { label: "Beaches", count: 4 },
 ];
 export const NEARBY_AVAILABLE = 6;
-export const LIVE_CITY = "Lagos";
 
 export const nav = {
   brand: "Wink",
@@ -36,17 +35,23 @@ export const hero = {
     tail: "already in ",
     accent: "your day.",
   },
+  // Two paragraphs. Each is an array of text chunks (strings) or
+  // bold spans ({ b: "…" }). Renderer walks paragraphs → chunks.
   lede: [
-    "Wink is two ways to meet someone real. ",
-    { b: "Wink Live" },
-    " for whoever is around you right now, and ",
-    { b: "Wink Spot" },
-    " for the places and interests you keep coming back to. Send one wink. They see it in their Wink In. When they wink back, it's a match.",
+    [
+      "Wink helps you connect with people you might otherwise never meet whether they're right there with you or connected through a place you love.",
+    ],
+    [
+      { b: "Wink Live" },
+      " helps you discover people who are open to connecting around you right now. ",
+      { b: "Wink Spot" },
+      " helps you discover people through the places and interests you share.",
+    ],
   ] as const,
   primaryCta: { label: "Get early access", href: "#join" },
   secondaryCta: { label: "See how it works", href: "#products" },
   proofPrefix: "people",
-  proofSuffix: `on the waitlist across ${CATEGORY_COUNTS.length} Spot categories in ${LIVE_CITY}.`,
+  proofSuffix: "on the waitlist.",
 };
 
 export const products = {
@@ -186,38 +191,47 @@ export const trust = {
     lead: "A connection app that ",
     accent: "wants you offline.",
   },
+  sub: "Wink is built to help people connect in the real world, not keep them endlessly online.",
   toggleDemo: {
     off: {
-      label: "No session running",
-      caption: "You are invisible to everyone. Off the map entirely.",
+      label: "Not Live? You're invisible.",
+      caption:
+        "When you're not Live or connected to a Spot, other users can't discover your profile. You decide when you're open to connecting.",
     },
     on: {
-      label: "Live session",
-      caption: `Visible for 300 m during the session, to other live users nearby. Winks land in Wink In.`,
+      label: "Go Live when you're ready",
+      caption:
+        "Start a Live session and become visible to other Live users nearby. Your profile is only visible during your active session and within Wink's defined proximity.",
     },
   },
   principles: [
     {
       title: "You choose when you're visible",
-      body: "Go Live for a session, or join a Spot. Off the session (or not in a Spot) means invisible.",
+      body: "Go Live when you want to connect, or join a Spot when you want to discover people through a shared place or interest. When you're not active in either, you're invisible to other users.",
     },
     {
-      title: "Real places, reviewed",
-      body: "Every Spot is a real venue. Suggestions go through review before they go live in a city.",
+      title: "Spots are reviewed before they go live",
+      body: "Wink Spots are based on real places. New Spot suggestions are reviewed before being added to the platform.",
     },
     {
-      title: "Report and block, one tap",
-      body: "Available in chats and Spots. All reports are reviewed.",
+      title: "Report or block in one tap",
+      body: "If an interaction makes you uncomfortable, you can report or block the person directly. Blocking prevents further interaction between you and that user.",
     },
   ],
 };
 
 export const faq = {
   eyebrow: "FAQ",
+  // Each answer is one paragraph (string) or several paragraphs
+  // (string[]). Renderer maps each to a <p>.
   items: [
     {
       q: "What's the difference between Wink Live and Wink Spot?",
-      a: "Live is about time. Who is nearby and open right now, in a short live session. Spot is about place and interest. The venues and scenes you keep returning to, where a wink can wait for days. Same profile, same wink, same 24-hour chat once you match.",
+      a: [
+        "Wink Live is about the moment. See someone you'd like to connect with? Go Live and discover people who are nearby and open to connecting right then.",
+        "Wink Spot is about the places you love. Join a spot you enjoy, discover people who share that interest, and wink at someone even when you're not there at the same time.",
+        "Both work the same way once you connect: mutual wink → match → 24-hour chat.",
+      ],
     },
     {
       q: "Can people see that I winked at them?",
@@ -235,7 +249,7 @@ export const faq = {
       q: "Where can I use Wink?",
       a: "Anywhere people gather. Concerts, festivals, conferences, university campuses, and everyday moments work with Wink Live. Cafés, lounges, and other regular spots you go to can be joined directly as a Wink Spot.",
     },
-  ],
+  ] as { q: string; a: string | readonly string[] }[],
 };
 
 export const finalCta = {

@@ -26,7 +26,15 @@ export function FAQ() {
                 {item.q}
               </AccordionTrigger>
               <AccordionContent className="pr-4 text-[15px] leading-relaxed text-[color:var(--color-ink-dim)] md:text-[17px]">
-                {item.a}
+                {Array.isArray(item.a) ? (
+                  <div className="space-y-3">
+                    {item.a.map((para, j) => (
+                      <p key={j}>{para}</p>
+                    ))}
+                  </div>
+                ) : (
+                  <p>{item.a}</p>
+                )}
               </AccordionContent>
             </AccordionItem>
           ))}
