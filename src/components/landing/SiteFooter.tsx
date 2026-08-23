@@ -1,13 +1,14 @@
+import { Instagram } from "lucide-react";
+import { XIcon, TikTokIcon } from "@/components/wink/SocialIcons";
 import { footer } from "./copy";
 
-// Editorial footer — three columns: brand+copyright, primary links,
-// city + secondary/legal links row. Uses raw anchors (not Link) so
-// external hash targets and static pages both resolve identically
-// whether the visitor is on / or /privacy.
+// Editorial footer. Top row: copyright + primary nav + socials.
+// Bottom row: tagline + Privacy/Terms. Uses raw anchors so hash
+// targets and static pages resolve identically from any route.
 //
 // `variant` is accepted for parity with the old API (privacy/terms
-// pages pass "external"), but the primary link hrefs already begin
-// with `/` in copy.ts so no rewrite is needed.
+// pass "external"), but primaryLinks + secondaryLinks already carry
+// leading slashes in copy.ts so no rewrite is needed.
 export function SiteFooter(_props: { variant?: "home" | "external" } = {}) {
   return (
     <footer className="section-paper-2 border-t border-[color:var(--color-paper-line)]">
@@ -28,15 +29,26 @@ export function SiteFooter(_props: { variant?: "home" | "external" } = {}) {
           ))}
         </nav>
 
-        <div className="text-[13px] text-[color:var(--color-ink-dim)]">
-          {footer.city}
+        <div className="flex gap-3">
+          {footer.socials.map((s) => (
+            <a
+              key={s.label}
+              href={s.href}
+              aria-label={s.label}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[color:var(--color-paper-line)] text-[color:var(--color-ink-dim)] transition-colors hover:border-ink hover:text-ink"
+            >
+              <SocialIcon name={s.icon} />
+            </a>
+          ))}
         </div>
       </div>
 
       <div className="border-t border-[color:var(--color-paper-line)]">
         <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-between gap-3 px-6 py-4 text-[12px] text-[color:var(--color-ink-mute)] md:px-10">
-          <span className="font-mono uppercase tracking-[0.18em]">
-            A small knowing gesture, shared.
+          <span className="max-w-[60ch] text-[13px] leading-relaxed text-[color:var(--color-ink-dim)]">
+            {footer.tagline}
           </span>
           <nav className="flex gap-5">
             {footer.secondaryLinks.map((l) => (
@@ -53,4 +65,10 @@ export function SiteFooter(_props: { variant?: "home" | "external" } = {}) {
       </div>
     </footer>
   );
+}
+
+function SocialIcon({ name }: { name: "instagram" | "x" | "tiktok" }) {
+  if (name === "instagram") return <Instagram className="h-4 w-4" />;
+  if (name === "x") return <XIcon className="h-4 w-4" />;
+  return <TikTokIcon className="h-4 w-4" />;
 }

@@ -199,12 +199,8 @@ export const trust = {
   },
   principles: [
     {
-      title: "Winks are private",
-      body: "A wink shows up in the recipient's Wink In and nowhere else. No leaderboards, no read receipts, no seen-by.",
-    },
-    {
       title: "You choose when you're visible",
-      body: 'Go Live for a session, or join a Spot. Off the session (or not in a Spot) means invisible. Not "hidden but discoverable".',
+      body: "Go Live for a session, or join a Spot. Off the session (or not in a Spot) means invisible.",
     },
     {
       title: "Real places, reviewed",
@@ -212,7 +208,7 @@ export const trust = {
     },
     {
       title: "Report and block, one tap",
-      body: "Available in profiles, chats and Spots. Reports are read by humans, in-country.",
+      body: "Available in chats and Spots. All reports are reviewed.",
     },
   ],
 };
@@ -229,16 +225,16 @@ export const faq = {
       a: "The recipient does. Your wink shows up in their Wink In. Nobody else does, and nothing happens (no chat, no notification anywhere else) until they wink back.",
     },
     {
+      q: "Can people message me without permission?",
+      a: "No. Wink only allows messaging after a mutual match. There are no unsolicited DMs, ever.",
+    },
+    {
       q: "Why does the chat only last 24 hours?",
       a: "Because the goal is meeting, not messaging. A day is enough to agree on a coffee. If you swap contacts, the conversation continues where you actually want it.",
     },
     {
-      q: "Which cities are live?",
-      a: `${LIVE_CITY} first, with ${SPOT_COUNT} Spots across ${CATEGORY_COUNTS.length} categories. Other cities open as we map and verify their venues. If yours isn't live, you can suggest Spots and we'll tell you when it launches.`,
-    },
-    {
-      q: "Is it free?",
-      a: "Yes. Winking, matching, joining Spots and chatting are free. There is no paid queue-jump. That would break the whole idea.",
+      q: "Where can I use Wink?",
+      a: "Anywhere people gather. Concerts, festivals, conferences, university campuses, and everyday moments work with Wink Live. Cafés, lounges, and other regular spots you go to can be joined directly as a Wink Spot.",
     },
   ],
 };
@@ -254,7 +250,8 @@ export const finalCta = {
 
 export const footer = {
   copyright: "© 2026 Wink",
-  city: `${LIVE_CITY} · Nigeria`,
+  tagline:
+    "Wink helps you connect with people you notice, live and nearby or at the places you already go.",
   primaryLinks: [
     { label: "Wink Live", href: "/#products" },
     { label: "Wink Spot", href: "/#products" },
@@ -265,6 +262,12 @@ export const footer = {
   secondaryLinks: [
     { label: "Privacy", href: "/privacy" },
     { label: "Terms", href: "/terms" },
+  ],
+  // Placeholder handles — swap real URLs before deploy to prod.
+  socials: [
+    { label: "Instagram", href: "https://instagram.com/usewink", icon: "instagram" as const },
+    { label: "X", href: "https://x.com/usewink", icon: "x" as const },
+    { label: "TikTok", href: "https://tiktok.com/@usewink", icon: "tiktok" as const },
   ],
 };
 
