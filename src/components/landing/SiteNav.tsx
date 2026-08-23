@@ -77,7 +77,19 @@ export function SiteNav({
 }
 
 function BrandMark() {
-  // Tiny square with the wink logo cue — dark tile + iris.
+  return (
+    <img
+      src="/wink-mark-filled.png"
+      alt=""
+      aria-hidden
+      className="h-8 w-8 rounded-[10px]"
+    />
+  );
+}
+
+// Original hand-drawn SVG mark kept below in case we want to fall
+// back to a scalable version. Never rendered.
+function BrandMarkLegacy() {
   return (
     <span
       aria-hidden

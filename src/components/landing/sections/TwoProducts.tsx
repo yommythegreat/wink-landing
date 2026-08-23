@@ -30,9 +30,8 @@ export function TwoProducts() {
 
   return (
     <SectionShell id="products" mood="paper" className="py-24 md:py-32">
-      <div className="max-w-[42ch]">
-        <Eyebrow>{products.eyebrowLead}</Eyebrow>
-        <h2 ref={h2Ref} data-reveal className="h-xl mt-4 text-ink">
+      <div className="max-w-[26ch] md:max-w-[32ch]">
+        <h2 ref={h2Ref} data-reveal className="h-xl text-ink">
           {products.headline.lead}
           <span className="text-accent">{products.headline.accent}</span>
         </h2>
@@ -109,23 +108,20 @@ function ProductCard({
       aria-controls={bubbleId}
       onClick={onToggle}
       className={cn(
-        "group relative flex w-full flex-col overflow-hidden rounded-[28px] border p-6 text-left transition-transform duration-500",
-        "hover:-translate-y-1",
+        "group relative flex w-full flex-col overflow-hidden rounded-[28px] border p-6 text-left transition-all duration-500",
+        "hover:-translate-y-1 hover:border-accent",
         mood === "dark"
           ? "border-[color:var(--color-dark-line)] bg-[color:var(--color-dark-2)] text-snow"
           : "border-[color:var(--color-paper-line)] bg-[#faf9f5] text-ink",
       )}
     >
       <div className="flex items-start justify-between">
-        <span
+        <img
+          src={mood === "dark" ? "/wink-mark-filled.png" : "/wink-mark-outline.png"}
+          alt=""
           aria-hidden
-          className={cn(
-            "inline-flex h-11 w-11 items-center justify-center rounded-2xl text-lg font-bold",
-            mood === "dark" ? "bg-white/10 text-white" : "bg-ink text-white",
-          )}
-        >
-          ◠
-        </span>
+          className="h-11 w-11 rounded-2xl"
+        />
         <span
           className={cn(
             "font-mono text-[10px] uppercase tracking-[0.24em]",

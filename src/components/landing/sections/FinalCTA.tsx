@@ -1,4 +1,3 @@
-import { Eyebrow } from "../Eyebrow";
 import { WaitlistForm } from "../WaitlistForm";
 import { useReveal } from "@/lib/useReveal";
 import { finalCta } from "../copy";
@@ -21,12 +20,11 @@ export function FinalCTA() {
         className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/85 to-[#0a0a0a]/40"
       />
       <div className="relative mx-auto flex max-w-[1240px] flex-col items-center px-6 py-28 text-center md:px-10 md:py-40">
-        <Eyebrow tone="accent">{finalCta.eyebrow}</Eyebrow>
         <h2
           ref={h2Ref}
           data-reveal
           style={{ "--reveal-delay": "0.1s" } as React.CSSProperties}
-          className="display mt-5 max-w-[13ch] text-snow"
+          className="display max-w-[13ch] text-snow"
         >
           {finalCta.headline.lead}
           <br />
