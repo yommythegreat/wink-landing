@@ -5,6 +5,17 @@
   "compatibility_flags": ["nodejs_compat"],
   "main": "src/server.ts",
   "vars": {
-    "SENTRY_DSN": ""
-  }
+    "SENTRY_DSN": "",
+    // Notion database that backs /blog. Public ID (safe to check in);
+    // the matching NOTION_TOKEN is stored as an encrypted worker
+    // secret (`wrangler secret put NOTION_TOKEN`).
+    "NOTION_DATABASE_ID": "39ef4257db9280b0a6fecba27e3f3f34"
+  },
+  // Caches Notion API responses for /blog so repeat page loads don't
+  // hit Notion on every request. Same namespace id as wink-waitlist
+  // so both sites share one warm cache during cutover — safe because
+  // both read the same Notion DB. See src/lib/blog-cache.ts.
+  "kv_namespaces": [
+    { "binding": "BLOG_CACHE", "id": "07b1ad533d9f45df8bb07077f6b22339" }
+  ]
 }
