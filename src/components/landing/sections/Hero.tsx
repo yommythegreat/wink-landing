@@ -1,16 +1,20 @@
-import { SectionShell } from "../SectionShell";
 import { useReveal } from "@/lib/useReveal";
 import { hero } from "../copy";
 
+// Hero uses its own two-column layout (not SectionShell) because the
+// right-side photo bleeds to the viewport edge — no max-width, no
+// side gutter. Left column keeps the editorial container with a
+// max-w so the display type reads with the same measure as the rest
+// of the page.
 export function Hero() {
   const h1Ref = useReveal<HTMLHeadingElement>();
   const ledeRef = useReveal<HTMLDivElement>();
   const ctaRef = useReveal<HTMLDivElement>();
 
   return (
-    <SectionShell id="hero" mood="paper" className="pt-24 pb-20 md:pt-28 md:pb-28">
-      <div className="grid gap-14 md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] md:gap-16">
-        <div className="flex flex-col justify-center">
+    <section id="hero" className="section-paper relative z-[2]">
+      <div className="grid md:grid-cols-2">
+        <div className="flex flex-col justify-center px-6 pt-16 pb-14 md:pt-24 md:pb-24 md:pl-[max(2.5rem,calc((100vw-1240px)/2+2.5rem))] md:pr-14">
           <h1
             ref={h1Ref}
             data-reveal
@@ -62,15 +66,17 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="relative">
+        {/* Full-bleed hero photo. Fills the right column edge-to-edge,
+            top-to-bottom, on desktop; stacks below the text on mobile. */}
+        <div className="relative min-h-[420px] md:min-h-[640px]">
           <img
             src="/images/hero.jpg"
             alt="Four friends laughing around a café table"
             loading="eager"
-            className="aspect-[3/4] w-full rounded-2xl object-cover shadow-[0_20px_60px_-30px_rgba(20,18,15,0.4)]"
+            className="absolute inset-0 h-full w-full object-cover"
           />
         </div>
       </div>
-    </SectionShell>
+    </section>
   );
 }
