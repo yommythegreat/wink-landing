@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Eyebrow } from "../Eyebrow";
 import { SectionShell } from "../SectionShell";
-import { PhotoPlaceholder } from "../PhotoPlaceholder";
 import { useReveal } from "@/lib/useReveal";
 import { products } from "../copy";
 import { ProximityRing } from "../viz/ProximityRing";
@@ -50,7 +49,7 @@ export function TwoProducts() {
           onToggle={() => toggle("live")}
           data={products.live}
           mood="dark"
-          photoSlot="wink live"
+          photoSrc="/images/live.jpg"
           photoAlt="Four friends talking over drinks at a café table in the evening"
         />
         <ProductCard
@@ -60,7 +59,7 @@ export function TwoProducts() {
           onToggle={() => toggle("spot")}
           data={products.spot}
           mood="warm"
-          photoSlot="wink spot"
+          photoSrc="/images/spot.jpg"
           photoAlt="Two women in conversation at a bookshop café"
         />
       </div>
@@ -90,7 +89,7 @@ function ProductCard({
   onToggle,
   data,
   mood,
-  photoSlot,
+  photoSrc,
   photoAlt,
 }: {
   id: string;
@@ -99,7 +98,7 @@ function ProductCard({
   onToggle: () => void;
   data: CardData;
   mood: "warm" | "dark";
-  photoSlot: string;
+  photoSrc: string;
   photoAlt: string;
 }) {
   return (
@@ -151,12 +150,11 @@ function ProductCard({
       </h3>
 
       <div className="mt-6 overflow-hidden rounded-2xl">
-        <PhotoPlaceholder
-          slot={photoSlot}
+        <img
+          src={photoSrc}
           alt={photoAlt}
-          aspect="16 / 10"
-          mood={mood === "dark" ? "dark" : "warm"}
-          className="!rounded-2xl"
+          loading="lazy"
+          className="aspect-[16/10] w-full rounded-2xl object-cover"
         />
       </div>
 

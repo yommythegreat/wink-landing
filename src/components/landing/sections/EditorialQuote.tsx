@@ -1,4 +1,3 @@
-import { PhotoPlaceholder } from "../PhotoPlaceholder";
 import { useReveal } from "@/lib/useReveal";
 import { quote } from "../copy";
 
@@ -9,11 +8,11 @@ export function EditorialQuote() {
   return (
     <section className="relative z-[2]">
       <div className="relative isolate overflow-hidden">
-        <PhotoPlaceholder
-          slot="editorial band"
-          alt="A group of friends laughing together on a courtyard bench"
-          aspect="16 / 9"
-          className="!rounded-none min-h-[420px] md:min-h-[540px]"
+        <img
+          src="/images/editorial.jpg"
+          alt="A group of friends laughing together on an outdoor sofa"
+          loading="lazy"
+          className="min-h-[420px] w-full object-cover md:min-h-[540px]"
         />
         <div
           aria-hidden

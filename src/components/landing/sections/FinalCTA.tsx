@@ -1,6 +1,5 @@
 import { Eyebrow } from "../Eyebrow";
 import { WaitlistForm } from "../WaitlistForm";
-import { PhotoPlaceholder } from "../PhotoPlaceholder";
 import { useReveal } from "@/lib/useReveal";
 import { finalCta } from "../copy";
 
@@ -10,20 +9,18 @@ export function FinalCTA() {
   const noteRef = useReveal<HTMLDivElement>();
   return (
     <section id="join" className="section-dark relative z-[2] overflow-hidden">
-      <div aria-hidden className="absolute inset-0 opacity-30">
-        <PhotoPlaceholder
-          slot="final CTA"
-          alt="Three friends at a rooftop table at sunset"
-          aspect="16 / 9"
-          mood="dark"
-          className="!rounded-none h-full"
-        />
-      </div>
+      <img
+        src="/images/final-cta.jpg"
+        alt="Three friends at a rooftop table at sunset"
+        loading="lazy"
+        aria-hidden
+        className="absolute inset-0 h-full w-full object-cover opacity-30"
+      />
       <div
         aria-hidden
         className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/85 to-[#0a0a0a]/40"
       />
-      <div className="relative mx-auto max-w-[1240px] px-6 py-28 md:px-10 md:py-40">
+      <div className="relative mx-auto flex max-w-[1240px] flex-col items-center px-6 py-28 text-center md:px-10 md:py-40">
         <Eyebrow tone="accent">{finalCta.eyebrow}</Eyebrow>
         <h2
           ref={h2Ref}
@@ -39,7 +36,7 @@ export function FinalCTA() {
           ref={formRef}
           data-reveal
           style={{ "--reveal-delay": "0.2s" } as React.CSSProperties}
-          className="mt-10"
+          className="mt-10 flex w-full justify-center"
         >
           <WaitlistForm variant="dark" source="landing-cta" />
         </div>
