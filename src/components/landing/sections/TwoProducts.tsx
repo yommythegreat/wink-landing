@@ -3,8 +3,6 @@ import { ShieldCheck } from "lucide-react";
 import { SectionShell } from "../SectionShell";
 import { useReveal } from "@/lib/useReveal";
 import { products } from "../copy";
-import { PhoneMock } from "../viz/PhoneMock";
-import { SpotMock } from "../viz/SpotMock";
 import { cn } from "@/lib/utils";
 
 type Pillar = "live" | "spot";
@@ -153,18 +151,7 @@ function ProductCard({ variant }: { variant: Pillar }) {
           aria-hidden
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div
-          aria-hidden
-          className={cn(
-            "absolute inset-0",
-            isLive
-              ? "bg-gradient-to-b from-black/55 via-black/40 to-black/70"
-              : "bg-gradient-to-b from-white/20 via-white/10 to-white/30",
-          )}
-        />
-        <div className="relative grid min-h-[360px] place-items-center px-5 py-8 md:min-h-[420px]">
-          {isLive ? <PhoneMock /> : <SpotMock />}
-        </div>
+        <div className="relative min-h-[360px] md:min-h-[420px]" />
       </div>
 
       <div
@@ -223,17 +210,23 @@ function Step({
 }
 
 function Arrow({ dark }: { dark: boolean }) {
+  // Arrow lives beside the step's number circle. Wrap in a 28px-tall
+  // (= h-7, matching the number circle) flex row so the glyph
+  // vertically centers on the circle, not the whole step column.
   return (
-    <div
-      aria-hidden
-      className={cn(
-        "hidden shrink-0 self-start pt-2.5 font-mono text-[13px] md:block",
-        dark
-          ? "text-[color:var(--color-snow-mute)]"
-          : "text-[color:var(--color-ink-mute)]",
-      )}
-    >
-      →
+    <div aria-hidden className="hidden shrink-0 self-start md:block">
+      <div className="flex h-7 items-center">
+        <span
+          className={cn(
+            "font-mono text-[14px]",
+            dark
+              ? "text-[color:var(--color-snow-mute)]"
+              : "text-[color:var(--color-ink-mute)]",
+          )}
+        >
+          →
+        </span>
+      </div>
     </div>
   );
 }

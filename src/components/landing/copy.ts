@@ -82,17 +82,17 @@ export const products = {
       {
         n: "01",
         title: "Go Live",
-        body: "Start a session (a few minutes). You are only visible while it is running, and only to other live users close by.",
+        body: "You choose when you're visible.",
       },
       {
         n: "02",
-        title: "Send one wink",
-        body: "One tap and it shows up in their Wink In. Nobody else sees it.",
+        title: "See who's around",
+        body: "Explore people nearby who are also Live.",
       },
       {
         n: "03",
-        title: "Meet before the moment closes",
-        body: "When they wink back, that's a match. A 24-hour chat opens. Meet, exchange numbers, or move on.",
+        title: "Send a Wink",
+        body: "Show interest. No pressure.",
       },
     ],
     panelA: {
@@ -130,18 +130,18 @@ export const products = {
     steps: [
       {
         n: "01",
-        title: "Browse your city",
-        body: "Several categories, real venues, cover photo, address, how many members, how many available now.",
+        title: "Pick a Spot",
+        body: "Choose a place or interest you love.",
       },
       {
         n: "02",
-        title: "Join a Spot",
-        body: "Joining reveals members and puts you in the same room.",
+        title: "Find your people",
+        body: "See who's there or part of the Spot.",
       },
       {
         n: "03",
-        title: "Wink through what you share",
-        body: "Profiles show mutual Spots. Wink at someone anytime. Spot winks never expire. When they wink back, the chat opens.",
+        title: "Send a Wink",
+        body: "Take the first step when it feels right.",
       },
     ],
     panelA: {
