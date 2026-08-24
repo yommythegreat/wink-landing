@@ -35,19 +35,22 @@ export function SiteNav({
           : "border-b border-transparent bg-transparent",
       )}
     >
-      <div className="mx-auto flex max-w-[1240px] items-center justify-between gap-4 px-6 py-4 md:px-10 md:py-5">
+      {/* Three-column flex: brand left, center nav takes the flex-1
+          middle, CTA sits at the right. Nav stays perfectly centered
+          within the container even when brand + CTA differ in width. */}
+      <div className="mx-auto flex max-w-[1240px] items-center gap-4 px-6 py-4 md:px-10 md:py-5">
         <a
           href={variant === "external" ? "/" : "#top"}
-          className="flex items-center gap-2 text-ink"
+          className="flex items-center gap-2.5 md:flex-none"
           aria-label="Wink home"
         >
           <BrandMark />
-          <span className="text-lg font-semibold tracking-tight">
+          <span className="text-[19px] font-semibold tracking-tight text-accent">
             {nav.brand}
           </span>
         </a>
 
-        <div className="hidden items-center gap-6 md:flex">
+        <div className="hidden flex-1 items-center justify-center gap-7 md:flex">
           {nav.links.map((l) => (
             <a
               key={l.label}
@@ -57,17 +60,18 @@ export function SiteNav({
               {l.label}
             </a>
           ))}
-          <a
-            href={`${prefix}${nav.cta.href}`}
-            className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
-          >
-            {nav.cta.label}
-          </a>
         </div>
 
         <a
           href={`${prefix}${nav.cta.href}`}
-          className="inline-flex items-center rounded-full bg-accent px-4 py-2 text-[13px] font-semibold text-white md:hidden"
+          className="ml-auto hidden items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 md:inline-flex md:ml-0"
+        >
+          {nav.cta.label}
+        </a>
+
+        <a
+          href={`${prefix}${nav.cta.href}`}
+          className="ml-auto inline-flex items-center rounded-full bg-accent px-4 py-2 text-[13px] font-semibold text-white md:hidden"
         >
           Early access
         </a>
@@ -82,7 +86,7 @@ function BrandMark() {
       src="/wink-mark-filled.png"
       alt=""
       aria-hidden
-      className="h-8 w-8 rounded-[10px]"
+      className="h-10 w-10 rounded-[12px]"
     />
   );
 }
