@@ -19,7 +19,7 @@ export function EditorialQuote() {
           className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-transparent"
         />
         <div className="absolute inset-0 flex items-end">
-          <div className="mx-auto w-full max-w-[1240px] px-6 pb-12 md:px-10 md:pb-16 text-white">
+          <div className="mx-auto w-full max-w-[1440px] px-6 pb-12 md:px-10 md:pb-16 text-white">
             <p ref={qRef} data-reveal className="h-lg max-w-[22ch] text-white">
               {quote.line.lead}
               <span className="text-accent">{quote.line.accent}</span>

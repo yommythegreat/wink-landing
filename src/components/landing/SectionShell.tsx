@@ -30,7 +30,7 @@ export function SectionShell({
     >
       <div
         className={cn(
-          "mx-auto w-full max-w-[1240px] px-6 md:px-10",
+          "mx-auto w-full max-w-[1440px] px-6 md:px-10",
           wrapClassName,
         )}
       >

@@ -42,7 +42,7 @@ export function Hero() {
       </div>
 
       {/* Text column, editorial container. */}
-      <div className="relative mx-auto grid max-w-[1240px] gap-10 px-6 md:min-h-[640px] md:grid-cols-2 md:px-10">
+      <div className="relative mx-auto grid max-w-[1440px] gap-10 px-6 md:min-h-[640px] md:grid-cols-2 md:px-10">
         <div className="flex flex-col justify-center pt-16 pb-10 md:pt-24 md:pb-24">
           <h1
             ref={h1Ref}
@@ -77,18 +77,18 @@ export function Hero() {
             ref={ctaRef}
             data-reveal
             style={{ "--reveal-delay": "0.22s" } as React.CSSProperties}
-            className="mt-8 flex flex-wrap items-center gap-3"
+            className="mt-8 flex flex-row flex-nowrap items-center gap-2.5 sm:gap-3"
           >
             <a
               href={hero.primaryCta.href}
-              className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-base font-semibold text-white transition-transform hover:-translate-y-0.5"
+              className="inline-flex flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-accent px-4 py-3 text-[14px] font-semibold text-white transition-transform hover:-translate-y-0.5 sm:flex-none sm:px-6 sm:py-3.5 sm:text-base"
             >
               {hero.primaryCta.label}
               <span aria-hidden>→</span>
             </a>
             <a
               href={hero.secondaryCta.href}
-              className="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-paper-line)] px-6 py-3.5 text-base font-semibold text-ink transition-colors hover:border-ink"
+              className="inline-flex flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-[color:var(--color-paper-line)] bg-white/60 px-4 py-3 text-[14px] font-semibold text-ink transition-colors hover:border-ink sm:flex-none sm:px-6 sm:py-3.5 sm:text-base"
             >
               {hero.secondaryCta.label}
             </a>

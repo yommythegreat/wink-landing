@@ -19,7 +19,7 @@ export function FinalCTA() {
         aria-hidden
         className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/85 to-[#0a0a0a]/40"
       />
-      <div className="relative mx-auto flex max-w-[1240px] flex-col items-center px-6 py-28 text-center md:px-10 md:py-40">
+      <div className="relative mx-auto flex max-w-[1440px] flex-col items-center px-6 py-28 text-center md:px-10 md:py-40">
         <h2
           ref={h2Ref}
           data-reveal
