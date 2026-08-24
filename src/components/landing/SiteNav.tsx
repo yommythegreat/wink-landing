@@ -89,7 +89,7 @@ export function SiteNav({
           aria-label="Open menu"
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
-          className="ml-auto inline-flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--color-paper-line)] bg-white text-ink transition-colors hover:border-ink md:hidden"
+          className="ml-auto inline-flex h-10 w-10 items-center justify-center rounded-full bg-transparent text-ink md:hidden"
         >
           <Menu className="h-5 w-5" strokeWidth={2.2} />
         </button>

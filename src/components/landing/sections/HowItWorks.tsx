@@ -167,12 +167,17 @@ function PhotoMock({
   );
 }
 
-// Shared dark card frame — matches the photo aspect exactly so all
-// mocks in the row share the same footprint.
+// Shared dark card frame. On desktop, aspect-[3/4] locks all five
+// columns to the same footprint. On mobile, that same 3:4 was too
+// tight for the phone-frame content (bottom pills brushed the
+// rounded corner), so we drop the aspect on <md and let the frame
+// grow to fit its content with a generous min-h.
 function PhoneFrame({ children }: { children: React.ReactNode }) {
   return (
-    <div className="aspect-[3/4] overflow-hidden rounded-[22px] border border-white/10 bg-[#0d0d10] p-3 text-white shadow-[0_20px_40px_-24px_rgba(0,0,0,0.6)]">
-      <div className="flex h-full flex-col">{children}</div>
+    <div className="min-h-[460px] rounded-[22px] border border-white/10 bg-[#0d0d10] p-4 text-white shadow-[0_20px_40px_-24px_rgba(0,0,0,0.6)] md:aspect-[3/4] md:min-h-0 md:p-3">
+      <div className="flex h-full min-h-[inherit] flex-col md:min-h-0">
+        {children}
+      </div>
     </div>
   );
 }
