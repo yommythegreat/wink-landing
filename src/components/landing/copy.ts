@@ -339,7 +339,7 @@ export const footer = {
 };
 
 export const seo = {
-  title: "Wink. Meet the people already in your day.",
+  title: "Wink | Connect With People Nearby in Real Life",
   description:
-    "Wink is two ways to meet someone real. Wink Live for whoever is around you right now. Wink Spot for the places and interests you keep coming back to. Send one wink. They see it in Wink In. When they wink back, it's a match.",
+    "Connect with people nearby through mutual interest, real-life moments, and places you love. Meet people where life happens.",
 };

@@ -81,13 +81,20 @@ export function SiteNav({
 }
 
 function BrandMark() {
+  // The source PNG ships with light-color padding around the black
+  // wink tile. Wrap in an overflow-hidden square and scale the image
+  // slightly so only the tile inside shows — no white halo.
   return (
-    <img
-      src="/wink-mark-filled.png"
-      alt=""
+    <span
       aria-hidden
-      className="h-10 w-10 rounded-[12px]"
-    />
+      className="block h-10 w-10 overflow-hidden rounded-[12px]"
+    >
+      <img
+        src="/wink-mark-filled.png"
+        alt=""
+        className="h-full w-full scale-[1.18] object-cover"
+      />
+    </span>
   );
 }
 

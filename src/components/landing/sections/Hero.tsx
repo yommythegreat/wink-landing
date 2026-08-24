@@ -18,28 +18,31 @@ export function Hero() {
       id="hero"
       className="section-paper relative z-[2] overflow-hidden"
     >
-      {/* Desktop-only backdrop: right-side full-bleed photo, then a
-          horizontal paper-to-transparent gradient masking its left
-          edge so it blends into the reading column. */}
+      {/* Desktop-only backdrop: the photo spans the whole section
+          (full-bleed) and a horizontal paper-to-transparent gradient
+          fades its left edge into the reading column. object-position
+          biases the crop toward the right side of the photo so the
+          full group of friends stays in frame at every hero height. */}
       <div className="pointer-events-none absolute inset-0 hidden md:block">
         <img
           src="/images/hero.jpg"
           alt=""
           aria-hidden
-          className="absolute inset-y-0 right-0 h-full w-[68%] object-cover"
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ objectPosition: "75% center" }}
         />
         <div
           aria-hidden
-          className="absolute inset-y-0 right-0 h-full w-[68%]"
+          className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to right, var(--color-paper) 0%, rgba(240,238,233,0.85) 18%, rgba(240,238,233,0.35) 34%, transparent 55%)",
+              "linear-gradient(to right, var(--color-paper) 0%, rgba(240,238,233,0.92) 22%, rgba(240,238,233,0.55) 38%, transparent 58%)",
           }}
         />
       </div>
 
       {/* Text column, editorial container. */}
-      <div className="relative mx-auto grid max-w-[1240px] gap-10 px-6 md:min-h-[720px] md:grid-cols-2 md:px-10">
+      <div className="relative mx-auto grid max-w-[1240px] gap-10 px-6 md:min-h-[640px] md:grid-cols-2 md:px-10">
         <div className="flex flex-col justify-center pt-16 pb-10 md:pt-24 md:pb-24">
           <h1
             ref={h1Ref}
