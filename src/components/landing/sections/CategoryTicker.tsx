@@ -27,7 +27,6 @@ function Track() {
           className="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-paper-line)] bg-white px-4 py-2 font-mono text-[13px] uppercase tracking-[0.18em] text-[color:var(--color-ink-mute)]"
         >
           {c.label}
-          <b className="font-semibold text-accent">{c.count}</b>
         </span>
       ))}
     </span>

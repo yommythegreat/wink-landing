@@ -82,7 +82,7 @@ function StepColumn({
       <p className="mt-1 flex min-h-[3.75rem] max-w-[26ch] items-start text-[13px] leading-relaxed text-[color:var(--color-ink-dim)]">
         {step.body}
       </p>
-      <div className="relative mt-5 w-full max-w-[220px]">
+      <div className="relative mt-5 w-full max-w-[280px] md:max-w-[220px]">
         <StepMock kind={step.mockKind} />
         {!isLast ? (
           <span
