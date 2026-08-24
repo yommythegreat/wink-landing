@@ -2,7 +2,6 @@ import { Eye, Send, Heart, ArrowRight } from "lucide-react";
 import { SectionShell } from "../SectionShell";
 import { useReveal } from "@/lib/useReveal";
 import { howItWorks } from "../copy";
-import { cn } from "@/lib/utils";
 
 // Five-step "Wink → Match → Meet" journey.
 //
@@ -74,7 +73,7 @@ function StepColumn({
       style={{ "--reveal-delay": `${0.08 + index * 0.06}s` } as React.CSSProperties}
       className="flex flex-col items-center text-center"
     >
-      <StepIcon name={step.iconName} tone={step.iconTone} />
+      <StepIcon name={step.iconName} />
       {/* Fixed-height title + body ensures every column aligns its
           mock at the same y-offset regardless of copy length. */}
       <h3 className="mt-4 flex min-h-[3rem] items-start text-[15px] font-semibold leading-tight text-ink">
@@ -102,23 +101,10 @@ function StepColumn({
 
 const ICONS = { eye: Eye, send: Send, heart: Heart } as const;
 
-function StepIcon({
-  name,
-  tone,
-}: {
-  name: Step["iconName"];
-  tone: Step["iconTone"];
-}) {
+function StepIcon({ name }: { name: Step["iconName"] }) {
   const Icon = ICONS[name as keyof typeof ICONS] ?? Eye;
   return (
-    <span
-      className={cn(
-        "grid h-11 w-11 place-items-center rounded-full",
-        tone === "pink"
-          ? "bg-accent/15 text-accent"
-          : "bg-[#efeaff] text-[#7a5cff]",
-      )}
-    >
+    <span className="grid h-11 w-11 place-items-center rounded-full bg-accent/15 text-accent">
       <Icon className="h-4 w-4" strokeWidth={2.2} />
     </span>
   );
@@ -195,10 +181,7 @@ function PhoneSendMock() {
   return (
     <PhoneFrame>
       <div className="flex items-start justify-between text-[10px] text-white/85">
-        <div>
-          <p className="font-medium">Sarah, 27</p>
-          <p className="mt-0.5 text-[9px] text-white/55">500 m away</p>
-        </div>
+        <p className="font-medium">Sarah, 27</p>
         <span className="text-white/50">✕</span>
       </div>
       <div className="relative mt-2 flex-1 overflow-hidden rounded-[14px] bg-gradient-to-b from-[#4a3a3a] via-[#2a1f24] to-[#141018]">
@@ -230,7 +213,6 @@ function PhoneReceiveMock() {
         <p className="mt-2 text-center text-[10px] font-semibold text-white">
           Jordan, 28
         </p>
-        <p className="text-center text-[8.5px] text-white/55">500 m away</p>
         <p className="mt-1 text-center text-[8.5px] text-accent">
           Sent you a Wink
         </p>
@@ -239,7 +221,7 @@ function PhoneReceiveMock() {
         <span className="flex-1 rounded-full border border-white/10 py-1 text-center text-[9px] text-white/70">
           ✕ Pass
         </span>
-        <span className="flex-1 rounded-full bg-[#7a5cff]/85 py-1 text-center text-[9px] font-semibold text-white">
+        <span className="flex-1 rounded-full bg-accent py-1 text-center text-[9px] font-semibold text-white">
           ♥ Wink back
         </span>
       </div>
