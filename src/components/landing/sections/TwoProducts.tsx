@@ -1,5 +1,4 @@
 import { Fragment, useState } from "react";
-import { ShieldCheck } from "lucide-react";
 import { SectionShell } from "../SectionShell";
 import { useReveal } from "@/lib/useReveal";
 import { products } from "../copy";
@@ -47,8 +46,6 @@ export function TwoProducts() {
           <ProductCard variant="spot" />
         </div>
       </div>
-
-      <FooterReassurance />
     </SectionShell>
   );
 }
@@ -231,22 +228,3 @@ function Arrow({ dark }: { dark: boolean }) {
   );
 }
 
-function FooterReassurance() {
-  const ref = useReveal<HTMLDivElement>();
-  return (
-    <div
-      ref={ref}
-      data-reveal
-      style={{ "--reveal-delay": "0.2s" } as React.CSSProperties}
-      className="mx-auto mt-14 flex max-w-[46ch] flex-col items-center text-center md:mt-20"
-    >
-      <div className="inline-flex items-center gap-2 text-[15px] font-semibold text-ink">
-        <ShieldCheck className="h-4 w-4 text-[color:var(--color-ink-mute)]" />
-        {products.footer.title}
-      </div>
-      <p className="mt-2 text-[14px] text-[color:var(--color-ink-dim)]">
-        {products.footer.sub}
-      </p>
-    </div>
-  );
-}
