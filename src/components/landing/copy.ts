@@ -60,10 +60,13 @@ export const products = {
     lead: "One wink. ",
     accent: "Two ways to use it.",
   },
-  sub: "Tap a card to open everything you need to know.",
+  sub: "Connect with people in the moment or through the places you love.",
   live: {
     name: "Wink Live",
     tagline: "Who is around you right now, in a short live session.",
+    cardHeadline: "See someone?",
+    cardSub:
+      "Connect with people nearby who are open to meeting right now.",
     tags: ["Nearby", "Live session", "Wink In", "24-hour chat"],
     lblOpen: "Everything about Wink Live",
     lblClose: "Close",
@@ -106,6 +109,9 @@ export const products = {
   spot: {
     name: "Wink Spot",
     tagline: "Join the places you already love. Meet the regulars.",
+    cardHeadline: "Love the same places?",
+    cardSub:
+      "Find people through places and interests you already go to.",
     tags: [
       "Several categories",
       "Join to opt in",
@@ -153,6 +159,10 @@ export const products = {
     },
     cta: { label: "Get Wink Spot", href: "#join" },
     note: "Missing a place? Suggest it",
+  },
+  footer: {
+    title: "Same profile. Same wink. Same experience.",
+    sub: "Whether you go Live or join a Spot, you connect the same way.",
   },
 };
 

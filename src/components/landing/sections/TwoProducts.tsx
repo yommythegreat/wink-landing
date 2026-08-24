@@ -1,369 +1,258 @@
-import { useState } from "react";
-import { Eyebrow } from "../Eyebrow";
+import { Fragment, useState } from "react";
+import { ShieldCheck } from "lucide-react";
 import { SectionShell } from "../SectionShell";
 import { useReveal } from "@/lib/useReveal";
 import { products } from "../copy";
-import { ProximityRing } from "../viz/ProximityRing";
-import { DayClock } from "../viz/DayClock";
-import { CategoryBars } from "../viz/CategoryBars";
-import { VennDiagram } from "../viz/VennDiagram";
+import { PhoneMock } from "../viz/PhoneMock";
+import { SpotMock } from "../viz/SpotMock";
 import { cn } from "@/lib/utils";
 
-type CardKey = "live" | "spot" | null;
+type Pillar = "live" | "spot";
 
-// The centrepiece section. Two big cards side-by-side; tapping either
-// expands its "bubble" — a large explainer panel below the pair with 3
-// steps + 2 inline data-viz. Only one bubble is open at a time.
+// Centrepiece section. Two large product cards side-by-side that
+// explain each pillar in full without any click-to-expand — headline,
+// sub, a stylized product preview, and a three-step process.
 //
-// Height animation via a grid-template-rows 0fr → 1fr trick on
-// .bubble-region (defined in styles.css), which avoids the height:auto
-// transition trap while keeping the collapsed state semantically
-// present in the DOM.
+// A pill toggle sits above the headline. On desktop it is a decorative
+// anchor (both cards render regardless). On mobile it acts as a filter:
+// only the selected card renders, so the section stays one page-tall.
 export function TwoProducts() {
-  const [active, setActive] = useState<CardKey>(null);
+  const [pillar, setPillar] = useState<Pillar>("live");
   const h2Ref = useReveal<HTMLHeadingElement>();
   const subRef = useReveal<HTMLParagraphElement>();
 
-  function toggle(key: Exclude<CardKey, null>) {
-    setActive((prev) => (prev === key ? null : key));
-  }
-
   return (
     <SectionShell id="products" mood="paper" className="py-24 md:py-32">
-      <div className="max-w-[26ch] md:max-w-[32ch]">
-        <h2 ref={h2Ref} data-reveal className="h-xl text-ink">
+      <div className="flex flex-col items-center text-center">
+        <PillToggle value={pillar} onChange={setPillar} />
+        <h2 ref={h2Ref} data-reveal className="h-xl mt-6 text-ink">
           {products.headline.lead}
           <span className="text-accent">{products.headline.accent}</span>
         </h2>
-        <p ref={subRef} data-reveal style={{ "--reveal-delay": "0.1s" } as React.CSSProperties} className="lede mt-4">
+        <p
+          ref={subRef}
+          data-reveal
+          style={{ "--reveal-delay": "0.1s" } as React.CSSProperties}
+          className="lede mt-4 max-w-[52ch]"
+        >
           {products.sub}
         </p>
       </div>
 
       <div className="mt-12 grid gap-6 md:mt-16 md:grid-cols-2">
-        <ProductCard
-          id="live"
-          bubbleId="bub-live"
-          expanded={active === "live"}
-          onToggle={() => toggle("live")}
-          data={products.live}
-          mood="dark"
-          photoSrc="/images/live.jpg"
-          photoAlt="Four friends talking over drinks at a café table in the evening"
-        />
-        <ProductCard
-          id="spot"
-          bubbleId="bub-spot"
-          expanded={active === "spot"}
-          onToggle={() => toggle("spot")}
-          data={products.spot}
-          mood="warm"
-          photoSrc="/images/spot.jpg"
-          photoAlt="Two women in conversation at a bookshop café"
-        />
+        {/* Wink Live — always visible on md+, hidden on mobile unless
+            the toggle is on "live". */}
+        <div className={cn(pillar === "live" ? "block" : "hidden md:block")}>
+          <ProductCard variant="live" />
+        </div>
+        <div className={cn(pillar === "spot" ? "block" : "hidden md:block")}>
+          <ProductCard variant="spot" />
+        </div>
       </div>
 
-      <Bubble
-        id="bub-live"
-        open={active === "live"}
-        variant="live"
-        data={products.live}
-      />
-      <Bubble
-        id="bub-spot"
-        open={active === "spot"}
-        variant="spot"
-        data={products.spot}
-      />
+      <FooterReassurance />
     </SectionShell>
   );
 }
 
-type CardData = typeof products.live | typeof products.spot;
-
-function ProductCard({
-  id,
-  bubbleId,
-  expanded,
-  onToggle,
-  data,
-  mood,
-  photoSrc,
-  photoAlt,
+function PillToggle({
+  value,
+  onChange,
 }: {
-  id: string;
-  bubbleId: string;
-  expanded: boolean;
-  onToggle: () => void;
-  data: CardData;
-  mood: "warm" | "dark";
-  photoSrc: string;
-  photoAlt: string;
+  value: Pillar;
+  onChange: (v: Pillar) => void;
 }) {
-  return (
-    <button
-      type="button"
-      id={id}
-      aria-expanded={expanded}
-      aria-controls={bubbleId}
-      onClick={onToggle}
-      className={cn(
-        "group relative flex w-full flex-col overflow-hidden rounded-[28px] border p-6 text-left transition-all duration-500",
-        "hover:-translate-y-1 hover:border-accent",
-        mood === "dark"
-          ? "border-[color:var(--color-dark-line)] bg-[color:var(--color-dark-2)] text-snow"
-          : "border-[color:var(--color-paper-line)] bg-[#faf9f5] text-ink",
-      )}
-    >
-      <div className="flex items-start justify-between">
-        <img
-          src={mood === "dark" ? "/wink-mark-filled.png" : "/wink-mark-outline.png"}
-          alt=""
-          aria-hidden
-          className="h-11 w-11 rounded-2xl"
-        />
-        <span
-          className={cn(
-            "font-mono text-[10px] uppercase tracking-[0.24em]",
-            mood === "dark" ? "text-[color:var(--color-snow-mute)]" : "text-[color:var(--color-ink-mute)]",
-          )}
-        >
-          {expanded ? "Open" : "Tap to expand"}
-        </span>
-      </div>
-
-      <h3 className="h-md mt-6">
-        {data.name}
-        <br />
-        <small
-          className={cn(
-            "block text-[14px] font-normal leading-snug mt-1.5",
-            mood === "dark" ? "text-[color:var(--color-snow-dim)]" : "text-[color:var(--color-ink-dim)]",
-          )}
-        >
-          {data.tagline}
-        </small>
-      </h3>
-
-      <div className="mt-6 overflow-hidden rounded-2xl">
-        <img
-          src={photoSrc}
-          alt={photoAlt}
-          loading="lazy"
-          className="aspect-[16/10] w-full rounded-2xl object-cover"
-        />
-      </div>
-
-      <div className="mt-5 flex flex-wrap gap-2">
-        {data.tags.map((tag) => (
-          <span
-            key={tag}
-            className={cn(
-              "rounded-full border px-3 py-1 text-[11px] font-medium",
-              mood === "dark"
-                ? "border-white/15 text-snow"
-                : "border-[color:var(--color-paper-line)] text-ink",
-            )}
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-
-      <div
-        className={cn(
-          "mt-6 flex items-center justify-between border-t pt-5 text-[13px] font-semibold",
-          mood === "dark" ? "border-white/10 text-snow" : "border-[color:var(--color-paper-line)] text-ink",
-        )}
-      >
-        <span>{expanded ? data.lblClose : data.lblOpen}</span>
-        <span
-          aria-hidden
-          className={cn(
-            "grid h-8 w-8 place-items-center rounded-full transition-transform duration-300",
-            expanded ? "rotate-180" : "",
-            mood === "dark" ? "bg-white/10" : "bg-ink text-white",
-          )}
-        >
-          ↓
-        </span>
-      </div>
-    </button>
-  );
-}
-
-function Bubble({
-  id,
-  open,
-  variant,
-  data,
-}: {
-  id: string;
-  open: boolean;
-  variant: "live" | "spot";
-  data: CardData;
-}) {
-  const isSpot = variant === "spot";
   return (
     <div
-      id={id}
-      role="region"
-      className={cn(
-        "bubble-region mt-6",
-        // Make the region itself hidden from AT when collapsed
-      )}
-      data-open={open ? "true" : "false"}
-      aria-hidden={!open}
+      role="tablist"
+      className="inline-flex rounded-full border border-[color:var(--color-paper-line)] bg-white p-1 shadow-[0_1px_3px_rgba(20,18,15,0.06)]"
     >
-      <div>
-        <div
-          className={cn(
-            "mt-2 rounded-[28px] border p-6 md:p-10",
-            isSpot
-              ? "border-[color:var(--color-dark-line)] bg-[color:var(--color-dark-1)] text-snow"
-              : "border-[color:var(--color-paper-line)] bg-white text-ink",
-          )}
-        >
-          <div className="grid gap-10 md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] md:gap-12">
-            <div>
-              <span
-                className={cn(
-                  "font-mono text-[11px] uppercase tracking-[0.24em]",
-                  isSpot ? "text-[color:var(--color-snow-mute)]" : "text-[color:var(--color-ink-mute)]",
-                )}
-              >
-                {data.bubbleEyebrow}
+      {(["live", "spot"] as const).map((p) => {
+        const active = value === p;
+        return (
+          <button
+            key={p}
+            type="button"
+            role="tab"
+            aria-selected={active}
+            onClick={() => onChange(p)}
+            className={cn(
+              "inline-flex items-center gap-2 rounded-full px-5 py-2 text-[13px] font-medium transition-colors",
+              active
+                ? "bg-ink text-white"
+                : "text-[color:var(--color-ink-dim)] hover:text-ink",
+            )}
+          >
+            {p === "live" ? (
+              <span className="relative flex h-1.5 w-1.5">
+                <span
+                  className={cn(
+                    "absolute inset-0 rounded-full bg-accent",
+                    active ? "opacity-100" : "opacity-70",
+                  )}
+                />
               </span>
-              <h3 className="h-md mt-4">{data.bubbleHeadline}</h3>
-              <p
-                className={cn(
-                  "lede mt-4",
-                  isSpot && "text-[color:var(--color-snow-dim)]",
-                )}
-              >
-                {data.bubbleLede.map((chunk, i) =>
-                  typeof chunk === "string" ? (
-                    <span key={i}>{chunk}</span>
-                  ) : "b" in chunk ? (
-                    <b key={i}>{chunk.b}</b>
-                  ) : (
-                    <i key={i}>{chunk.i}</i>
-                  ),
-                )}
-              </p>
-
-              <ol className="mt-8 grid gap-5">
-                {data.steps.map((s) => (
-                  <li key={s.n} className="grid grid-cols-[36px_1fr] gap-4">
-                    <span
-                      aria-hidden
-                      className={cn(
-                        "grid h-9 w-9 place-items-center rounded-full font-mono text-[13px] font-semibold",
-                        isSpot ? "bg-white/8 text-accent" : "bg-ink text-white",
-                      )}
-                    >
-                      {s.n}
-                    </span>
-                    <div>
-                      <h4 className="text-[16px] font-semibold">{s.title}</h4>
-                      <p
-                        className={cn(
-                          "mt-1 text-[14px] leading-relaxed",
-                          isSpot
-                            ? "text-[color:var(--color-snow-dim)]"
-                            : "text-[color:var(--color-ink-dim)]",
-                        )}
-                      >
-                        {s.body}
-                      </p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </div>
-
-            <aside className="grid gap-4 self-start">
-              <BubblePanel
-                title={data.panelA.title}
-                caption={data.panelA.caption}
-                dark={isSpot}
-              >
-                {isSpot ? (
-                  <CategoryBars />
-                ) : (
-                  <ProximityRing />
-                )}
-              </BubblePanel>
-              <BubblePanel
-                title={data.panelB.title}
-                caption={data.panelB.caption}
-                dark={isSpot}
-              >
-                {isSpot ? <VennDiagram /> : <DayClock />}
-              </BubblePanel>
-              <div className="mt-2 flex items-center justify-between">
-                <a
-                  href={data.cta.href}
-                  className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
-                >
-                  {data.cta.label}
-                  <span aria-hidden>→</span>
-                </a>
-                {data.note ? (
-                  <span
-                    className={cn(
-                      "font-mono text-[10px] uppercase tracking-[0.24em]",
-                      isSpot ? "text-[color:var(--color-snow-mute)]" : "text-[color:var(--color-ink-mute)]",
-                    )}
-                  >
-                    {data.note}
-                  </span>
-                ) : null}
-              </div>
-            </aside>
-          </div>
-        </div>
-      </div>
+            ) : null}
+            {p === "live" ? "Wink Live" : "Wink Spot"}
+          </button>
+        );
+      })}
     </div>
   );
 }
 
-function BubblePanel({
+// Both cards share one component with a variant switch. Live uses the
+// dark palette + PhoneMock; Spot uses the paper palette + SpotMock.
+function ProductCard({ variant }: { variant: Pillar }) {
+  const isLive = variant === "live";
+  const data = isLive ? products.live : products.spot;
+  const cardRef = useReveal<HTMLDivElement>();
+  const bgSrc = isLive ? "/images/live.jpg" : "/images/spot.jpg";
+  const badgeLabel = isLive ? "LIVE" : "SPOT";
+
+  return (
+    <article
+      ref={cardRef}
+      data-reveal
+      style={{ "--reveal-delay": "0.15s" } as React.CSSProperties}
+      className={cn(
+        "flex h-full flex-col overflow-hidden rounded-[28px] border transition-colors",
+        isLive
+          ? "border-[color:var(--color-dark-line)] bg-[color:var(--color-dark-2)] text-snow"
+          : "border-[color:var(--color-paper-line)] bg-[#faf9f5] text-ink",
+      )}
+    >
+      <div className="flex flex-col gap-3 px-7 pb-6 pt-7 md:px-8 md:pt-8">
+        <span
+          className={cn(
+            "inline-flex w-fit items-center rounded-md px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.18em]",
+            isLive
+              ? "bg-accent text-white"
+              : "bg-accent/15 text-accent",
+          )}
+        >
+          {badgeLabel}
+        </span>
+        <h3 className="h-md">{data.cardHeadline}</h3>
+        <p
+          className={cn(
+            "max-w-[36ch] text-[15px] leading-relaxed",
+            isLive
+              ? "text-[color:var(--color-snow-dim)]"
+              : "text-[color:var(--color-ink-dim)]",
+          )}
+        >
+          {data.cardSub}
+        </p>
+      </div>
+
+      <div className="relative mx-4 mb-4 flex-1 overflow-hidden rounded-[22px] md:mx-6">
+        <img
+          src={bgSrc}
+          alt=""
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div
+          aria-hidden
+          className={cn(
+            "absolute inset-0",
+            isLive
+              ? "bg-gradient-to-b from-black/55 via-black/40 to-black/70"
+              : "bg-gradient-to-b from-white/20 via-white/10 to-white/30",
+          )}
+        />
+        <div className="relative grid min-h-[360px] place-items-center px-5 py-8 md:min-h-[420px]">
+          {isLive ? <PhoneMock /> : <SpotMock />}
+        </div>
+      </div>
+
+      <div
+        className={cn(
+          "flex items-stretch gap-2 rounded-b-[28px] px-4 py-5 md:px-6",
+          isLive ? "bg-[#0d0d10]" : "bg-white",
+        )}
+      >
+        {data.steps.map((s, i) => (
+          <Fragment key={s.n}>
+            <Step n={i + 1} title={s.title} body={s.body} dark={isLive} />
+            {i < data.steps.length - 1 ? <Arrow dark={isLive} /> : null}
+          </Fragment>
+        ))}
+      </div>
+    </article>
+  );
+}
+
+function Step({
+  n,
   title,
-  caption,
-  children,
+  body,
   dark,
 }: {
+  n: number;
   title: string;
-  caption: string;
-  children: React.ReactNode;
+  body: string;
   dark: boolean;
 }) {
   return (
-    <div
-      className={cn(
-        "rounded-2xl border p-5",
-        dark
-          ? "border-[color:var(--color-dark-line)] bg-white/[0.03]"
-          : "border-[color:var(--color-paper-line)] bg-[#faf9f5]",
-      )}
-    >
-      <h5
+    <div className="flex flex-1 flex-col items-start gap-1.5">
+      <span className="grid h-7 w-7 place-items-center rounded-full bg-accent text-[11px] font-semibold text-white">
+        {n}
+      </span>
+      <p
         className={cn(
-          "font-mono text-[11px] uppercase tracking-[0.24em]",
-          dark ? "text-[color:var(--color-snow-mute)]" : "text-[color:var(--color-ink-mute)]",
+          "text-[13px] font-semibold",
+          dark ? "text-white" : "text-ink",
         )}
       >
         {title}
-      </h5>
-      <div className="mt-4">{children}</div>
+      </p>
       <p
         className={cn(
-          "mt-3 text-[12px] leading-relaxed",
-          dark ? "text-[color:var(--color-snow-dim)]" : "text-[color:var(--color-ink-dim)]",
+          "text-[11px] leading-snug",
+          dark
+            ? "text-[color:var(--color-snow-mute)]"
+            : "text-[color:var(--color-ink-mute)]",
         )}
       >
-        {caption}
+        {body}
+      </p>
+    </div>
+  );
+}
+
+function Arrow({ dark }: { dark: boolean }) {
+  return (
+    <div
+      aria-hidden
+      className={cn(
+        "hidden shrink-0 self-start pt-2.5 font-mono text-[13px] md:block",
+        dark
+          ? "text-[color:var(--color-snow-mute)]"
+          : "text-[color:var(--color-ink-mute)]",
+      )}
+    >
+      →
+    </div>
+  );
+}
+
+function FooterReassurance() {
+  const ref = useReveal<HTMLDivElement>();
+  return (
+    <div
+      ref={ref}
+      data-reveal
+      style={{ "--reveal-delay": "0.2s" } as React.CSSProperties}
+      className="mx-auto mt-14 flex max-w-[46ch] flex-col items-center text-center md:mt-20"
+    >
+      <div className="inline-flex items-center gap-2 text-[15px] font-semibold text-ink">
+        <ShieldCheck className="h-4 w-4 text-[color:var(--color-ink-mute)]" />
+        {products.footer.title}
+      </div>
+      <p className="mt-2 text-[14px] text-[color:var(--color-ink-dim)]">
+        {products.footer.sub}
       </p>
     </div>
   );
