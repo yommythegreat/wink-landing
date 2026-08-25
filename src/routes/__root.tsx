@@ -78,8 +78,10 @@ export const Route = createRootRoute({
       { name: "twitter:card", content: "summary" },
     ],
     links: [
-      { rel: "icon", href: "/wink-mark-filled.png" },
-      { rel: "apple-touch-icon", href: "/wink-mark-filled.png" },
+      // ?v=2 forces browsers to refetch after we cropped out the
+      // white padding that came baked into wink-mark-filled.png.
+      { rel: "icon", type: "image/png", href: "/favicon.png?v=2" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png?v=2" },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
