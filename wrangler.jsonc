@@ -1,5 +1,11 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
+  // Top-level fields are shared defaults inherited by both envs.
+  // Environment-specific overrides live under `env.production` /
+  // `env.staging` below. Deploy with:
+  //   wrangler deploy --env production
+  //   wrangler deploy --env staging
+  // (see package.json scripts.)
   "name": "wink-landing",
   "compatibility_date": "2025-09-24",
   "compatibility_flags": ["nodejs_compat"],
@@ -7,22 +13,43 @@
   "vars": {
     "SENTRY_DSN": "",
     // Notion database that backs /blog. Public ID (safe to check in);
-    // the matching NOTION_TOKEN is stored as an encrypted worker
-    // secret (`wrangler secret put NOTION_TOKEN`).
+    // the matching NOTION_TOKEN is stored per-env as an encrypted
+    // worker secret (wrangler secret put NOTION_TOKEN --env <name>).
     "NOTION_DATABASE_ID": "39ef4257db9280b0a6fecba27e3f3f34"
   },
-  // Caches Notion API responses for /blog so repeat page loads don't
-  // hit Notion on every request. Same namespace id as wink-waitlist
-  // so both sites share one warm cache during cutover — safe because
-  // both read the same Notion DB. See src/lib/blog-cache.ts.
   "kv_namespaces": [
+    // Same namespace across both envs — the Notion read cache is
+    // content-addressable and read-only from the site's side, so
+    // sharing warms both environments without cross-env risk.
     { "binding": "BLOG_CACHE", "id": "07b1ad533d9f45df8bb07077f6b22339" }
   ],
-  // Primary public URL for the marketing site. www is also attached
-  // so it gets DNS + SSL; the zone-level Cloudflare Redirect Rule
-  // 301s www.usewink.app -> usewink.app.
-  "routes": [
-    { "pattern": "usewink.app", "custom_domain": true },
-    { "pattern": "www.usewink.app", "custom_domain": true }
-  ]
+  "env": {
+    "production": {
+      "name": "wink-landing",
+      "vars": {
+        "SENTRY_DSN": "",
+        "NOTION_DATABASE_ID": "39ef4257db9280b0a6fecba27e3f3f34"
+      },
+      "kv_namespaces": [
+        { "binding": "BLOG_CACHE", "id": "07b1ad533d9f45df8bb07077f6b22339" }
+      ],
+      "routes": [
+        { "pattern": "usewink.app", "custom_domain": true },
+        { "pattern": "www.usewink.app", "custom_domain": true }
+      ]
+    },
+    "staging": {
+      "name": "wink-landing-staging",
+      "vars": {
+        "SENTRY_DSN": "",
+        "NOTION_DATABASE_ID": "39ef4257db9280b0a6fecba27e3f3f34"
+      },
+      "kv_namespaces": [
+        { "binding": "BLOG_CACHE", "id": "07b1ad533d9f45df8bb07077f6b22339" }
+      ],
+      "routes": [
+        { "pattern": "staging.usewink.app", "custom_domain": true }
+      ]
+    }
+  }
 }
