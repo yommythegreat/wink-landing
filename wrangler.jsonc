@@ -1,11 +1,10 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  // Top-level fields are shared defaults inherited by both envs.
-  // Environment-specific overrides live under `env.production` /
-  // `env.staging` below. Deploy with:
-  //   wrangler deploy --env production
-  //   wrangler deploy --env staging
-  // (see package.json scripts.)
+  // This is the PRODUCTION config, checked in.
+  // wrangler.staging.jsonc holds the staging equivalent.
+  // deploy:staging temporarily swaps them; wrangler.jsonc is
+  // gitignored during that swap via a scripts/deploy-env.sh trap so
+  // an interrupted deploy leaves prod intact. See package.json.
   "name": "wink-landing",
   "compatibility_date": "2025-09-24",
   "compatibility_flags": ["nodejs_compat"],
@@ -13,43 +12,15 @@
   "vars": {
     "SENTRY_DSN": "",
     // Notion database that backs /blog. Public ID (safe to check in);
-    // the matching NOTION_TOKEN is stored per-env as an encrypted
-    // worker secret (wrangler secret put NOTION_TOKEN --env <name>).
+    // the matching NOTION_TOKEN is stored as an encrypted worker
+    // secret (`wrangler secret put NOTION_TOKEN`).
     "NOTION_DATABASE_ID": "39ef4257db9280b0a6fecba27e3f3f34"
   },
   "kv_namespaces": [
-    // Same namespace across both envs — the Notion read cache is
-    // content-addressable and read-only from the site's side, so
-    // sharing warms both environments without cross-env risk.
     { "binding": "BLOG_CACHE", "id": "07b1ad533d9f45df8bb07077f6b22339" }
   ],
-  "env": {
-    "production": {
-      "name": "wink-landing",
-      "vars": {
-        "SENTRY_DSN": "",
-        "NOTION_DATABASE_ID": "39ef4257db9280b0a6fecba27e3f3f34"
-      },
-      "kv_namespaces": [
-        { "binding": "BLOG_CACHE", "id": "07b1ad533d9f45df8bb07077f6b22339" }
-      ],
-      "routes": [
-        { "pattern": "usewink.app", "custom_domain": true },
-        { "pattern": "www.usewink.app", "custom_domain": true }
-      ]
-    },
-    "staging": {
-      "name": "wink-landing-staging",
-      "vars": {
-        "SENTRY_DSN": "",
-        "NOTION_DATABASE_ID": "39ef4257db9280b0a6fecba27e3f3f34"
-      },
-      "kv_namespaces": [
-        { "binding": "BLOG_CACHE", "id": "07b1ad533d9f45df8bb07077f6b22339" }
-      ],
-      "routes": [
-        { "pattern": "staging.usewink.app", "custom_domain": true }
-      ]
-    }
-  }
+  "routes": [
+    { "pattern": "usewink.app", "custom_domain": true },
+    { "pattern": "www.usewink.app", "custom_domain": true }
+  ]
 }

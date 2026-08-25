@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // STAGING config for wink-landing. Deploy with `npm run deploy:staging`,
+  // which swaps this file into place as wrangler.jsonc for the build.
+  "name": "wink-landing-staging",
+  "compatibility_date": "2025-09-24",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "src/server.ts",
+  "vars": {
+    "SENTRY_DSN": "",
+    "NOTION_DATABASE_ID": "39ef4257db9280b0a6fecba27e3f3f34"
+  },
+  "kv_namespaces": [
+    { "binding": "BLOG_CACHE", "id": "07b1ad533d9f45df8bb07077f6b22339" }
+  ],
+  "routes": [
+    { "pattern": "staging.usewink.app", "custom_domain": true }
+  ]
+}
