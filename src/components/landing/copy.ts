@@ -39,7 +39,8 @@ export const hero = {
   // bold spans ({ b: "…" }). Renderer walks paragraphs → chunks.
   lede: [
     [
-      "Wink helps you connect with people you might otherwise never meet whether they're right there with you or connected through a place you love.",
+      { b: "Wink" },
+      " helps you connect with people you might otherwise never meet whether they're right there with you or connected through a place you love.",
     ],
     [
       { b: "Wink Live" },

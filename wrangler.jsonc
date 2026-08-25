@@ -17,5 +17,12 @@
   // both read the same Notion DB. See src/lib/blog-cache.ts.
   "kv_namespaces": [
     { "binding": "BLOG_CACHE", "id": "07b1ad533d9f45df8bb07077f6b22339" }
+  ],
+  // Primary public URL for the marketing site. www is also attached
+  // so it gets DNS + SSL; the zone-level Cloudflare Redirect Rule
+  // 301s www.usewink.app -> usewink.app.
+  "routes": [
+    { "pattern": "usewink.app", "custom_domain": true },
+    { "pattern": "www.usewink.app", "custom_domain": true }
   ]
 }
