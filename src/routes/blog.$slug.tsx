@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { NotionRenderer } from "@/components/blog/NotionRenderer";
+import { PreferredSourceBadge } from "@/components/blog/PreferredSourceBadge";
 import { getBlogPost } from "@/server-fns/blog";
 
 export const Route = createFileRoute("/blog/$slug")({
@@ -66,6 +67,7 @@ function BlogPostPage() {
             ))}
           </div>
         ) : null}
+        <PreferredSourceBadge />
       </header>
 
       {post.coverUrl ? (

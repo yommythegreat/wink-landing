@@ -93,6 +93,14 @@ export const Route = createRootRoute({
         href: "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap",
       },
     ],
+    scripts: [
+      // Google Search "Preferred Sources" loader. Scans the DOM for
+      // <div google-add-preferred-source-btn> and renders the button
+      // in place. Blog-only usage, but loading site-wide is fine —
+      // the script is a no-op on pages without a marker div.
+      // See: PreferredSourceBadge.tsx
+      { src: "https://news.google.com/swg/js/v1/publisher.js", async: true },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,

@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Eyebrow } from "@/components/landing/Eyebrow";
+import { PreferredSourceBadge } from "@/components/blog/PreferredSourceBadge";
 import { getBlogPosts } from "@/server-fns/blog";
 
 export const Route = createFileRoute("/blog/")({
@@ -32,6 +33,7 @@ function BlogIndexPage() {
           Product notes, stories from early users, and behind-the-scenes updates
           from the Wink team.
         </p>
+        <PreferredSourceBadge />
       </header>
 
       {posts.length === 0 ? (
