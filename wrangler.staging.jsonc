@@ -6,6 +6,7 @@
   "compatibility_date": "2025-09-24",
   "compatibility_flags": ["nodejs_compat"],
   "main": "src/server.ts",
+  "workers_dev": true,
   "vars": {
     "SENTRY_DSN": "",
     "NOTION_DATABASE_ID": "39ef4257db9280b0a6fecba27e3f3f34"
