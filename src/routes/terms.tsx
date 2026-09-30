@@ -31,7 +31,7 @@ function TermsPage() {
             Terms & Conditions
           </h1>
           <p className="mt-3 text-sm text-muted-foreground">
-            Last updated: June 2, 2026
+            Last updated: September 30, 2026
           </p>
         </header>
 
@@ -123,8 +123,8 @@ function TermsPage() {
 
           <Section title="6. Premium subscriptions">
             <p>
-              Wink offers a Premium subscription with billing handled by Stripe.
-              By subscribing you authorize Wink (via Stripe) to charge the
+              Wink offers a Premium subscription with billing handled by Paystack.
+              By subscribing you authorize Wink (via Paystack) to charge the
               payment method on file for each renewal period until you cancel.
             </p>
             <p>
