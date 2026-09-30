@@ -31,7 +31,7 @@ function PrivacyPage() {
             Privacy Policy
           </h1>
           <p className="mt-3 text-sm text-muted-foreground">
-            Last updated: June 2, 2026
+            Last updated: September 30, 2026
           </p>
         </header>
 
@@ -87,7 +87,7 @@ function PrivacyPage() {
             </p>
             <p>
               <strong className="text-foreground">Payments.</strong> If you
-              subscribe to Premium, payment is processed by Stripe. We don't
+              subscribe to Premium, payment is processed by Paystack. We don't
               receive or store your card details; we only receive a subscription
               status and a reference identifier.
             </p>
@@ -121,7 +121,7 @@ function PrivacyPage() {
               <strong className="text-foreground">With our service providers.</strong>{" "}
               We rely on a small set of providers to run the service, including
               Supabase (database and authentication), Cloudflare Workers
-              (hosting), and Stripe (payments). These providers process your data
+              (hosting), and Paystack (payments). These providers process your data
               only on our instructions and are bound by their own privacy
               commitments.
             </p>
