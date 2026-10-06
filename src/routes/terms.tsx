@@ -105,7 +105,7 @@ function TermsPage() {
             </p>
           </Section>
 
-          <Section title="5. Matching, chats, and contact sharing">
+          <Section title="5. Matching and chats">
             <p>
               Wink does not guarantee that you will match with anyone, meet
               anyone, or form any relationship. This applies equally whether a
@@ -116,10 +116,9 @@ function TermsPage() {
               blocks the other, or deletes their account.
             </p>
             <p>
-              When you tap Share Contact, your saved phone number and social
-              links are sent to the other user in that chat. Once shared, that
-              user can save or forward your contact info; we cannot retract it.
-              Only share information you are comfortable releasing.
+              Anything you send in a chat can be saved or forwarded by the other
+              person; we cannot retract it. Only share what you are comfortable
+              releasing.
             </p>
           </Section>
 

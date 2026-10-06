@@ -75,12 +75,6 @@ function PrivacyPage() {
               case.
             </p>
             <p>
-              <strong className="text-foreground">Contact info.</strong> Optional
-              phone number and links to your Instagram, X, and TikTok profiles.
-              This is only ever shared with another user when you tap Share
-              Contact inside an active chat.
-            </p>
-            <p>
               <strong className="text-foreground">Usage data.</strong> Winks
               sent, matches, messages, blocks, reports, and Wink credit
               transfers are stored to operate the service.
@@ -121,8 +115,9 @@ function PrivacyPage() {
               gender, and approximate distance are shown to other users while you
               are live in Discover. Inside a Wink Spot, your display name, bio,
               and avatar are shown to other members of that same Spot, never to
-              anyone outside it. Your contact info is only shared inside a chat
-              when you tap Share Contact.
+              anyone outside it. Inside a chat, the other person sees when
+              your messages were delivered and, if you both have read receipts
+              on, when you read theirs.
             </p>
             <p>
               <strong className="text-foreground">With our service providers.</strong>{" "}
