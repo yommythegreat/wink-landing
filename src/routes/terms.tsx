@@ -31,7 +31,7 @@ function TermsPage() {
             Terms & Conditions
           </h1>
           <p className="mt-3 text-sm text-muted-foreground">
-            Last updated: September 30, 2026
+            Last updated: October 6, 2026
           </p>
         </header>
 
@@ -109,9 +109,11 @@ function TermsPage() {
             <p>
               Wink does not guarantee that you will match with anyone, meet
               anyone, or form any relationship. This applies equally whether a
-              wink is sent through Discover or from inside a Wink Spot. Mutual
-              matches unlock a 24-hour chat window. After 24 hours the chat is
-              permanently deleted.
+              wink is sent through Discover or from inside a Wink Spot. A mutual
+              match opens a chat, where you can send messages, photos, videos
+              and voice notes. A chat stays open until either of you unmatches
+              (which deletes it, with its messages and media, for both of you),
+              blocks the other, or deletes their account.
             </p>
             <p>
               When you tap Share Contact, your saved phone number and social
@@ -141,8 +143,12 @@ function TermsPage() {
           <Section title="7. Blocks and reports">
             <p>
               You can block any user from inside a chat. Blocking immediately
-              ends that conversation and prevents either party from appearing in
-              the other's discovery feed.
+              stops messages in both directions and stops either of you from
+              appearing to the other in Live or in Spots. Both of you see a note
+              in the chat saying a block happened; the chat stays visible,
+              read-only, for 24 hours and then closes. You can unblock from
+              Settings. You can also report a single message, photo, video or
+              voice note.
             </p>
             <p>
               When blocking, you may optionally submit a report. Reports are

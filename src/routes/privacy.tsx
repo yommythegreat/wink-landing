@@ -31,7 +31,7 @@ function PrivacyPage() {
             Privacy Policy
           </h1>
           <p className="mt-3 text-sm text-muted-foreground">
-            Last updated: September 30, 2026
+            Last updated: October 6, 2026
           </p>
         </header>
 
@@ -57,9 +57,9 @@ function PrivacyPage() {
             </p>
             <p>
               <strong className="text-foreground">Profile information.</strong>{" "}
-              Display name, date of birth, gender, bio, avatar photo, and
-              interests, all of which you choose to provide during onboarding or
-              from Profile › Edit.
+              Display name, username, date of birth, gender, bio, avatar photo,
+              and interests, all of which you choose to provide when you sign
+              up, during onboarding or from Profile › Edit.
             </p>
             <p>
               <strong className="text-foreground">Location.</strong> Wink uses
@@ -70,8 +70,8 @@ function PrivacyPage() {
               nearest city we've launched in (not a live radius) so we can show
               you Spots near you; this check happens when you open the Spots tab,
               not continuously. If you're outside every launched city, we store
-              your approximate coordinates so we can notify you when Wink
-              launches nearby. We do not track you in the background in either
+              your approximate coordinates so we can tell you, by email and
+              notification, when Wink launches nearby. We do not track you in the background in either
               case.
             </p>
             <p>
@@ -82,8 +82,15 @@ function PrivacyPage() {
             </p>
             <p>
               <strong className="text-foreground">Usage data.</strong> Winks
-              sent, matches, messages, blocks, and reports are stored to operate
-              the service.
+              sent, matches, messages, blocks, reports, and Wink credit
+              transfers are stored to operate the service.
+            </p>
+            <p>
+              <strong className="text-foreground">Chat media.</strong> Photos,
+              videos and voice notes you send in a chat, and emoji reactions.
+              Media is stored privately: only you and the other person in that
+              chat can open it. We use your camera and microphone only when you
+              choose to take a photo, record a video or record a voice note.
             </p>
             <p>
               <strong className="text-foreground">Payments.</strong> If you
@@ -134,8 +141,11 @@ function PrivacyPage() {
 
           <Section title="4. Retention">
             <p>
-              Chats automatically expire 24 hours after a match. Messages,
-              winks, and matches are deleted with their parent chat.
+              Chats don't expire on a timer. A chat, its messages, reactions,
+              photos, videos and voice notes are deleted when either person
+              unmatches or deletes their account (media files within about an
+              hour). After a block, the chat is hidden from both people 24 hours
+              later and deleted if the block is lifted.
             </p>
             <p>
               Your profile and account data are retained while your account is

@@ -68,7 +68,7 @@ export const products = {
     cardHeadline: "See someone?",
     cardSub:
       "Connect with people nearby who are open to meeting right now.",
-    tags: ["Nearby", "Live session", "Wink In", "24-hour chat"],
+    tags: ["Nearby", "Live session", "Wink In", "Private chat"],
     lblOpen: "Everything about Wink Live",
     lblClose: "Close",
     bubbleEyebrow: "Wink Live · everything you need to know",
@@ -101,7 +101,7 @@ export const products = {
       caption: `Six other live users nearby right now. Outside the ring, nobody sees you at all.`,
     },
     panelB: {
-      title: "Chat window · 24 hours",
+      title: "Private by default",
       caption: "A wink stays private between you and the recipient.",
     },
     cta: { label: "Get Wink Live", href: "#join" },
@@ -212,7 +212,7 @@ export const howItWorks = {
       iconTone: "purple",
       mockKind: "phone-match",
       pillIcon: "clock",
-      pillText: "You get 24 hours to start the conversation.",
+      pillText: "A private chat opens for the two of you.",
       pillTone: "purple",
     },
     {
@@ -286,7 +286,7 @@ export const faq = {
       a: [
         "Wink Live is about the moment. See someone you'd like to connect with? Go Live and discover people who are nearby and open to connecting right then.",
         "Wink Spot is about the places you love. Join a spot you enjoy, discover people who share that interest, and wink at someone even when you're not there at the same time.",
-        "Both work the same way once you connect: mutual wink → match → 24-hour chat.",
+        "Both work the same way once you connect: mutual wink → match → private chat.",
       ],
     },
     {
@@ -298,8 +298,8 @@ export const faq = {
       a: "No. Wink only allows messaging after a mutual match. There are no unsolicited DMs, ever.",
     },
     {
-      q: "Why does the chat only last 24 hours?",
-      a: "Because the goal is meeting, not messaging. A day is enough to agree on a coffee. If you swap contacts, the conversation continues where you actually want it.",
+      q: "Do chats expire?",
+      a: "No. Your chat stays open, so take your time: send messages, photos, videos and voice notes, and make a plan to meet. Wink is still built for meeting, not endless messaging.",
     },
     {
       q: "Where can I use Wink?",
