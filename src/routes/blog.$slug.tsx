@@ -16,7 +16,7 @@ export const Route = createFileRoute("/blog/$slug")({
     return {
       meta: [
         { title: `${post.title} | Wink` },
-        { name: "description", content: post.excerpt || `${post.title} — Wink blog` },
+        { name: "description", content: post.excerpt || `${post.title} | Wink blog` },
         { property: "og:title", content: post.title },
         { property: "og:description", content: post.excerpt || "" },
         ...(post.coverUrl ? [{ property: "og:image", content: post.coverUrl }] : []),
@@ -35,7 +35,7 @@ function BlogPostPage() {
     <article className="relative z-[2] mx-auto max-w-[720px] px-6 pb-24 pt-16 md:px-10 md:pb-32 md:pt-20">
       <Link
         to="/blog"
-        className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.24em] text-[color:var(--color-ink-mute)] transition-colors hover:text-ink"
+        className="inline-flex items-center gap-1.5 text-[15px] font-medium text-[color:var(--color-ink-dim)] transition-colors hover:text-ink"
       >
         <ArrowLeft className="h-3.5 w-3.5" />
         Back to blog
@@ -43,7 +43,7 @@ function BlogPostPage() {
 
       <header className="mt-10">
         {post.publishDate ? (
-          <time className="font-mono text-[11px] uppercase tracking-[0.24em] text-[color:var(--color-ink-mute)]">
+          <time className="text-[14px] text-[color:var(--color-ink-mute)]">
             {new Date(post.publishDate).toLocaleDateString(undefined, {
               year: "numeric",
               month: "long",
@@ -60,7 +60,7 @@ function BlogPostPage() {
             {post.tags.map((t) => (
               <span
                 key={t}
-                className="rounded-full border border-[color:var(--color-paper-line)] px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-[color:var(--color-ink-mute)]"
+                className="rounded-full border border-[color:var(--color-paper-line)] px-2.5 py-0.5 text-[13px] font-medium text-[color:var(--color-ink-mute)]"
               >
                 {t}
               </span>
@@ -101,7 +101,7 @@ function NotFoundPage() {
       <div className="mt-8">
         <Link
           to="/blog"
-          className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
+          className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-[15px] font-semibold text-accent-foreground transition-colors hover:bg-accent-hover"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to blog

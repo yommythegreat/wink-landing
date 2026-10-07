@@ -72,7 +72,7 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
-      { name: "theme-color", content: "#f0eee9" },
+      { name: "theme-color", content: "#f6f4f5" },
       { name: "author", content: "Wink" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -85,12 +85,11 @@ export const Route = createRootRoute({
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      // JetBrains Mono for editorial eyebrows/labels. Body/headings
-      // use SF Pro (system stack) — Apple ships it on macOS/iOS, and
-      // the fallback (system-ui) keeps type consistent on other OSes.
+      // Bricolage Grotesque for headings (--font-display). Body text
+      // stays on the system sans stack for readability.
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&display=swap",
       },
     ],
     scripts: [

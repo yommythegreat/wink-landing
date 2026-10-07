@@ -56,7 +56,6 @@ export const hero = {
 };
 
 export const products = {
-  eyebrowLead: "Pick your Wink",
   headline: {
     lead: "One wink. ",
     accent: "Two ways to use it.",
@@ -66,14 +65,12 @@ export const products = {
     name: "Wink Live",
     tagline: "Who is around you right now, in a short live session.",
     cardHeadline: "See someone?",
-    cardSub:
-      "Connect with people nearby who are open to meeting right now.",
+    cardSub: "Connect with people nearby who are open to meeting right now.",
     tags: ["Nearby", "Live session", "Wink In", "24-hour chat"],
     lblOpen: "Everything about Wink Live",
     lblClose: "Close",
     bubbleEyebrow: "Wink Live · everything you need to know",
-    bubbleHeadline:
-      "The people around you now, not a catalogue of strangers.",
+    bubbleHeadline: "The people around you now, not a catalogue of strangers.",
     bubbleLede: [
       "Tap ",
       { b: "Go Live" },
@@ -111,8 +108,7 @@ export const products = {
     name: "Wink Spot",
     tagline: "Join the places you already love. Meet the regulars.",
     cardHeadline: "Love the same places?",
-    cardSub:
-      "Find people through places and interests you already go to.",
+    cardSub: "Find people through places and interests you already go to.",
     tags: [
       "Several categories",
       "Join to opt in",
@@ -151,7 +147,8 @@ export const products = {
     },
     panelB: {
       title: "Mutual Spots",
-      caption: "Profiles lead with the Spots you both joined. Spot winks never expire.",
+      caption:
+        "Profiles lead with the Spots you both joined. Spot winks never expire.",
       legend: [
         { label: "Your Spots", value: "6" },
         { label: "Theirs", value: "9" },
@@ -162,18 +159,17 @@ export const products = {
     note: "Missing a place? Suggest it",
   },
   footer: {
-    title: "Same profile. Same wink. Same experience.",
+    title: "One profile for both.",
     sub: "Whether you go Live or join a Spot, you connect the same way.",
   },
 };
 
 export const howItWorks = {
-  eyebrow: "How it works",
   headline: {
     lead: "One wink can start ",
     accent: "something real.",
   },
-  sub: "Simple moves. Mutual interest. Real conversations.",
+  sub: "Nobody can message you unless you both winked. Every match gets 24 hours to make a plan.",
   steps: [
     {
       title: "You notice",
@@ -222,7 +218,7 @@ export const howItWorks = {
       iconTone: "pink",
       mockKind: "photo-meet",
       pillIcon: "users",
-      pillText: "That's the point. Real connections. Real life.",
+      pillText: "Meeting up is the whole point.",
       pillTone: "pink",
     },
   ] as const,
@@ -242,7 +238,6 @@ export const quote = {
 };
 
 export const trust = {
-  eyebrow: "Safety & intent",
   headline: {
     lead: "A connection app that ",
     accent: "wants you offline.",
@@ -277,7 +272,7 @@ export const trust = {
 };
 
 export const faq = {
-  eyebrow: "FAQ",
+  headline: "What people ask before they join",
   // Each answer is one paragraph (string) or several paragraphs
   // (string[]). Renderer maps each to a <p>.
   items: [
@@ -303,18 +298,16 @@ export const faq = {
     },
     {
       q: "Where can I use Wink?",
-      a: "Anywhere people gather. Concerts, festivals, conferences, university campuses, and everyday moments work with Wink Live. Cafés, lounges, and other regular spots you go to can be joined directly as a Wink Spot.",
+      a: "Anywhere people gather. University campuses, concerts, festivals, conferences, and everyday moments work with Wink Live. Cafés, lounges, and other regular spots you go to can be joined directly as a Wink Spot.",
     },
   ] as { q: string; a: string | readonly string[] }[],
 };
 
 export const finalCta = {
-  eyebrow: "One list, both sides",
   headline: {
     lead: "Stop swiping.",
     accent: "Start winking.",
   },
-  note: "Wink Live · Wink Spot",
 };
 
 export const footer = {
@@ -333,9 +326,17 @@ export const footer = {
     { label: "Terms", href: "/terms" },
   ],
   socials: [
-    { label: "Instagram", href: "https://www.instagram.com/usewinkapp", icon: "instagram" as const },
+    {
+      label: "Instagram",
+      href: "https://www.instagram.com/usewinkapp",
+      icon: "instagram" as const,
+    },
     { label: "X", href: "https://x.com/usewinkapp", icon: "x" as const },
-    { label: "TikTok", href: "https://www.tiktok.com/@usewinkapp", icon: "tiktok" as const },
+    {
+      label: "TikTok",
+      href: "https://www.tiktok.com/@usewinkapp",
+      icon: "tiktok" as const,
+    },
   ],
 };
 

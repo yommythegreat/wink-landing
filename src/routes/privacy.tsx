@@ -24,18 +24,15 @@ function PrivacyPage() {
 
       <main className="mx-auto max-w-3xl px-5 py-16 md:py-24">
         <header className="mb-10">
-          <p className="text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground">
-            Legal
-          </p>
-          <h1 className="mt-3 font-display text-4xl leading-tight md:text-5xl">
+          <h1 className="font-display text-4xl leading-tight md:text-5xl">
             Privacy Policy
           </h1>
-          <p className="mt-3 text-sm text-muted-foreground">
+          <p className="mt-3 text-[15px] text-muted-foreground">
             Last updated: September 30, 2026
           </p>
         </header>
 
-        <div className="space-y-10 text-base leading-relaxed text-muted-foreground">
+        <div className="max-w-[62ch] space-y-10 text-base leading-relaxed text-muted-foreground">
           <section className="space-y-3">
             <p className="text-foreground">
               Wink (we, us, our) takes your privacy seriously. This policy explains

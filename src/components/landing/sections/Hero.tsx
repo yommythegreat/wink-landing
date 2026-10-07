@@ -1,4 +1,3 @@
-import { useReveal } from "@/lib/useReveal";
 import { hero } from "../copy";
 
 // Hero: a full-bleed photograph occupies the right two-thirds of the
@@ -9,15 +8,8 @@ import { hero } from "../copy";
 //
 // Mobile stacks: text on paper, then the full-width photo below.
 export function Hero() {
-  const h1Ref = useReveal<HTMLHeadingElement>();
-  const ledeRef = useReveal<HTMLDivElement>();
-  const ctaRef = useReveal<HTMLDivElement>();
-
   return (
-    <section
-      id="hero"
-      className="section-paper relative z-[2] overflow-hidden"
-    >
+    <section id="hero" className="section-paper relative z-[2] overflow-hidden">
       {/* Desktop-only backdrop: the photo spans the whole section
           (full-bleed) and a horizontal paper-to-transparent gradient
           fades its left edge into the reading column. object-position
@@ -36,7 +28,7 @@ export function Hero() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to right, var(--color-paper) 0%, rgba(240,238,233,0.92) 22%, rgba(240,238,233,0.55) 38%, transparent 58%)",
+              "linear-gradient(to right, var(--color-paper) 0%, color-mix(in srgb, var(--color-paper) 92%, transparent) 22%, color-mix(in srgb, var(--color-paper) 55%, transparent) 38%, transparent 58%)",
           }}
         />
       </div>
@@ -44,25 +36,15 @@ export function Hero() {
       {/* Text column, editorial container. */}
       <div className="relative mx-auto grid max-w-[1440px] gap-10 px-6 md:min-h-[640px] md:grid-cols-2 md:px-10">
         <div className="flex flex-col justify-center pt-16 pb-10 md:pt-24 md:pb-24">
-          <h1
-            ref={h1Ref}
-            data-reveal
-            style={{ "--reveal-delay": "0.06s" } as React.CSSProperties}
-            className="display text-ink"
-          >
+          <h1 className="display text-ink">
             {hero.headline.lead}
             <br />
             {hero.headline.tail}
             <span className="text-accent">{hero.headline.accent}</span>
           </h1>
-          <div
-            ref={ledeRef}
-            data-reveal
-            style={{ "--reveal-delay": "0.14s" } as React.CSSProperties}
-            className="mt-6 space-y-4"
-          >
+          <div className="mt-6 space-y-4">
             {hero.lede.map((para, i) => (
-              <p key={i} className="lede">
+              <p key={i} className="lede md:max-w-[36ch]">
                 {para.map((chunk, j) =>
                   typeof chunk === "string" ? (
                     <span key={j}>{chunk}</span>
@@ -73,22 +55,17 @@ export function Hero() {
               </p>
             ))}
           </div>
-          <div
-            ref={ctaRef}
-            data-reveal
-            style={{ "--reveal-delay": "0.22s" } as React.CSSProperties}
-            className="mt-8 flex flex-row flex-nowrap items-center gap-2.5 sm:gap-3"
-          >
+          <div className="mt-8 flex flex-row flex-nowrap items-center gap-2.5 sm:gap-3">
             <a
               href={hero.primaryCta.href}
-              className="inline-flex flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-accent px-4 py-3 text-[14px] font-semibold text-white transition-transform hover:-translate-y-0.5 sm:flex-none sm:px-6 sm:py-3.5 sm:text-base"
+              className="inline-flex flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-accent px-4 py-3 text-[15px] font-semibold text-accent-foreground transition-colors hover:bg-accent-hover sm:flex-none sm:px-6 sm:py-3.5 sm:text-base"
             >
               {hero.primaryCta.label}
               <span aria-hidden>→</span>
             </a>
             <a
               href={hero.secondaryCta.href}
-              className="inline-flex flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-[color:var(--color-paper-line)] bg-white/60 px-4 py-3 text-[14px] font-semibold text-ink transition-colors hover:border-ink sm:flex-none sm:px-6 sm:py-3.5 sm:text-base"
+              className="inline-flex flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-[color:var(--color-paper-line)] bg-white px-4 py-3 text-[15px] font-semibold text-ink transition-colors hover:border-ink sm:flex-none sm:px-6 sm:py-3.5 sm:text-base"
             >
               {hero.secondaryCta.label}
             </a>

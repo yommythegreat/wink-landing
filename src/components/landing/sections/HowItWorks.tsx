@@ -1,13 +1,11 @@
-import { Eye, Send, Heart, ArrowRight } from "lucide-react";
+import { Send, Heart, ArrowRight } from "lucide-react";
 import { SectionShell } from "../SectionShell";
-import { useReveal } from "@/lib/useReveal";
 import { howItWorks } from "../copy";
 
 // Five-step "Wink → Match → Meet" journey.
 //
 // Layout on desktop: centered header, then a 5-column grid where every
-// column shares the same vertical rhythm — icon, single-line title,
-// two-line body, then a portrait-aspect mock at a fixed width. Arrows
+// column shares the same vertical rhythm: title, body, then a portrait-aspect mock at a fixed width. Arrows
 // sit in the gaps between mocks, absolutely positioned so column widths
 // stay equal.
 //
@@ -15,27 +13,14 @@ import { howItWorks } from "../copy";
 // max width so photos and phone frames read as one visual set. Photo
 // backgrounds are the same assets already loaded by TwoProducts.
 export function HowItWorks() {
-  const h2Ref = useReveal<HTMLHeadingElement>();
-  const subRef = useReveal<HTMLParagraphElement>();
-
   return (
     <SectionShell mood="paper-2" className="py-24 md:py-32">
       <div className="mx-auto flex max-w-[56ch] flex-col items-center text-center">
-        <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">
-          {howItWorks.eyebrow}
-        </span>
-        <h2 ref={h2Ref} data-reveal className="h-lg mt-4 text-ink">
+        <h2 className="h-lg text-ink">
           {howItWorks.headline.lead}
           <span className="text-accent">{howItWorks.headline.accent}</span>
         </h2>
-        <p
-          ref={subRef}
-          data-reveal
-          style={{ "--reveal-delay": "0.08s" } as React.CSSProperties}
-          className="lede mt-4"
-        >
-          {howItWorks.sub}
-        </p>
+        <p className="lede mt-4">{howItWorks.sub}</p>
       </div>
 
       <div className="mt-14 grid gap-y-10 sm:grid-cols-2 md:mt-16 md:grid-cols-5 md:gap-x-6 lg:gap-x-8">
@@ -65,21 +50,14 @@ function StepColumn({
   index: number;
   isLast: boolean;
 }) {
-  const ref = useReveal<HTMLDivElement>();
   return (
-    <div
-      ref={ref}
-      data-reveal
-      style={{ "--reveal-delay": `${0.08 + index * 0.06}s` } as React.CSSProperties}
-      className="flex flex-col items-center text-center"
-    >
-      <StepIcon name={step.iconName} />
+    <div className="flex flex-col items-center text-center">
       {/* Fixed-height title + body ensures every column aligns its
           mock at the same y-offset regardless of copy length. */}
-      <h3 className="mt-4 flex min-h-[3rem] items-start text-[15px] font-semibold leading-tight text-ink">
+      <h3 className="flex min-h-[3rem] items-start text-[18px] font-semibold leading-tight text-ink md:min-h-[3.25rem]">
         {index + 1}. {step.title}
       </h3>
-      <p className="mt-1 flex min-h-[3.75rem] max-w-[26ch] items-start text-[13px] leading-relaxed text-[color:var(--color-ink-dim)]">
+      <p className="mt-1 flex max-w-[26ch] items-start text-[16px] leading-relaxed text-[color:var(--color-ink-dim)] md:min-h-[6.5rem]">
         {step.body}
       </p>
       <div className="relative mt-5 w-full max-w-[280px] md:max-w-[220px]">
@@ -94,19 +72,6 @@ function StepColumn({
         ) : null}
       </div>
     </div>
-  );
-}
-
-// ─────────────────────────── Icons ──────────────────────────
-
-const ICONS = { eye: Eye, send: Send, heart: Heart } as const;
-
-function StepIcon({ name }: { name: Step["iconName"] }) {
-  const Icon = ICONS[name as keyof typeof ICONS] ?? Eye;
-  return (
-    <span className="grid h-11 w-11 place-items-center rounded-full bg-accent/15 text-accent">
-      <Icon className="h-4 w-4" strokeWidth={2.2} />
-    </span>
   );
 }
 
@@ -153,12 +118,12 @@ function PhotoMock({
         className="absolute inset-0 h-full w-full object-cover"
       />
       {badge === "heart" ? (
-        <span className="absolute left-1/2 top-1/2 grid h-10 w-10 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-accent text-white shadow-[0_10px_24px_-8px_var(--color-accent)]">
+        <span className="absolute left-1/2 top-1/2 grid h-10 w-10 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-accent text-white">
           <Heart className="h-4 w-4 fill-current" />
         </span>
       ) : null}
       {bubble ? (
-        <div className="absolute bottom-3 left-3 right-3 rounded-2xl bg-white/95 px-3 py-2 text-[11.5px] font-medium leading-snug text-ink shadow-[0_10px_24px_-12px_rgba(20,18,15,0.5)]">
+        <div className="absolute bottom-3 left-3 right-3 rounded-2xl bg-white px-3 py-2 text-[13px] font-medium leading-snug text-ink shadow-[0_10px_24px_-12px_rgba(20,18,15,0.5)]">
           <span className="mr-1 inline-block h-1.5 w-1.5 -translate-y-0.5 rounded-full bg-accent align-middle" />
           {bubble}
         </div>
@@ -185,7 +150,7 @@ function PhoneFrame({ children }: { children: React.ReactNode }) {
 function PhoneSendMock() {
   return (
     <PhoneFrame>
-      <div className="flex items-start justify-between text-[10px] text-white/85">
+      <div className="flex items-start justify-between text-[12px] text-white/85">
         <p className="font-medium">Sarah, 27</p>
         <span className="text-white/50">✕</span>
       </div>
@@ -193,7 +158,7 @@ function PhoneSendMock() {
         <FaceSilhouette hueA="#a37262" hueB="#4c2d24" />
       </div>
       <div className="mt-2.5 flex items-center justify-center gap-2.5">
-        <span className="grid h-7 w-7 place-items-center rounded-full border border-white/15 bg-white/5 text-[10px] text-white/70">
+        <span className="grid h-7 w-7 place-items-center rounded-full border border-white/15 bg-white/5 text-[12px] text-white/70">
           ✕
         </span>
         <span className="grid h-8 w-8 place-items-center rounded-full bg-accent">
@@ -207,7 +172,7 @@ function PhoneSendMock() {
 function PhoneReceiveMock() {
   return (
     <PhoneFrame>
-      <div className="flex items-center justify-between text-[10px] font-medium text-white/85">
+      <div className="flex items-center justify-between text-[12px] font-medium text-white/85">
         <span>Wink In</span>
         <span className="text-white/50">⏳</span>
       </div>
@@ -215,18 +180,18 @@ function PhoneReceiveMock() {
         <div className="mx-auto h-14 w-14 overflow-hidden rounded-full bg-gradient-to-b from-[#3a2a24] to-[#1a120f]">
           <FaceSilhouette hueA="#7a4e37" hueB="#2f1c14" />
         </div>
-        <p className="mt-2 text-center text-[10px] font-semibold text-white">
+        <p className="mt-2 text-center text-[13px] font-semibold text-white">
           Jordan, 28
         </p>
-        <p className="mt-1 text-center text-[8.5px] text-accent">
+        <p className="mt-1 text-center text-[12px] text-[#ff5c85]">
           Sent you a Wink
         </p>
       </div>
       <div className="mt-2 flex gap-1.5">
-        <span className="flex-1 rounded-full border border-white/10 py-1 text-center text-[9px] text-white/70">
+        <span className="flex-1 rounded-full border border-white/10 py-1.5 text-center text-[12px] text-white/75">
           ✕ Pass
         </span>
-        <span className="flex-1 rounded-full bg-accent py-1 text-center text-[9px] font-semibold text-white">
+        <span className="flex-1 rounded-full bg-accent py-1.5 text-center text-[12px] font-semibold text-white">
           ♥ Wink back
         </span>
       </div>
@@ -246,14 +211,14 @@ function PhoneMatchMock() {
             <FaceSilhouette hueA="#7d5136" hueB="#2c1810" />
           </span>
         </div>
-        <p className="mt-3 text-[12px] font-semibold leading-tight">
+        <p className="mt-3 text-[14px] font-semibold leading-tight">
           It&apos;s a Wink Match!
         </p>
-        <p className="mt-1 text-[9px] text-white/55">
+        <p className="mt-1 text-[12px] text-white/70">
           You and Jordan liked each other.
         </p>
       </div>
-      <span className="mt-2 rounded-full bg-white py-1.5 text-center text-[10px] font-semibold text-[#0d0d10]">
+      <span className="mt-2 rounded-full bg-white py-1.5 text-center text-[12px] font-semibold text-[#0d0d10]">
         Start chat
       </span>
     </PhoneFrame>

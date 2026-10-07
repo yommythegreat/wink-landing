@@ -69,8 +69,8 @@ export function WaitlistForm({
       className={cn(
         "flex w-full max-w-md gap-2 rounded-full border p-1.5",
         paper
-          ? "border-[color:var(--color-paper-line)] bg-white/60 backdrop-blur"
-          : "border-[color:var(--color-dark-line)] bg-white/[0.04] backdrop-blur",
+          ? "border-[color:var(--color-paper-line)] bg-white"
+          : "border-[color:var(--color-dark-line)] bg-[color:var(--color-dark-2)]",
         className,
       )}
     >
@@ -84,7 +84,7 @@ export function WaitlistForm({
         placeholder={placeholder}
         aria-label="Email address"
         className={cn(
-          "min-w-0 flex-1 border-0 bg-transparent px-4 py-3 text-base outline-none placeholder:text-[15px]",
+          "min-w-0 flex-1 border-0 bg-transparent px-4 py-3 text-base outline-none",
           paper
             ? "text-ink placeholder:text-[color:var(--color-ink-mute)]"
             : "text-snow placeholder:text-[color:var(--color-snow-mute)]",
@@ -93,9 +93,7 @@ export function WaitlistForm({
       <button
         type="submit"
         disabled={busy}
-        className={cn(
-          "inline-flex shrink-0 items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-transform duration-300 hover:-translate-y-0.5 disabled:opacity-60",
-        )}
+        className="inline-flex shrink-0 items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-[15px] font-semibold text-accent-foreground transition-colors hover:bg-accent-hover disabled:opacity-60"
       >
         {busy ? "…" : cta}
       </button>

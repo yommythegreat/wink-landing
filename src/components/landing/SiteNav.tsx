@@ -43,7 +43,7 @@ export function SiteNav({
       className={cn(
         "sticky top-0 z-50 transition-colors duration-300",
         scrolled
-          ? "border-b border-[color:var(--color-paper-line)] bg-paper/85 backdrop-blur"
+          ? "border-b border-[color:var(--color-paper-line)] bg-paper"
           : "border-b border-transparent bg-transparent",
       )}
     >
@@ -67,7 +67,7 @@ export function SiteNav({
             <a
               key={l.label}
               href={l.external ? l.href : `${prefix}${l.href}`}
-              className="text-[14px] font-medium text-[color:var(--color-ink-dim)] transition-colors hover:text-ink"
+              className="text-[15px] font-medium text-[color:var(--color-ink-dim)] transition-colors hover:text-ink"
             >
               {l.label}
             </a>
@@ -76,7 +76,7 @@ export function SiteNav({
 
         <a
           href={`${prefix}${nav.cta.href}`}
-          className="ml-auto hidden items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 md:inline-flex md:ml-0"
+          className="ml-auto hidden items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-[15px] font-semibold text-accent-foreground transition-colors hover:bg-accent-hover md:inline-flex md:ml-0"
         >
           {nav.cta.label}
         </a>
@@ -126,7 +126,7 @@ function MobileMenu({
       <div
         onClick={onClose}
         className={cn(
-          "absolute inset-0 bg-ink/40 backdrop-blur-sm transition-opacity duration-200",
+          "absolute inset-0 bg-ink/50 transition-opacity duration-200",
           open ? "opacity-100" : "opacity-0",
         )}
       />
@@ -166,7 +166,7 @@ function MobileMenu({
           <a
             href={`${prefix}${nav.cta.href}`}
             onClick={onClose}
-            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-3.5 text-base font-semibold text-white"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-3.5 text-base font-semibold text-accent-foreground hover:bg-accent-hover"
           >
             {nav.cta.label}
             <span aria-hidden>→</span>
