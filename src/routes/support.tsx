@@ -117,11 +117,6 @@ function SupportPage() {
               "Forgot password" on the sign-in screen to reset your password. If
               that doesn't work, email us.
             </p>
-            <p>
-              <strong className="text-foreground">Billing.</strong> For questions
-              about a subscription or a charge, email us with the email address on
-              your account.
-            </p>
           </Section>
 
           <Section title="Privacy and terms">
