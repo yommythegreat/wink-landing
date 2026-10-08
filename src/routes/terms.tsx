@@ -59,10 +59,10 @@ function TermsPage() {
               You are responsible for keeping your password secret and for any
               activity that happens under your account. Notify us at{" "}
               <a
-                href="mailto:chat@usewink.app"
+                href="mailto:support@usewink.app"
                 className="text-foreground underline-offset-2 hover:underline"
               >
-                chat@usewink.app
+                support@usewink.app
               </a>{" "}
               right away if you suspect unauthorized use.
             </p>
@@ -226,10 +226,10 @@ function TermsPage() {
             <p>
               Questions about these Terms? Email{" "}
               <a
-                href="mailto:chat@usewink.app"
+                href="mailto:support@usewink.app"
                 className="text-foreground underline-offset-2 hover:underline"
               >
-                chat@usewink.app
+                support@usewink.app
               </a>
               .
             </p>

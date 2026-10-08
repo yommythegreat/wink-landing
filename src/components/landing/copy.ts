@@ -329,6 +329,7 @@ export const footer = {
     { label: "Waitlist", href: "/#join" },
   ],
   secondaryLinks: [
+    { label: "Support", href: "/support" },
     { label: "Privacy", href: "/privacy" },
     { label: "Terms", href: "/terms" },
   ],
